@@ -1,14 +1,26 @@
-const express = require('express')
+const { ApolloServer } = require('apollo-server')
 
-const app = express()
+/**
+ * Setup up access to Postgres DB
+ */
+const typeDefs = `
+ type Query {
+   info: String!
+ }
+`
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
+const resolvers = {
+  Query: {
+    info: () => 'This is the API of a Hackernews Clone',
+  },
+}
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
 })
 
-const server = app.listen(5000, function () {
-  const host = 'localhost'
-  const post = 5000
+// TODO Handle using .env rather than hard coded values
+server.listen(5000)
 
-  console.log('Express App starting on http://localhost:5000')
-})
+console.log('Graphql API starting on http://localhost:5000')
