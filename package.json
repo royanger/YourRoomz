@@ -1,0 +1,17 @@
+{
+  "name": "co.lab-project",
+  "version": "0.1.0",
+  "description": "Project for Pat, Olayinka, Abdul and Roy. TODO: update this.",
+  "main": "index.js",
+  "scripts": {
+    "api": "npm start --prefix api",
+    "frontend": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run api\" \"npm run frontend\" ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pat Quinn, Olayinka Fadare, Abdul Basit and Roy Anger",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
