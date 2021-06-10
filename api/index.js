@@ -1,24 +1,22 @@
-const { ApolloServer } = require('apollo-server')
+const express = require('express')
+const { graphqlHTTP } = require('express-graphql')
+const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require('graphql')
 
-/**
- * Setup up access to Postgres DB
- */
-const typeDefs = `
- type Query {
-   info: String!
- }
-`
+const server = express()
 
-const resolvers = {
-  Query: {
-    info: () => 'This is the API of a Hackernews Clone',
-  },
-}
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+const schema = new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'HelloWorld',
+    fields: () => ({
+      messsage: {
+        type: GraphQLString,
+        resolve: () => 'Hello to the world',
+      },
+    }),
+  }),
 })
+
+server.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
 
 // TODO Handle using .env rather than hard coded values
 server.listen(5000)
