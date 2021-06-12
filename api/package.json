@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "API for Co.Lab project. TODO: Update",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon -L server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

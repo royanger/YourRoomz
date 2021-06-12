@@ -1,8 +1,11 @@
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require('graphql')
 import express from 'express'
 import dotenv from 'dotenv'
+import session from 'express-session'
+import { v4 as uuidv4 } from 'uuid'
+import passport from 'passport'
+import { graphqlHTTP } from 'express-graphql'
+import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
+import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const server = express()
 
@@ -18,6 +21,7 @@ const schema = new GraphQLSchema({
   }),
 })
 dotenv.config()
+const server = express()
 
 server.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
 
