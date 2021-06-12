@@ -22,4 +22,4 @@ From the root directory, rung `npm run dev` and it will concurrently start the R
 
 Prisma ships with its own powerful GUI called Prisma Studio. From the `/api` directory run the following command to start the GUI, and get the local URL to use.
 
-`npx prisma client`
+`npx prisma studio`
