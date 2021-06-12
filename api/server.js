@@ -7,21 +7,48 @@ import { graphqlHTTP } from 'express-graphql'
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
+import typeDefs from './Models/User.js'
+import resolvers from './Resolvers/resolvers.js'
+
+const schema = makeExecutableSchema({
+  resolvers,
+  typeDefs,
+})
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+passport.deserializeUser((id, done) => {
+  //const users = User.getUsers()
+  //const matchingUser = users.find(user => user.id === id)
+  //done(null, matchingUser)
+})
+
+dotenv.config()
+const SECRET = process.env.SECRET
+
 const server = express()
 
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'HelloWorld',
-    fields: () => ({
-      messsage: {
-        type: GraphQLString,
-        resolve: () => 'Hello to the world',
-      },
-    }),
-  }),
-})
-dotenv.config()
-const server = express()
+server.use(
+  session({
+    genid: req => uuidv4(),
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+
+// const schema = new GraphQLSchema({
+//   query: new GraphQLObjectType({
+//     name: 'HelloWorld',
+//     fields: () => ({
+//       messsage: {
+//         type: GraphQLString,
+//         resolve: () => 'Hello to the world',
+//       },
+//     }),
+//   }),
+// })
 
 server.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
 
