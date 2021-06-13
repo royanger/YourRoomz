@@ -1,0 +1,31 @@
+.add-rooms {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    width: 90%;
+  }
+  &__intro {
+    text-align: center;
+  }
+  &__grid {
+    margin: auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 30px;
+    a {
+      text-decoration: none;
+    }
+  }
+  &__hero {
+    height: 200px;
+    background-color: gray;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
