@@ -7,6 +7,8 @@ const typeDefs = `
     firstName: String
     lastName: String
     email: String
+    googleID: String
+    twitterID: String
   }
 
   type Link {
@@ -25,7 +27,7 @@ const typeDefs = `
 
 
    type Query {
-      currentUser: User
+      findUser: [User!]
       getRoom: Room
       getLink: [Link!]
    }
@@ -36,15 +38,15 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    currentUser: (parent, args, context) => context.getUser(),
+    findUser: (parent, args, context) => {
+      return context.prisma.user.findMany()
+    },
     getLink: (parent, args, context) => {
       return context.prisma.link.findMany()
     },
   },
   Mutation: {
-    //   createUser: (parent, args, context) => context.createUser(),
     createUser: (_parent, args, context) => {
-      console.log(context.prisma.user)
       return context.prisma.user.create({
         data: {
           firstName: args.firstName,

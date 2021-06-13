@@ -18,9 +18,11 @@ model Link {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  firstName   String
-  lastName    String
+  id          String   @id @default(uuid())
+  firstName   String?
+  lastName    String?
   email       String
+  googleId    String?
+  twitterID   String?
 }
 
