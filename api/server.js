@@ -3,17 +3,12 @@ import dotenv from 'dotenv'
 import session from 'express-session'
 import { v4 as uuidv4 } from 'uuid'
 import passport from 'passport'
+import { context } from './schema/context.js'
+import { schema } from './schema/schema.js'
 import { graphqlHTTP } from 'express-graphql'
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
-import { makeExecutableSchema } from '@graphql-tools/schema'
 
-import typeDefs from './Models/User.js'
-import resolvers from './Resolvers/resolvers.js'
-
-const schema = makeExecutableSchema({
-  resolvers,
-  typeDefs,
-})
+// import { PrismaClient } from '@prisma/client'
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -28,6 +23,7 @@ dotenv.config()
 const SECRET = process.env.SECRET
 
 const server = express()
+// const prisma = new PrismaClient()
 
 server.use(
   session({
@@ -38,19 +34,10 @@ server.use(
   })
 )
 
-// const schema = new GraphQLSchema({
-//   query: new GraphQLObjectType({
-//     name: 'HelloWorld',
-//     fields: () => ({
-//       messsage: {
-//         type: GraphQLString,
-//         resolve: () => 'Hello to the world',
-//       },
-//     }),
-//   }),
-// })
-
-server.use('/graphql', graphqlHTTP({ schema: schema, graphiql: true }))
+server.use(
+  '/graphql',
+  graphqlHTTP({ schema: schema, context: context, graphiql: true })
+)
 
 server.use(passport.initialize())
 server.use(passport.session())

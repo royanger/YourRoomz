@@ -16,3 +16,11 @@ model Link {
   description String
   url         String
 }
+
+model User {
+  id          Int      @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+}
+
