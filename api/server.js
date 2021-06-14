@@ -15,32 +15,47 @@ const SECRET = process.env.SECRET
 const port = process.env.PORT ? process.env.PORT : 5000
 const url = process.env.URL ? process.env.URL : 'localhost'
 
+// initialize express server
 const server = express()
 
 server.use(
   session({
     genid: req => uuidv4(),
+    name: 'rooms',
     secret: SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      //  secure: true,
+      //  sameSite: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
+    },
   })
 )
 
 server.use(
-  '/graphql',
-  graphqlHTTP({ schema: schema, context: context, graphiql: true })
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
 )
 
 // configure passport
 server.use(passport.initialize())
 server.use(passport.session())
 
+// setup serialize/deserialize for users
 import { passportSerialize, passportDeserialize } from './passport/serialize.js'
-import passportGoogle from './passport/Google.js'
-// import passportTwitter from './config/passportTwitter.js'
 passportSerialize(passport)
 passportDeserialize(passport)
+
+// configure Google Auth
+import passportGoogle from './passport/Google.js'
 passportGoogle(passport)
+
+// configure Twitter Auth
+// import passportTwitter from './config/passportTwitter.js'
 // passportTwitter(passport)
 
 // mount routes
