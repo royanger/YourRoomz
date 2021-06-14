@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import session from 'express-session'
+import cors from 'cors'
 import { v4 as uuidv4 } from 'uuid'
 import passport from 'passport'
 import { context } from './schema/context.js'
@@ -42,12 +43,17 @@ passportDeserialize(passport)
 passportGoogle(passport)
 // passportTwitter(passport)
 
+// mount routes
+server.use(
+  '/graphql',
+  graphqlHTTP({ schema: schema, context: context, graphiql: true })
+)
+
 // Google Auth
 server.get(
   '/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 )
-
 server.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
