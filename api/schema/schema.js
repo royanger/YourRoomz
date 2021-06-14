@@ -6,7 +6,7 @@ const typeDefs = `
     id: ID
     firstName: String
     lastName: String
-    email: String
+    email: String!
     googleID: String
     twitterID: String
   }

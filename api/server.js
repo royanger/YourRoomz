@@ -58,7 +58,9 @@ passportGoogle(passport)
 // import passportTwitter from './config/passportTwitter.js'
 // passportTwitter(passport)
 
-// mount routes
+// import and mount routes
+import { authCheck } from './routes/auth.js'
+server.use('/auth/authcheck', authCheck)
 server.use(
   '/graphql',
   graphqlHTTP({ schema: schema, context: context, graphiql: true })
@@ -79,6 +81,7 @@ server.get(
   }
 )
 
+// start the server
 server.listen(port, url, () => {
   console.log(`EXPRESS: started on http://${url}:${port}`)
   console.log(`GRAPHQL: started on http://${url}:${port}/graphql`)
