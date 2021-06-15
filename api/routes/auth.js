@@ -12,14 +12,16 @@ const authCheck = (req, res) => {
     console.log('user logged in')
     res.status(200).json({
       user: {
+        isAuthenticated: true,
         email: req.user.email,
       },
     })
   } else {
-    // TODO handle not logged in state
-    //res.status(401).send('There was an error')
-    console.log('user is not logged in')
-    res.status(200).send('needs updating')
+    res.status(200).json({
+      user: {
+        isAuthenticated: false,
+      },
+    })
   }
 }
 

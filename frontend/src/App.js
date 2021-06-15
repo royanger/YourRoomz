@@ -1,5 +1,8 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useAuth } from './lib/context/authContext'
+import Loader from 'react-ts-loaders'
+import { history } from './lib/history'
 
 // import the screens
 import AddCurrentItems from './screens/AddCurrentItems'
@@ -19,6 +22,14 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 
 const App = () => {
+  const {
+    loading,
+    authInfo: { isAuthenticated },
+  } = useAuth()
+
+  if (loading) return <Loader />
+  if (!loading && !isAuthenticated) history.push('/login')
+
   return (
     <>
       <Router>

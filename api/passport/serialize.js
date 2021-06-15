@@ -12,13 +12,11 @@ const passportSerialize = passport => {
 const passportDeserialize = passport => {
   passport.deserializeUser(async (id, callback) => {
     console.log('deserializing user')
-    console.log('id', id)
     const user = await context.prisma.user.findUnique({
       where: {
         email: id,
       },
     })
-    console.log('user', user)
     if (user) {
       callback(null, user)
     } else {
