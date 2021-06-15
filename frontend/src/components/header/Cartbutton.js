@@ -1,9 +1,12 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 
 const Cartbutton = () => {
   return (
     <>
-      <div>🛒 Cart</div>
+      <Link to="/cart">
+        <div>🛒 Cart</div>
+      </Link>
     </>
   )
 }

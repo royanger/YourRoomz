@@ -32,41 +32,41 @@ const App = () => {
 
   return (
     <>
-    <main className="wrapper">
       <Router>
         <Switch>
           <Route path="/login" exact component={Login} />
           <Route>
             <Header />
-            <Switch>
-              <Route path="/" exact component={Profile} />
-              <Route path="/add-room" exact component={AddRoom} />
-              <Route path="/add-items" exact component={AddCurrentItems} />
-              <Route
-                path="/category-recommendations"
-                exact
-                component={CategoryRecommendations}
-              />
-              <Route
-                path="/add-details"
-                exact
-                component={CurrentItemsDetails}
-              />
-              <Route
-                path="/recommendations"
-                exact
-                component={Recommendations}
-              />
-              <Route path="/room-details" exact component={RoomDetails} />
-              <Route path="/room-specs" exact component={RoomSpecs} />
-              <Route path="/cart" exact component={Cart} />
-              <Route path="/loading" exact component={LoadingRecs} />
-            </Switch>
+            <main className="wrapper">
+              <Switch>
+                <Route path="/" exact component={Profile} />
+                <Route path="/add-room" exact component={AddRoom} />
+                <Route path="/add-items" exact component={AddCurrentItems} />
+                <Route
+                  path="/category-recommendations"
+                  exact
+                  component={CategoryRecommendations}
+                />
+                <Route
+                  path="/add-details"
+                  exact
+                  component={CurrentItemsDetails}
+                />
+                <Route
+                  path="/recommendations"
+                  exact
+                  component={Recommendations}
+                />
+                <Route path="/room-details" exact component={RoomDetails} />
+                <Route path="/room-specs" exact component={RoomSpecs} />
+                <Route path="/cart" exact component={Cart} />
+                <Route path="/loading" exact component={LoadingRecs} />
+              </Switch>
+            </main>
             <Footer />
           </Route>
         </Switch>
       </Router>
-      </main>
     </>
   )
 }

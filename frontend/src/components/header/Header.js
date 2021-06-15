@@ -8,12 +8,16 @@ const Header = () => {
   const { logout } = useAuth()
   return (
     <>
-      <div>
-        <Brand />
-        <CartButton />
-        <Profile />
-        <button onClick={logout}>Logout</button>
-      </div>
+      <header>
+        <div className="container">
+          <Brand />
+          <nav>
+            <CartButton />
+            <Profile />
+            <button onClick={logout}>Logout</button>
+          </nav>
+        </div>
+      </header>
     </>
   )
 }

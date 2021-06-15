@@ -19,22 +19,6 @@ const Profile = () => {
   //       })
   //   }, [])
 
-  // TODO Also remove this after testing
-  const [authCheck, setAuthCheck] = React.useState()
-  React.useEffect(() => {
-    try {
-      const res = axios.get('/auth/authcheck')
-      console.log('data', res)
-      setAuthCheck(res?.user)
-    } catch (error) {
-      const data =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
-      console.log('error', data)
-    }
-  }, [])
-
   return (
     <>
       <div>Profile screen</div>

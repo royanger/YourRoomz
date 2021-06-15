@@ -20,8 +20,10 @@ const AddRooms = () => {
           <HeroCards to="/" text="Living Room" variant="add-rooms" />
           <HeroCards to="/" text="Living Room" variant="add-rooms" />
         </div>
+        <Link to="/room-specs">
+          <button>Next</button>
+        </Link>
       </div>
-      <Link to="/room-specs">Next</Link>
     </>
   )
 }

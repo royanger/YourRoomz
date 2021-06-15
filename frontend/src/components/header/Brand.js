@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 const Brand = () => {
   return (
     <>
-      <Link to="/">
-        <div>🪑 Home Reccos</div>
-      </Link>
+      <div className="brand">
+        <Link to="/">🪑 Home Reccos</Link>
+      </div>
     </>
   )
 }

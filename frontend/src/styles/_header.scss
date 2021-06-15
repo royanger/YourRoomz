@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  justify-content: center;
+
+  > .container {
+    border: 3px dashed green;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .brand {
+    border: 3px dashed steelblue;
+    padding: 30px;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    flex-grow: 1;
+
+    a,
+    button {
+      padding: 10px 20px;
+    }
+  }
+}
