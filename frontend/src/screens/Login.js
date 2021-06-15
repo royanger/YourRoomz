@@ -9,20 +9,21 @@ const Login = () => {
 
   return (
     <>
-      <div className="login">
-        <div className="login__intro">
-          <IntroText
-            heading="Get decor recommendations for free"
-            paragraph="Sign into your account"
-          />
+      <div className="container login">
+        <IntroText
+          variant="login"
+          heading="Get decor recommendations for free"
+          paragraph="Sign into your account"
+        />
+        <div className="btn-container login">
           <Button
             to="#"
             text="Sign in with Google"
             callback={googleLogin}
-            classes="login__btn"
+            variant="login"
           />
-          <Button to="/" text="Sign in with Facebook" classes="login__btn" />
-          <Button to="/" text="Sign in with Twitter" classes="login__btn" />
+          <Button to="/" text="Sign in with Facebook" variant="login" />
+          <Button to="/" text="Sign in with Twitter" variant="login" />
         </div>
       </div>
     </>

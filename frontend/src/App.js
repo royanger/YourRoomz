@@ -21,6 +21,7 @@ import Footer from './components/footer/Footer'
 const App = () => {
   return (
     <>
+    <main className="wrapper">
       <Router>
         <Switch>
           <Route path="/login" exact component={Login} />
@@ -54,6 +55,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
+      </main>
     </>
   )
 }
