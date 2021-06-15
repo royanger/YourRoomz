@@ -1,26 +1,32 @@
-.add-rooms {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__container {
-    width: 90%;
+.container {
+  &.add-rooms {
+    width: 100%;
+    max-width: 1440px;
   }
-  &__intro {
+}
+
+.intro-text {
+  &.add-rooms {
     text-align: center;
   }
-  &__grid {
-    margin: auto;
+}
+
+.grid {
+  &.add-rooms {
+    width: 70%;
     max-width: 1200px;
+    margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-gap: 30px;
     a {
       text-decoration: none;
     }
   }
-  &__hero {
+}
+
+.herocards {
+  &.add-rooms {
     height: 200px;
     background-color: gray;
     color: white;
