@@ -59,8 +59,9 @@ passportGoogle(passport)
 // passportTwitter(passport)
 
 // import and mount routes
-import { authCheck } from './routes/auth.js'
-server.use('/auth/authcheck', authCheck)
+import { authCheck, authLogout } from './routes/auth.js'
+server.get('/auth/authcheck', authCheck)
+server.post('/auth/logout', authLogout)
 server.use(
   '/graphql',
   graphqlHTTP({ schema: schema, context: context, graphiql: true })

@@ -25,4 +25,15 @@ const authCheck = (req, res) => {
   }
 }
 
-export { authCheck }
+/**
+ * @desc    Log user out by destroying req.user object
+ * @route   POST /auth/logout
+ * @access  PUBLIC
+ */
+const authLogout = (req, res) => {
+  console.log('logging user out')
+  req.logout()
+  res.status(200).send('User logged out')
+}
+
+export { authCheck, authLogout }

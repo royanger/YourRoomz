@@ -30,7 +30,19 @@ const AuthProvider = props => {
     fetch()
   }, [])
 
-  const contextValue = { authInfo, loading }
+  const logout = async () => {
+    try {
+      await axios.post('auth/logout')
+      setAuthInfo({ isAuthenticated: false })
+      window.location.href = '/login'
+    } catch (error) {
+      setAuthInfo({ isAuthenticated: false })
+      window.location.href = '/login'
+      throw new Error('There was an error completing the logout.')
+    }
+  }
+
+  const contextValue = { authInfo, loading, logout }
   //const contextValue = React.useMemo(() => ({ authInfo, loading }))
 
   return (
