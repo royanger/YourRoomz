@@ -1,11 +1,6 @@
-import GoogleStrategy, { Strategy } from 'passport-google-oauth20'
+import GoogleStrategy from 'passport-google-oauth20'
 import dotenv from 'dotenv'
-
-// import database object and models for sequelize
-// import db from '../config/database.js';
-// import User from '../models/User.js';
-
-// import default settings
+import { context } from '../schema/context.js'
 
 dotenv.config({ path: '../' })
 
@@ -18,21 +13,26 @@ const passportGoogle = async passport => {
         callbackURL: '/auth/google/callback',
       },
       async (accessToken, refreshToken, profile, cb) => {
-        // callback for successful authenication
-        // recreate user in app DB here
+        // does the user exists?
+        const user = await context.prisma.user.findUnique({
+          where: {
+            email: profile.emails[0].value,
+          },
+        })
 
-        //   const user = await User.findOne({
-        //     where: { email: profile.emails[0].value },
-        //     raw: true,
-        //   });
-        //   if (!user) {
-        //     const newUser = await User.create({
-        //       firstname: profile.name.givenName,
-        //       lastname: profile.name.familyName,
-        //       email: profile.emails[0].value,
-        //       googleId: profile.id,
-        //     });
-        //   }
+        // if not, then add the user
+        if (!user) {
+          await context.prisma.user.create({
+            data: {
+              givenName: profile.name.givenName,
+              familyName: profile.name.familyName,
+              email: profile.emails[0].value,
+              googleId: profile.id,
+            },
+          })
+        }
+
+        // TODO Update givenName, familyName?? Probably not needed.
 
         cb(null, profile)
       }
