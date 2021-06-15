@@ -2,8 +2,8 @@ import gpl from 'graphql-tag'
 
 export const USERS_QUERY = gpl`
    query {
-      findUser {
-         id, firstName
+      findUsers {
+         id, firstName, lastName, email
       }
    }
 `

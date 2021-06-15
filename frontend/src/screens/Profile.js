@@ -6,18 +6,18 @@ import { axiosConfig as axios } from '../lib/axios'
 
 const Profile = () => {
   // TODO testing, remove soon
-  const [users, setUsers] = React.useState()
-  React.useEffect(() => {
-    console.log('testing gpl query')
-    graphqlClient
-      .query({
-        query: USERS_QUERY,
-      })
-      .then(results => {
-        console.log('results', results)
-        setUsers(results.data.findUser)
-      })
-  }, [])
+  //   const [users, setUsers] = React.useState()
+  //   React.useEffect(() => {
+  //     console.log('testing gpl query')
+  //     graphqlClient
+  //       .query({
+  //         query: USERS_QUERY,
+  //       })
+  //       .then(results => {
+  //         console.log('results', results)
+  //         setUsers(results.data.findUser)
+  //       })
+  //   }, [])
 
   // TODO Also remove this after testing
   const [authCheck, setAuthCheck] = React.useState()
