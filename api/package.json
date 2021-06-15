@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon -L server.js",
+    "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pat Quinn, Olayinka Fadure, Abdul Basit, and Roy Anger",

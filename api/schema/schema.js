@@ -1,4 +1,4 @@
-import { context } from './context.js'
+// import { context } from './context.js'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const typeDefs = `
@@ -7,29 +7,29 @@ const typeDefs = `
     firstName: String
     lastName: String
     email: String!
-    googleID: String
-    twitterID: String
-  }
-
-  type Link {
-     id: ID
-     createdAt: String
-     description: String
-     url: String
+    googleId: String
+    twitterId: String
+    facebookId: String
   }
 
   type Room {
      id: ID
+     userId: String
+     typeId: String
      name: String
      length: Int
      width: Int
    }
 
+   type RoomType {
+      id: String
+      name: String
+   }
 
    type Query {
-      findUser: [User!]
+      findUsers: [User!]
+      findUser(email: String): User
       getRoom: Room
-      getLink: [Link!]
    }
    type Mutation {
      createUser(firstName: String, lastName: String, email: String!): User
@@ -38,11 +38,15 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    findUser: (parent, args, context) => {
+    findUsers: (parent, args, context) => {
       return context.prisma.user.findMany()
     },
-    getLink: (parent, args, context) => {
-      return context.prisma.link.findMany()
+    findUser: (parent, args, context) => {
+      return context.prisma.user.findUnique({
+        where: {
+          email: args.email,
+        },
+      })
     },
   },
   Mutation: {

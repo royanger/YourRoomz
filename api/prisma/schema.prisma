@@ -10,19 +10,30 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Link {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  description String
-  url         String
-}
-
 model User {
-  id          String   @id @default(uuid())
-  firstName   String?
-  lastName    String?
-  email       String   @unique
-  googleId    String?
-  twitterID   String?
+   id          String   @id @default(uuid())
+   firstName   String?
+   lastName    String?
+   email       String   @unique
+   googleId    String?
+   twitterId   String?
+   facebookId  String?
+   rooms       Room[]
 }
 
+model Room {
+   id       String   @id @default(uuid())
+   userId   String
+   user     User     @relation(fields: [userId], references: [id])
+   typeId   String
+   type     RoomType @relation(fields: [typeId], references: [id])
+   name     String?
+   length   Int?
+   width    Int?
+}
+
+model RoomType {
+   id       String   @id @default(uuid())
+   name     String
+   rooms    Room[]
+}
