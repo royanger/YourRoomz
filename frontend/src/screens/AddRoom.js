@@ -1,29 +1,30 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import HeroCards from '../components/HeroCards'
+import HeroCard from '../components/HeroCard'
 import IntroText from '../components/IntroText'
 
 const AddRooms = () => {
   return (
     <>
-      <div className="container add-rooms">
+      <div className="container room">
         <IntroText
-          variant="add-rooms"
+          variant="room-heading"
           heading="Which room are you designing?"
           paragraph="Pick at least one room"
         />
-        <div className="grid add-rooms">
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
-          <HeroCards to="/" text="Living Room" variant="add-rooms" />
+        <div className="room-grid">
+          <HeroCard to="/" text="Living Room" variant="room-card" />
+          <HeroCard to="/" text="Living Room" variant="room-card" />
+          <HeroCard to="/" text="Living Room" variant="room-card" />
+          <HeroCard to="/" text="Living Room" variant="room-card" />
+          <HeroCard to="/" text="Living Room" variant="room-card" />
+          <HeroCard to="/" text="Living Room" variant="room-card" />
         </div>
         <Link to="/room-specs">
           <button>Next</button>
         </Link>
-      </div>
+    </div>
+
     </>
   )
 }

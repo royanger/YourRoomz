@@ -47,3 +47,15 @@ after {
   max-width: 1440px;
   border: 3px dashed red;
 }
+// <------------------------------Components Start---------------------------------->
+.intro-text {
+  text-align: center;
+}
+
+.herocard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+// <------------------------------Components End---------------------------------->
