@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from 'uuid'
 import passport from 'passport'
 import { context } from './schema/context.js'
 import { schema } from './schema/schema.js'
-import { graphqlHTTP } from 'express-graphql'
+import pkg from 'express-graphql'
+const { graphqlHTTP } = pkg
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
 
 // load vars from ENV variables
