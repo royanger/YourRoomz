@@ -45,6 +45,7 @@ const typeDefs = `
    input UpdateUserInput {
       givenName: String
       familyName: String
+      displayName: String
       googleId: String
       twitterId: String
       facebookId: String
@@ -83,6 +84,7 @@ const resolvers = {
         data: {
           givenName: args.data.givenName,
           familyName: args.data.familyName,
+          displayName: args.data.displayName,
           googleId: args.data.googleId,
           twitterId: args.data.twitterId,
           facebookId: args.data.facebookId,

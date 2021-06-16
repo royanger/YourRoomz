@@ -35,7 +35,11 @@ const passportGoogle = async passport => {
         if (user && !user.googleId) {
           await context.prisma.user.update({
             where: { id: user.id },
-            data: { googleId: profile.id },
+            data: {
+              googleId: profile.id,
+              givenName: profile.name.givenName,
+              familyName: profile.name.familyName,
+            },
           })
         }
 

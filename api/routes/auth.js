@@ -12,6 +12,9 @@ const authCheck = (req, res) => {
       user: {
         isAuthenticated: true,
         email: req.user.email,
+        givenName: req.user.givenName,
+        familyName: req.user.familyName,
+        displayName: req.user.displayName,
       },
     })
   } else {

@@ -26,8 +26,7 @@ const passportTwitter = async passport => {
         if (!user) {
           await context.prisma.user.create({
             data: {
-              //   givenName: profile.name.givenName,
-              //   familyName: profile.name.familyName,
+              displayName: profile.displayName,
               email: profile.emails[0].value,
               twitterId: profile.id,
             },
@@ -37,7 +36,10 @@ const passportTwitter = async passport => {
         if (user && !user.twitterId) {
           await context.prisma.user.update({
             where: { id: user.id },
-            data: { twitterId: profile.id },
+            data: {
+              twitterId: profile.id,
+              displayName: profile.displayName,
+            },
           })
         }
         callback(null, profile)
