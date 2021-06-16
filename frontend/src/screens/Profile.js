@@ -1,10 +1,18 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../lib/context/authContext'
+import Loader from 'react-ts-loaders'
 import { graphqlClient } from '../lib/graphql'
 import { USERS_QUERY } from '../graphql/user'
 import { axiosConfig as axios } from '../lib/axios'
+import IntroText from '../components/IntroText'
 
 const Profile = () => {
+  const {
+    loading,
+    authInfo: { email, givenName, familyName, displayName },
+  } = useAuth()
+
   // TODO testing, remove soon
   //   const [users, setUsers] = React.useState()
   //   React.useEffect(() => {
@@ -20,10 +28,15 @@ const Profile = () => {
   //   }, [])
 
   return (
-    <>
-      <div>Profile screen</div>
+    <div className="container profile">
+      {givenName || displayName ? (
+        <h1>Hi, {givenName || displayName}</h1>
+      ) : (
+        <h1>Hi</h1>
+      )}
+
       <Link to="/add-room">Add Room</Link>
-    </>
+    </div>
   )
 }
 

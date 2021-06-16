@@ -8,8 +8,8 @@ const AuthProvider = props => {
   const [authInfo, setAuthInfo] = React.useState({
     isAuthenticated: false,
     email: '',
-    firstName: '',
-    lastName: '',
+    givenName: '',
+    familyName: '',
   })
 
   const fetch = async () => {

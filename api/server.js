@@ -77,7 +77,7 @@ server.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000')
+    res.redirect('http://localhost:3000/profile')
   }
 )
 
@@ -88,7 +88,7 @@ server.get(
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000')
+    res.redirect('http://localhost:3000/profile')
   }
 )
 
