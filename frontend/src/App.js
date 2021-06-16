@@ -10,6 +10,7 @@ import AddRoom from './screens/AddRoom'
 import CategoryRecommendations from './screens/CategoryRecommendations'
 import CurrentItemsDetails from './screens/CurrentItemsDetails'
 import Login from './screens/Login'
+import Landing from './screens/Landing'
 import Recommendations from './screens/Recommendations'
 import RoomDetails from './screens/RoomDetails'
 import RoomSpecs from './screens/RoomSpecs'
@@ -34,12 +35,13 @@ const App = () => {
     <>
       <Router>
         <Switch>
+          <Route path="/" exact component={Landing} />
           <Route path="/login" exact component={Login} />
           <Route>
             <Header />
             <main className="wrapper">
               <Switch>
-                <Route path="/" exact component={Profile} />
+                <Route path="/profile" exact component={Profile} />
                 <Route path="/add-room" exact component={AddRoom} />
                 <Route path="/add-items" exact component={AddCurrentItems} />
                 <Route
