@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <div class="container">
+        <div className="container">
           <nav>
             <Link to="/">
               <div>🌎 Home</div>
