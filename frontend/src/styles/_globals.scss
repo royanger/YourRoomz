@@ -1,6 +1,6 @@
 // Variables for use throughout app
 :root {
-  --brand-primary: #043761;
+  --brand-primary: #0d4a4a;
   --brand-secondary: #ff942f;
   --link: #ff942f;
   --link-active: #b36318;
@@ -14,13 +14,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Domine', serif;
+  font-weight: 400;
 }
 
 html {
   color: var(--text);
   font-size: 1.125rem;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 *,
