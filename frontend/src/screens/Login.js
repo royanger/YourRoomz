@@ -7,6 +7,10 @@ const Login = () => {
     window.open('http://localhost:5000/auth/google', '_self')
   }
 
+  const twitterLogin = () => {
+    window.open('http://localhost:5000/auth/twitter', '_self')
+  }
+
   return (
     <>
       <div className="container login">
@@ -23,7 +27,12 @@ const Login = () => {
             variant="login"
           />
           <Button to="/" text="Sign in with Facebook" variant="login" />
-          <Button to="/" text="Sign in with Twitter" variant="login" />
+          <Button
+            to="/"
+            text="Sign in with Twitter"
+            callback={twitterLogin}
+            variant="login"
+          />
         </div>
       </div>
     </>

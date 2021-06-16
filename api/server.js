@@ -55,8 +55,8 @@ import passportGoogle from './passport/Google.js'
 passportGoogle(passport)
 
 // configure Twitter Auth
-// import passportTwitter from './config/passportTwitter.js'
-// passportTwitter(passport)
+import passportTwitter from './passport/Twitter.js'
+passportTwitter(passport)
 
 // import and mount routes
 import { authCheck, authLogout } from './routes/auth.js'
@@ -76,7 +76,17 @@ server.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    console.log('Logged in via Google')
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000')
+  }
+)
+
+// Twitter Auth
+server.get('/auth/twitter', passport.authenticate('twitter'))
+server.get(
+  '/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/login' }),
+  function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('http://localhost:3000')
   }

@@ -7,9 +7,7 @@ const router = express.Router()
  * @access  PUBLIC
  */
 const authCheck = (req, res) => {
-  console.log('checking if user is logged in ')
   if (req.user) {
-    console.log('user logged in')
     res.status(200).json({
       user: {
         isAuthenticated: true,
@@ -31,7 +29,6 @@ const authCheck = (req, res) => {
  * @access  PUBLIC
  */
 const authLogout = (req, res) => {
-  console.log('logging user out')
   req.logout()
   res.status(200).send('User logged out')
 }

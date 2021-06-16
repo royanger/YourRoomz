@@ -2,10 +2,11 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
 
 const typeDefs = `
+
   type User {
     id: ID
-    firstName: String
-    lastName: String
+    givenName: String
+    familyName: String
     email: String!
     googleId: String
     twitterId: String
@@ -27,21 +28,38 @@ const typeDefs = `
    }
 
    type Query {
+      # Find all suers
       findUsers: [User!]
+      # Find a user by their email
       findUser(email: String): User
-      getRoom: Room
+      # Get all rooms
+      findRooms: Room
    }
    type Mutation {
-     createUser(firstName: String, lastName: String, email: String!): User
+      # Create a new user
+      createUser(firstName: String, lastName: String, email: String!): User
+      # Update a user
+      updateUser( id: String, data: UpdateUserInput): User
+   }
+
+   input UpdateUserInput {
+      givenName: String
+      familyName: String
+      googleId: String
+      twitterId: String
+      facebookId: String
    }
 `
 
 const resolvers = {
   Query: {
-    findUsers: (parent, args, context) => {
+    findRooms: (parent, args, context) => {
+      return context.prisma.room.findMany()
+    },
+    findUsers: (_parent, _args, context) => {
       return context.prisma.user.findMany()
     },
-    findUser: (parent, args, context) => {
+    findUser: (_parent, args, context) => {
       return context.prisma.user.findUnique({
         where: {
           email: args.email,
@@ -56,6 +74,18 @@ const resolvers = {
           firstName: args.firstName,
           lastName: args.lastName,
           email: args.email,
+        },
+      })
+    },
+    updateUser: (_parent, args, context) => {
+      return context.prisma.user.update({
+        where: { id: args.id },
+        data: {
+          givenName: args.data.givenName,
+          familyName: args.data.familyName,
+          googleId: args.data.googleId,
+          twitterId: args.data.twitterId,
+          facebookId: args.data.facebookId,
         },
       })
     },

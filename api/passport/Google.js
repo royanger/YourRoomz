@@ -32,7 +32,12 @@ const passportGoogle = async passport => {
           })
         }
 
-        // TODO Update givenName, familyName?? Probably not needed.
+        if (user && !user.googleId) {
+          await context.prisma.user.update({
+            where: { id: user.id },
+            data: { googleId: profile.id },
+          })
+        }
 
         cb(null, profile)
       }

@@ -2,7 +2,6 @@ import { context } from '../schema/context.js'
 
 const passportSerialize = passport => {
   passport.serializeUser((user, callback) => {
-    console.log('serializing user')
     if (user.provider === 'google') callback(null, user.emails[0].value)
     if (user.provider === 'twitter') callback(null, user.emails[0].value)
     //callback(null, user.id)
@@ -11,7 +10,6 @@ const passportSerialize = passport => {
 
 const passportDeserialize = passport => {
   passport.deserializeUser(async (id, callback) => {
-    console.log('deserializing user')
     const user = await context.prisma.user.findUnique({
       where: {
         email: id,
