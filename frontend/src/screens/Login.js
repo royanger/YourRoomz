@@ -15,23 +15,23 @@ const Login = () => {
     <>
       <div className="container login">
         <IntroText
-          variant="login"
+          variant="login-heading"
           heading="Get decor recommendations for free"
           paragraph="Sign into your account"
         />
-        <div className="btn-container login">
+        <div className="login-btn-container">
           <Button
             to="#"
             text="Sign in with Google"
             callback={googleLogin}
-            variant="login"
+            variant="login-btn-cta"
           />
-          <Button to="/" text="Sign in with Facebook" variant="login" />
+          <Button to="/" text="Sign in with Facebook" variant="login-btn-cta" />
           <Button
             to="/"
             text="Sign in with Twitter"
             callback={twitterLogin}
-            variant="login"
+            variant="login-btn-cta"
           />
         </div>
       </div>
