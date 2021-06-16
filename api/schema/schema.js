@@ -1,5 +1,5 @@
-// import { context } from './context.js'
-import { makeExecutableSchema } from '@graphql-tools/schema'
+import pkg from '@graphql-tools/schema'
+const { makeExecutableSchema } = pkg
 
 const typeDefs = `
 
