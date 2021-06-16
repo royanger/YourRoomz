@@ -48,6 +48,8 @@ after {
   border: 3px dashed red;
 }
 // <------------------------------Components Start---------------------------------->
+//Please only use _globals for some true global styles.
+// All component stuff should be in either its own file, or a file of similar stuff
 .intro-text {
   text-align: center;
 }
