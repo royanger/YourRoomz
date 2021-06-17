@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon -L server.js",
-    "start": "node server.js",
+    "start": "node ./bin/www",
     "migrate": "npx prisma migrate dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
