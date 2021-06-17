@@ -1,6 +1,7 @@
 import React from 'react'
 import { useFormik } from 'formik'
-import '../styles/_input-field.scss'
+// Add to styles.scss, don't import into components.
+//import '../styles/_input-field.scss'
 
 const InputField = ({ text, classes, variant }) => {
   const formik = useFormik({
