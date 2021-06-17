@@ -1,0 +1,16 @@
+.button {
+  padding: 15px 30px;
+  font-size: 20px;
+  line-height: 32px;
+  background-color: var(--brand-primary);
+  color: var(--light);
+  border-radius: 5px;
+  border: none;
+  display: inline-block;
+
+  button {
+    background-color: var(--brand-primary);
+    color: var(--light);
+    border: none;
+  }
+}

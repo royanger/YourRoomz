@@ -8,7 +8,7 @@ import { context } from './schema/context.js'
 import { schema } from './schema/schema.js'
 import pkg from 'express-graphql'
 const { graphqlHTTP } = pkg
-import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
+// import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
 
 // load vars from ENV variables
 dotenv.config()

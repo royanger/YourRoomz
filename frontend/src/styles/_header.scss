@@ -1,17 +1,21 @@
 header {
   display: flex;
   justify-content: center;
+  height: 120px;
 
   > .container {
-    border: 3px dashed green;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
   .brand {
-    border: 3px dashed steelblue;
-    padding: 30px;
+    padding: 0;
+
+    img {
+      max-height: 32px;
+      width: auto;
+    }
   }
   nav {
     display: flex;

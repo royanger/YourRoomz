@@ -4,8 +4,10 @@
   --brand-secondary: #ff942f;
   --link: #ff942f;
   --link-active: #b36318;
-  --text: rgb(33, 32, 34);
+  --text: #041a1a;
   --light-text: rgb(236, 236, 236);
+  --dark: #041a1a;
+  --light: #fff;
 }
 
 h1,
@@ -20,7 +22,7 @@ h6 {
 
 html {
   color: var(--text);
-  font-size: 1.125rem;
+  font-size: 18px;
   font-family: 'Open Sans', sans-serif;
 }
 
