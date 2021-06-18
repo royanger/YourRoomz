@@ -1,5 +1,5 @@
-import React from 'react'
-import { useFormik } from 'formik'
+import * as React from 'react'
+import { Formik, useFormik } from 'formik'
 // Add to styles.scss, don't import into components.
 //import '../styles/_input-field.scss'
 
