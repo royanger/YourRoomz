@@ -19,6 +19,7 @@ model User {
    googleId    String?
    twitterId   String?
    facebookId  String?
+   githubId    String?
    rooms       Room[]
 }
 

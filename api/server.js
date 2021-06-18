@@ -59,6 +59,10 @@ passportGoogle(passport)
 import passportTwitter from './passport/Twitter.js'
 passportTwitter(passport)
 
+// configure GitHub Auth
+import passportGitHub from './passport/GitHub.js'
+passportGitHub(passport)
+
 // import and mount routes
 import { authCheck, authLogout } from './routes/auth.js'
 server.get('/auth/authcheck', authCheck)
@@ -90,6 +94,42 @@ server.get(
   function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('http://localhost:3000/profile')
+  }
+)
+function github(req, res) {
+  console.log('is callback route working?')
+}
+
+// GitHub Auth
+server.get(
+  '/auth/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+  function (req, res) {}
+)
+// server.get(
+//   '/auth/github/callback',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     console.log('testing')
+//     // Successful authentication, redirect home.
+//     res.redirect('http://localhost:3000/profile')
+//   }
+// )
+
+// server.get(
+//   '/auth/github/callback',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     console.log('testing')
+//     // Successful authentication, redirect home.
+//     res.redirect('http://localhost:3000/profile')
+//   }
+// )
+server.get(
+  '/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/')
   }
 )
 

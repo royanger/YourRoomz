@@ -11,6 +11,7 @@ const typeDefs = `
     googleId: String
     twitterId: String
     facebookId: String
+    githubId: String
   }
 
   type Room {
@@ -49,6 +50,7 @@ const typeDefs = `
       googleId: String
       twitterId: String
       facebookId: String
+      githubId: String
    }
 `
 
@@ -88,6 +90,7 @@ const resolvers = {
           googleId: args.data.googleId,
           twitterId: args.data.twitterId,
           facebookId: args.data.facebookId,
+          githubId: args.data.githubId,
         },
       })
     },
