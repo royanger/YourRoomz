@@ -1,20 +1,25 @@
 import * as React from 'react'
 import Brand from './Brand'
-import CartButton from './Cartbutton'
+import Button from '../Button'
 import Profile from './Profile'
 import { useAuth } from '../../lib/context/authContext'
 
 const Header = () => {
-  const { logout } = useAuth()
+  const {
+    authInfo: { isAuthenticated },
+  } = useAuth()
   return (
     <>
       <header>
         <div className="container">
           <Brand />
           <nav>
-            <CartButton />
-            <Profile />
-            <button onClick={logout}>Logout</button>
+            {console.log('testing', isAuthenticated)}
+            {isAuthenticated ? (
+              <Profile />
+            ) : (
+              <Button text="Login" to="/login" />
+            )}
           </nav>
         </div>
       </header>

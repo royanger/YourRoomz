@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { axiosConfig as axios } from '../axios'
+import md5 from 'md5'
 
 const AuthContext = React.createContext()
 
@@ -10,12 +11,22 @@ const AuthProvider = props => {
     email: '',
     givenName: '',
     familyName: '',
+    gravatar: '',
   })
 
   const fetch = async () => {
     try {
       const res = await axios.get('/auth/authcheck')
-      setAuthInfo(prevState => ({ ...prevState, ...res.data.user }))
+      let gravatar
+      if (res.data.user.email) {
+        const hashedEmail = md5(res.data.user.email)
+        gravatar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=150?d=http%3A%2F%2Flocalhost.com%3A3000%2Fimages%2Fprofile.pngg`
+      }
+      setAuthInfo(prevState => ({
+        ...prevState,
+        ...res.data.user,
+        gravatar,
+      }))
       setLoading(false)
     } catch (error) {
       const data =

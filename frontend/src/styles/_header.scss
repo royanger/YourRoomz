@@ -7,6 +7,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0 1rem;
   }
 
   .brand {
@@ -26,6 +27,38 @@ header {
     a,
     button {
       padding: 10px 20px;
+    }
+  }
+}
+
+.profile-button {
+  position: relative;
+
+  .profile-img {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-block;
+
+    img {
+      height: 70px;
+      width: auto;
+      border-radius: 50%;
+    }
+  }
+
+  .profile-menu {
+    border: 2px solid red;
+    position: absolute;
+    display: none;
+
+    &.open {
+      display: block;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 
-const Cartbutton = () => {
+const Cartbutton = ({ handleMenuClose }) => {
   return (
     <>
-      <Link to="/cart">
+      <Link to="/cart" onClick={() => handleMenuClose}>
         <div>🛒 Cart</div>
       </Link>
     </>
