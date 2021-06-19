@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="container">
           <nav>
             <Link to="/">
-              <div>🌎 Home</div>
+              <div>Home</div>
             </Link>
           </nav>
           Copyright Us 2021
