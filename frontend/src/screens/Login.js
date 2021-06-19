@@ -39,24 +39,6 @@ const Login = () => {
           paragraph="Sign into your account"
         />
         <div className="login-btn-container">
-          <LoginButton
-            to="#"
-            text="Sign in with Google"
-            callback={googleLogin}
-            variant="login-btn-cta"
-          />
-          <LoginButton
-            to="/"
-            text="Sign in with Facebook"
-            variant="login-btn-cta"
-          />
-          <LoginButton
-            to="/"
-            text="Sign in with Twitter"
-            callback={twitterLogin}
-            variant="login-btn-cta"
-          />
-          <p>TEst</p>
           {providers.map(({ provider, title }) => {
             return (
               <LoginButton

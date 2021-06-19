@@ -17,9 +17,9 @@ const port = process.env.PORT ? process.env.PORT : 5000
 const url = process.env.URL ? process.env.URL : 'localhost'
 
 // initialize express server
-const server = express()
+const app = express()
 
-server.use(
+app.use(
   session({
     genid: req => uuidv4(),
     name: 'rooms',
@@ -35,7 +35,7 @@ server.use(
   })
 )
 
-server.use(
+app.use(
   cors({
     origin: 'http://localhost:3000',
     credentials: true,
@@ -43,8 +43,8 @@ server.use(
 )
 
 // configure passport
-server.use(passport.initialize())
-server.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 // setup serialize/deserialize for users
 import { passportSerialize, passportDeserialize } from './passport/serialize.js'
@@ -65,19 +65,19 @@ passportGitHub(passport)
 
 // import and mount routes
 import { authCheck, authLogout } from './routes/auth.js'
-server.get('/auth/authcheck', authCheck)
-server.post('/auth/logout', authLogout)
-server.use(
+app.get('/auth/authcheck', authCheck)
+app.post('/auth/logout', authLogout)
+app.use(
   '/graphql',
   graphqlHTTP({ schema: schema, context: context, graphiql: true })
 )
 
 // Google Auth
-server.get(
+app.get(
   '/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 )
-server.get(
+app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
@@ -87,8 +87,8 @@ server.get(
 )
 
 // Twitter Auth
-server.get('/auth/twitter', passport.authenticate('twitter'))
-server.get(
+app.get('/auth/twitter', passport.authenticate('twitter'))
+app.get(
   '/auth/twitter/callback',
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function (req, res) {
@@ -96,45 +96,23 @@ server.get(
     res.redirect('http://localhost:3000/profile')
   }
 )
-function github(req, res) {
-  console.log('is callback route working?')
-}
 
 // GitHub Auth
-server.get(
+app.get(
   '/auth/github',
-  passport.authenticate('github', { scope: ['user:email'] }),
-  function (req, res) {}
+  passport.authenticate('github', { scope: ['user:email'] })
 )
-// server.get(
-//   '/auth/github/callback',
-//   passport.authenticate('github', { failureRedirect: '/login' }),
-//   function (req, res) {
-//     console.log('testing')
-//     // Successful authentication, redirect home.
-//     res.redirect('http://localhost:3000/profile')
-//   }
-// )
-
-// server.get(
-//   '/auth/github/callback',
-//   passport.authenticate('github', { failureRedirect: '/login' }),
-//   function (req, res) {
-//     console.log('testing')
-//     // Successful authentication, redirect home.
-//     res.redirect('http://localhost:3000/profile')
-//   }
-// )
-server.get(
+app.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function (req, res) {
-    res.redirect('/')
+    // Successful authentication, redirect home.
+    res.redirect('http://localhost:3000/profile')
   }
 )
 
 // start the server
-server.listen(port, url, () => {
+app.listen(port, url, () => {
   console.log(`EXPRESS: started on http://${url}:${port}`)
   console.log(`GRAPHQL: started on http://${url}:${port}/graphql`)
 })

@@ -10,7 +10,6 @@ const typeDefs = `
     email: String!
     googleId: String
     twitterId: String
-    facebookId: String
     githubId: String
   }
 
@@ -32,7 +31,7 @@ const typeDefs = `
       # Find all suers
       findUsers: [User!]
       # Find a user by their email
-      findUser(email: String): User
+      findUserByEmail(email: String): User
       # Get all rooms
       findRooms: Room
    }
@@ -49,7 +48,6 @@ const typeDefs = `
       displayName: String
       googleId: String
       twitterId: String
-      facebookId: String
       githubId: String
    }
 `
@@ -62,7 +60,7 @@ const resolvers = {
     findUsers: (_parent, _args, context) => {
       return context.prisma.user.findMany()
     },
-    findUser: (_parent, args, context) => {
+    findUserByEmail: (_parent, args, context) => {
       return context.prisma.user.findUnique({
         where: {
           email: args.email,
@@ -89,7 +87,6 @@ const resolvers = {
           displayName: args.data.displayName,
           googleId: args.data.googleId,
           twitterId: args.data.twitterId,
-          facebookId: args.data.facebookId,
           githubId: args.data.githubId,
         },
       })

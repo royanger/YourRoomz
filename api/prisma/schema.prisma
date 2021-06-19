@@ -15,10 +15,9 @@ model User {
    givenName   String?
    familyName  String?
    displayName String?
-   email       String   @unique
+   email       String?  @unique
    googleId    String?
    twitterId   String?
-   facebookId  String?
    githubId    String?
    rooms       Room[]
 }

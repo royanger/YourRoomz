@@ -4,6 +4,7 @@ const passportSerialize = passport => {
   passport.serializeUser((user, callback) => {
     if (user.provider === 'google') callback(null, user.emails[0].value)
     if (user.provider === 'twitter') callback(null, user.emails[0].value)
+    if (user.provider === 'github') callback(null, user.email)
     //callback(null, user.id)
   })
 }

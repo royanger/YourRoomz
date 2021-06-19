@@ -6,25 +6,23 @@ dotenv.config({ path: '../' })
 
 const passportGoogle = async passport => {
   passport.use(
+    //new GitHubStrategy(
     new GitHubStrategy.Strategy(
       {
         clientID: process.env.GITHUB_API_ID,
         clientSecret: process.env.GITHUB_API_SECRET,
-        callbackURL: '/auth/github/callback',
+        callbackURL: 'http://localhost:5000/auth/github/callback',
       },
-      async (accessToken, refreshToken, profile, cb) => {
+      async function (accessToken, refreshToken, profile, done) {
         // does the user exists?
-        console.log('github', profile.emails[0].value)
         const user = await context.prisma.user.findUnique({
           where: {
             email: profile.emails[0].value,
           },
         })
 
-        console.log('user', user)
         // if not, then add the user
         if (!user) {
-          console.log('adding user')
           await context.prisma.user.create({
             data: {
               displayName: profile.displayName,
@@ -35,18 +33,27 @@ const passportGoogle = async passport => {
         }
 
         if (user && !user.githubId) {
-          console.log('updating user')
-          const updatedUser = await context.prisma.user.update({
+          await context.prisma.user.update({
             where: { id: user.id },
             data: {
               githubId: profile.id,
               displayName: profile.displayName,
             },
           })
-          console.log('updated user', updatedUser)
         }
 
-        return cb(null, user)
+        const updatedUser = await context.prisma.user.findUnique({
+          where: {
+            email: profile.emails[0].value,
+          },
+        })
+
+        const updatedProfile = {
+          ...updatedUser,
+          provider: 'github',
+        }
+
+        return done(null, updatedProfile)
       }
     )
   )
