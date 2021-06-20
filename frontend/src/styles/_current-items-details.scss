@@ -1,0 +1,68 @@
+.existing-items {
+  width: 50%;
+  max-width: 800px;
+
+  .text {
+    text-align: center;
+  }
+
+  p {
+    margin: 15px 0 15px 0;
+  }
+
+  > form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    label {
+      margin: 10px 0 10px 0;
+    }
+
+    select {
+      padding: 10px;
+    }
+  }
+  .container-color {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+    .grid {
+      width: 60%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 5px;
+      margin-right: 10px;
+    }
+
+    .color-card {
+      width: 80px;
+      height: 30px;
+      background-color: grey;
+    }
+
+    .color-picker {
+      background-color: grey;
+      width: 40%;
+    }
+  }
+
+  .container-material {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    gap: 10px;
+
+    .link {
+      flex: 1;
+    }
+
+    .material-card {
+      height: 120px;
+      background-color: grey;
+    }
+  }
+}
