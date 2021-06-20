@@ -1,39 +1,32 @@
 .room-details {
-    .heading {
-        margin-bottom: 20px;
+  .heading {
+    margin-bottom: 20px;
+  }
+  .wall-color,
+  .floor-color {
+    width: 45%;
+    max-width: 1200px;
+    margin-right: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px 30px;
+    .color-card {
+      width: 120px;
+      height: 80px;
+      background-color: grey;
     }
-    .wall-color, .floor-color {
-        width: 45%;
-        max-width: 1200px;
-        margin-right: 100px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 30px 30px;
-        // row-gap: 10px;
-        > div {
-            width: 120px;
-            height: 80px;
-            background-color: grey;
-        }
-
-    }
-    .floor-color {
-        // margin-top: 40px;
-    }
-    section {
-        border: solid red;
-        margin-top: 20px;
-        display: flex;
-        justify-content:center
-
-    }
-    .c-picker, .f-picker {
-        position: relative;
-        left: 20px;
-        width:20%;
-        background-color: grey;
-        // display: inline-block;
-    }
- 
-
+  }
+  section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .c-picker,
+  .f-picker {
+    position: relative;
+    left: 20px;
+    width: 20%;
+    background-color: grey;
+    // display: inline-block;
+  }
 }

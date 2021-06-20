@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import IntroText from '../components/IntroText'
-import '../styles/_room-details.scss'
+import HeroCard from '../components/HeroCard'
 
 const RoomDetails = () => {
   return (
@@ -14,31 +14,31 @@ const RoomDetails = () => {
         />
         <section>
           <div className="wall-color">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
           </div>
           <div className="c-picker">wall color picker</div>
         </section>
         <section>
           <div className="floor-color">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
+          <HeroCard variant="color-card"/>
           </div>
           <div className="f-picker">floor color picker</div>
         </section>
