@@ -14,31 +14,31 @@ const RoomDetails = () => {
         />
         <section>
           <div className="wall-color">
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
           </div>
           <div className="c-picker">wall color picker</div>
         </section>
         <section>
           <div className="floor-color">
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
-          <HeroCard variant="color-card"/>
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
+          <HeroCard to="/" text="" variant="color-card" />
           </div>
           <div className="f-picker">floor color picker</div>
         </section>
