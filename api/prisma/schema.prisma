@@ -20,21 +20,66 @@ model User {
    twitterId   String?
    githubId    String?
    rooms       Room[]
+   cart        Cart[]
 }
 
 model Room {
-   id       String   @id @default(uuid())
-   userId   String
-   user     User     @relation(fields: [userId], references: [id])
-   typeId   String
-   type     RoomType @relation(fields: [typeId], references: [id])
-   name     String?
-   length   Int?
-   width    Int?
+   id                String      @id @default(uuid())
+   userId            String
+   user              User        @relation(fields: [userId], references: [id])
+   typeId            String
+   type              RoomType    @relation(fields: [typeId], references: [id])
+   name              String?
+   wallColor         String?
+   floorColor        String?
+   floorMaterialId   String
+   flooring          Flooring    @relation(fields: [floorMaterialId], references: [id])
+   furniture         Furniture[]
+   cartItem          CartItems[]
 }
 
 model RoomType {
    id       String   @id @default(uuid())
    name     String
    rooms    Room[]
+}
+
+model Flooring {
+   id       String   @id @default(uuid())
+   name     String
+   rooms    Room[]
+}
+
+model Category {
+   id             String   @id @default(uuid())
+   name           String
+   furniture      Furniture[]
+
+}
+
+model Furniture {
+   id          String   @id @default(uuid())
+   color       String
+   categoryId  String
+   category    Category @relation(fields: [categoryId], references:[id])
+   roomId      String
+   room        Room     @relation(fields: [roomId], references:[id])
+}
+
+model Cart {
+   id          String   @id @default(uuid())
+   userId      String
+   user        User     @relation (fields: [userId], references:[id])
+   cartItems   CartItems[]
+}
+
+model CartItems {
+   id          String   @id @default(uuid())
+   cartId      String
+   cart        Cart     @relation (fields: [cartId], references:[id])
+   name        String
+   price       Float
+   link        String
+   roomId      String
+   room        Room     @relation (fields: [roomId], references:[id])
 }
