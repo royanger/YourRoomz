@@ -43,7 +43,7 @@ const RoomDetails = () => {
           <div className="f-picker">floor color picker</div>
         </section>
       </div>
-      <Link to="/room-specs">Back</Link>
+      <Link to="/add-room">Back</Link>
       <Link to="/add-items">Next</Link>
     </>
   )

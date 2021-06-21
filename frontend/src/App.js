@@ -12,7 +12,6 @@ import Login from './screens/Login'
 import Landing from './screens/Landing'
 import Recommendations from './screens/Recommendations'
 import RoomDetails from './screens/RoomDetails'
-import RoomSpecs from './screens/RoomSpecs'
 import Profile from './screens/Profile'
 import LoadingRecs from './screens/LoadingRecs'
 import Cart from './screens/Cart'
@@ -87,12 +86,6 @@ const App = () => {
             path={'/room-details'}
             exact
             component={RoomDetails}
-          />
-          <RouteController
-            routeType={'private'}
-            path={'/room-specs'}
-            exact
-            component={RoomSpecs}
           />
           <RouteController
             routeType={'private'}

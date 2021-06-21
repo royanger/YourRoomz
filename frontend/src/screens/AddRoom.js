@@ -20,11 +20,10 @@ const AddRooms = () => {
           <HeroCard to="/" text="Living Room" variant="room-card" />
           <HeroCard to="/" text="Living Room" variant="room-card" />
         </div>
-        <Link to="/room-specs">
+        <Link to="/room-details">
           <button>Next</button>
         </Link>
-    </div>
-
+      </div>
     </>
   )
 }
