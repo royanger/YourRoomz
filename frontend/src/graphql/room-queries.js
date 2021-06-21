@@ -1,5 +1,26 @@
 import gpl from 'graphql-tag'
 
+export const ROOMS_QUERY = gpl`
+query findRooms($userId: String!) {
+   findRooms(userId: $userId) {
+     id
+     name
+     wallColor
+     floorColor
+     roomtype {
+       id
+       name
+     }
+     cartitems {
+       id
+     }
+     furniture {
+       id
+     }
+   }
+ }
+`
+
 export const ROOM_QUERY = gpl`
 query {
    findRoomById(id: "c717aa08-e757-4f84-b166-9cfd47d58d50") {

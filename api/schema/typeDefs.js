@@ -63,9 +63,11 @@ export const typeDefs = `
       # Find a user by their email
       findUserByEmail(email: String): User
       # Get all rooms
-      findRooms(userId: String): Room
+      # findRooms(userId: String): Room
+      findRooms(userId: String): [Room!]
       # Get a specific room and its related info
       findRoomById(id: String): Room
+
    }
 
    type Mutation {
