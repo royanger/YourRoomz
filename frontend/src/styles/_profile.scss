@@ -1,0 +1,17 @@
+.profile {
+  padding: 0 10px;
+
+  .rooms {
+    border: 1px solid var(--dark);
+    display: grid;
+    grid-template-columns: 3fr repeat(5, 1fr);
+
+    &.title {
+      font-weight: bold;
+    }
+
+    > div {
+      padding: 5px 10px;
+    }
+  }
+}
