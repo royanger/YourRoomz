@@ -5,7 +5,6 @@
   // Header and Footer should not be inside of <main>
   min-height: 80vh;
   display: flex;
-  justify-content: center;
 }
 
 main {
@@ -16,4 +15,11 @@ main {
 .container {
   width: 100%;
   max-width: 1440px;
+}
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

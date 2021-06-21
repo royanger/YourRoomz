@@ -23,7 +23,12 @@ import RouteController from './components/routes/RouteController'
 const App = () => {
   const { loading } = useAuth()
 
-  if (loading) return <Loader />
+  if (loading)
+    return (
+      <div className="loader-container">
+        <Loader type="dotspinner" size={200} color="var(--brand-primary)" />
+      </div>
+    )
 
   return (
     <>
