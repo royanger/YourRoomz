@@ -30,7 +30,6 @@
 
     .grid {
       width: 60%;
-      max-width: 1200px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
       gap: 5px;
@@ -49,7 +48,7 @@
     }
   }
 
-  .container-material {
+  .flex {
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -61,6 +60,15 @@
     }
 
     .material-card {
+      height: 120px;
+      background-color: grey;
+    }
+  }
+  .grid-pre {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    .pre-card {
       height: 120px;
       background-color: grey;
     }
