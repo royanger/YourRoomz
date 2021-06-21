@@ -8,6 +8,7 @@ const AuthProvider = props => {
   const [loading, setLoading] = React.useState(true)
   const [authInfo, setAuthInfo] = React.useState({
     isAuthenticated: false,
+    userId: '',
     email: '',
     givenName: '',
     familyName: '',

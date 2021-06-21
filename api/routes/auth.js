@@ -11,6 +11,7 @@ const authCheck = (req, res) => {
     res.status(200).json({
       user: {
         isAuthenticated: true,
+        userId: req.user.id,
         email: req.user.email,
         givenName: req.user.givenName,
         familyName: req.user.familyName,
