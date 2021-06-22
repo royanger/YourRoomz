@@ -1,9 +1,16 @@
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
-  background-color: var(--brand-primary);
-  color: var(--light-text);
-  padding: 30px 0;
+  background-color: var(--light);
+  color: var(--brand-primary);
+  padding: 20px 0;
+  //   -webkit-box-shadow: -6px 5px 30px 0px rgba(0,0,0,0.66);
+  // -moz-box-shadow: -6px 5px 30px 0px rgba(0,0,0,0.66);
+  box-shadow: -6px 10px 25px 0px rgba(0, 0, 0, 0.66);
 
   > .container {
     display: flex;
@@ -12,18 +19,28 @@ footer {
   }
 
   nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-grow: 1;
+    width: 100%;
+    padding: 0 10px;
 
-    a {
-      color: var(--light-text);
-    }
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      list-style: none;
 
-    a,
-    button {
-      padding: 10px 20px;
+      .right {
+        justify-self: end;
+      }
+
+      a {
+        color: var(--light-text);
+      }
+
+      a,
+      button {
+        padding: 10px 20px;
+        display: inline;
+      }
     }
   }
 }

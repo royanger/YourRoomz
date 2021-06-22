@@ -1,20 +1,37 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import FooterPortal from '../portals/Footer'
+import Button from '../Button'
 
-const Footer = () => {
+const Footer = ({ nextDisabled, backDisabled, callback }) => {
   return (
-    <>
+    <FooterPortal>
       <footer>
         <div className="container">
           <nav>
-            <Link to="/">
-              <div>Home</div>
-            </Link>
+            <ul>
+              <li>
+                <Button
+                  id="footerBack"
+                  text="Back"
+                  variant="small light"
+                  disabled={backDisabled}
+                  callback={callback}
+                />
+              </li>
+              <li className="right">
+                <Button
+                  id="footerNext"
+                  text="Next"
+                  variant="small"
+                  disabled={nextDisabled}
+                  callback={callback}
+                />
+              </li>
+            </ul>
           </nav>
-          Copyright Us 2021
         </div>
       </footer>
-    </>
+    </FooterPortal>
   )
 }
 
