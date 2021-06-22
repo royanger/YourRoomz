@@ -32,7 +32,7 @@ export const resolvers = {
     furniture: (parent, _args, context) => {
       return context.prisma.furniture.findMany({
         where: {
-          id: parent.furnitureId,
+          roomId: parent.id,
         },
       })
     },
@@ -58,6 +58,7 @@ export const resolvers = {
       })
     },
     cartitems: (parent, _args, context) => {
+      console.log('parent', parent)
       return context.prisma.cartItems.findMany({
         where: {
           roomId: parent.id,
@@ -85,6 +86,16 @@ export const resolvers = {
           googleId: args.data.googleId,
           twitterId: args.data.twitterId,
           githubId: args.data.githubId,
+        },
+      })
+    },
+    createRoom: (_parent, args, context) => {
+      return context.prisma.room.create({
+        data: {
+          userId: args.userId,
+          typeId: args.typeId,
+          wallColor: args.wallColor,
+          floorColor: args.floorColor,
         },
       })
     },

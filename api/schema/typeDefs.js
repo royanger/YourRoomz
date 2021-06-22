@@ -78,6 +78,8 @@ export const typeDefs = `
       createUser(firstName: String, lastName: String, email: String!): User
       # Update a user
       updateUser( id: String, data: UpdateUserInput): User
+      # Add a new room
+      createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String): Room
    }
 
    input UpdateUserInput {

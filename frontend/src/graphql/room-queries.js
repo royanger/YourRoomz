@@ -1,5 +1,14 @@
 import gpl from 'graphql-tag'
 
+export const CREATE_ROOM = gpl`
+
+mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String) {
+   createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor) {
+     id
+   }
+ }
+`
+
 export const ROOMS_QUERY = gpl`
 query findRoomsByUser($userId: String!) {
    findRoomsByUser(userId: $userId) {
