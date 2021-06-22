@@ -9,13 +9,16 @@ const RoomDetails = ({
   wallColor,
   handleFloorColorPicker,
   floorColor,
+  typeName,
 }) => {
   return (
     <>
       <IntroText
         variant="heading"
-        heading="What is your living room color?"
-        paragraph="Choose your living room wall color and floor color"
+        heading={`What is your ${typeName ? typeName : 'room'} color?`}
+        paragraph={`Choose your ${
+          typeName ? typeName : 'room'
+        } wall color and floor color`}
       />
       <section>
         <div className="wall-color">

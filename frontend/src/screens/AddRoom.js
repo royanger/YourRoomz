@@ -6,6 +6,7 @@ import Footer from '../components/footer/Footer'
 import { CREATE_ROOM } from '../graphql/room-queries'
 import { graphqlClient } from '../lib/graphql'
 import { useAuth } from '../lib/context/authContext'
+import { useRoomContext } from '../lib/context/roomContext'
 import Loader from 'react-ts-loaders'
 
 const AddRooms = () => {
@@ -13,10 +14,11 @@ const AddRooms = () => {
   const {
     authInfo: { userId },
   } = useAuth()
-
+  const { roomInfo } = useRoomContext()
   const [loading, setLoading] = React.useState(false)
   const [step, setStep] = React.useState('one')
   const [type, setType] = React.useState('')
+  const [typeName, setTypeName] = React.useState('')
   const [wallColor, setWallColor] = React.useState('#BA284E')
   const [floorColor, setFloorColor] = React.useState('#414367')
   const [wallColorUpdated, setWallColorUpdated] = React.useState(false)
@@ -27,8 +29,23 @@ const AddRooms = () => {
     if (step === 'two' && type && wallColorUpdated) setNextDisabled(false)
   }, [step, type, wallColor, wallColorUpdated])
 
+  // if RoomContext has stored room info, load that into state
+  React.useEffect(() => {
+    if (roomInfo) {
+      setLoading(true)
+      setStep('two')
+      setType(roomInfo.roomtype[0].id)
+      setTypeName(roomInfo.roomtype[0].name)
+      setWallColor(roomInfo.wallColor)
+      setFloorColor(roomInfo.floorColor)
+      setNextDisabled(false)
+      setLoading(false)
+    }
+  }, [])
+
   const handleSelectType = e => {
     setType(e.target.id)
+    setTypeName(e.target.innerText)
     setStep('two')
   }
 
@@ -94,6 +111,7 @@ const AddRooms = () => {
             handleFloorColorPicker={handleFloorColorPicker}
             wallColor={wallColor}
             floorColor={floorColor}
+            typeName={typeName}
           />
         ) : (
           ''

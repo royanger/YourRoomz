@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { useRoomContext } from '../lib/context/roomContext'
 
 const AddCurrentItems = () => {
+  const { roomId, selectRoom } = useRoomContext()
+
   return (
     <>
       <div>AddCurrentItems screen</div>
