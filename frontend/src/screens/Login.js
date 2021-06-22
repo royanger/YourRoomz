@@ -1,7 +1,6 @@
 import * as React from 'react'
 import LoginButton from '../components/LoginButton'
 import IntroText from '../components/IntroText'
-import Modal from '../components/Modal'
 
 const providers = [
   {
@@ -19,14 +18,6 @@ const providers = [
 ]
 
 const Login = () => {
-  const googleLogin = () => {
-    window.open('http://localhost:5000/auth/google', '_self')
-  }
-
-  const twitterLogin = () => {
-    window.open('http://localhost:5000/auth/twitter', '_self')
-  }
-
   const loginCallback = provider => {
     window.open(`http://localhost:5000/auth/${provider}`, '_self')
   }
