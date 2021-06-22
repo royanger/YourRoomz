@@ -23,6 +23,9 @@
       padding: 10px;
     }
   }
+  .card {
+    background-color: grey;
+  }
   .container-color {
     display: flex;
     justify-content: center;
@@ -35,20 +38,17 @@
       gap: 5px;
       margin-right: 10px;
     }
-
-    .color-card {
+    .color {
       width: 80px;
       height: 30px;
-      background-color: grey;
     }
-
     .color-picker {
       background-color: grey;
       width: 40%;
     }
   }
 
-  .flex {
+  .container-material {
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -59,18 +59,35 @@
       flex: 1;
     }
 
-    .material-card {
+    .material {
+      height: 120px;
+    }
+  }
+  .grid-one {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    .existing-one {
       height: 120px;
       background-color: grey;
     }
   }
-  .grid-pre {
+  .grid-two {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    .pre-card {
-      height: 120px;
+    grid-template-columns: repeat(5, 1fr);
+    // gap: 10px;
+    .existing-two {
+      height: 60px;
       background-color: grey;
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border:solid 1pt black
+    }
+    .existing-two-bottom {
+      height: 100px;
     }
   }
 }

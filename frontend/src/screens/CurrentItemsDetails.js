@@ -22,55 +22,74 @@ const CurrentItemsDetails = () => {
         <p>Color</p>
         <div className="container-color">
           <div className="grid">
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
-            <HeroCard to="/" text="" variant="color-card" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
+            <HeroCard to="/" text="" variant="card color" />
           </div>
           <div className="color-picker">
-            <HeroCard to="/" text="" variant="picker-card" />
+            <HeroCard to="/" text="" variant="picker-card color" />
           </div>
         </div>
         <p>Material</p>
         <div className="container-material">
-          <HeroCard link="link" to="/" text="" variant="material-card" />
-          <HeroCard link="link" to="/" text="" variant="material-card" />
-          <HeroCard link="link" to="/" text="" variant="material-card" />
-          <HeroCard link="link" to="/" text="" variant="material-card" />
+          <HeroCard link="link" to="/" text="" variant="card material" />
+          <HeroCard link="link" to="/" text="" variant="card material" />
+          <HeroCard link="link" to="/" text="" variant="card material" />
+          <HeroCard link="link" to="/" text="" variant="card material" />
         </div>
-        <div className="container-pre">
+        <div>
           <IntroText
             variant="text"
             heading="Choose pre-existing items(s)"
             paragraph="Choose the item(s) that looks similar to what you have."
           />
         </div>
-        <div className="grid-pre">
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
-          <HeroCard link="link" to="/" text="" variant="pre-card" />
+        <div className="grid-one">
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+          <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        </div>
+        <div>
+          <IntroText
+            variant="text"
+            heading="Your pre-existing items(s)"
+            paragraph="Here is a list of pre-existing item(s)"
+          />
+        </div>
+        <div className="grid-two">
+          <HeroCard to="/" text="Furniture Type" variant="card existing-two" />
+          <HeroCard to="/" text="Color" variant="card existing-two" />
+          <HeroCard to="/" text="Material" variant="card existing-two" />
+          <HeroCard to="/" text="Image" variant="card existing-two" />
+          <HeroCard to="/" text="" variant="card existing-two" />
+          <HeroCard to="/" text="" variant="card existing-two-bottom" />
+          <HeroCard to="/" text="" variant="card existing-two-bottom" />
+          <HeroCard to="/" text="" variant="card existing-two-bottom" />
+          <HeroCard to="/" text="" variant="card existing-two-bottom" />
+          <HeroCard to="/" text="" variant="card existing-two-bottom" />
         </div>
       </div>
       <Link to="/add-items">Back</Link>
