@@ -39,9 +39,10 @@ model Room {
 }
 
 model RoomType {
-   id       String   @id @default(uuid())
-   name     String
-   rooms    Room[]
+   id             String   @id @default(uuid())
+   name           String
+   rooms          Room[]
+   defaultImage   String?
 }
 
 model Flooring {
