@@ -3,7 +3,13 @@ import IntroText from '../IntroText'
 import { colorList } from '../../lib/colors'
 import { ChromePicker } from 'react-color'
 
-const RoomDetails = ({ callback, handleColorPicker, wallColor }) => {
+const RoomDetails = ({
+  callback,
+  handleWallColorPicker,
+  wallColor,
+  handleFloorColorPicker,
+  floorColor,
+}) => {
   return (
     <>
       <IntroText
@@ -19,7 +25,7 @@ const RoomDetails = ({ callback, handleColorPicker, wallColor }) => {
                 key={`wall-${item.color}`}
                 id={`wall-${item.color}`}
                 onClick={callback}
-                class="color-card"
+                className="color-card"
                 style={{ backgroundColor: item.color }}
               >
                 {item.name}
@@ -28,7 +34,7 @@ const RoomDetails = ({ callback, handleColorPicker, wallColor }) => {
           })}
         </div>
         <div className="c-picker">
-          <ChromePicker color={wallColor} onChange={handleColorPicker} />
+          <ChromePicker color={wallColor} onChange={handleWallColorPicker} />
         </div>
       </section>
       <section>
@@ -39,7 +45,7 @@ const RoomDetails = ({ callback, handleColorPicker, wallColor }) => {
                 key={`floor-${item.color}`}
                 id={`floor-${item.color}`}
                 onClick={callback}
-                class="color-card"
+                className="color-card"
                 style={{ backgroundColor: item.color }}
               >
                 {item.name}
@@ -48,7 +54,7 @@ const RoomDetails = ({ callback, handleColorPicker, wallColor }) => {
           })}
         </div>
         <div className="f-picker">
-          <ChromePicker />
+          <ChromePicker color={floorColor} onChange={handleFloorColorPicker} />
         </div>
       </section>
     </>

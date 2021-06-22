@@ -1,13 +1,31 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import RoomGrid from '../components/addRoom/RoomGrid'
 import RoomDetails from '../components/addRoom/RoomDetails'
+import Footer from '../components/footer/Footer'
+import { CREATE_ROOM } from '../graphql/room-queries'
+import { graphqlClient } from '../lib/graphql'
+import { useAuth } from '../lib/context/authContext'
+import Loader from 'react-ts-loaders'
 
 const AddRooms = () => {
+  const history = useHistory()
+  const {
+    authInfo: { userId },
+  } = useAuth()
+
+  const [loading, setLoading] = React.useState(false)
   const [step, setStep] = React.useState('one')
   const [type, setType] = React.useState('')
-  const [wallColor, setWallColor] = React.useState('#FE2712')
-  const [floorColor, setFloorColor] = React.useState('')
+  const [wallColor, setWallColor] = React.useState('#BA284E')
+  const [floorColor, setFloorColor] = React.useState('#414367')
+  const [wallColorUpdated, setWallColorUpdated] = React.useState(false)
+  const [backDisabled, setBackDisabled] = React.useState(true)
+  const [nextDisabled, setNextDisabled] = React.useState(true)
+
+  React.useEffect(() => {
+    if (step === 'two' && type && wallColorUpdated) setNextDisabled(false)
+  }, [step, type, wallColor, wallColorUpdated])
 
   const handleSelectType = e => {
     setType(e.target.id)
@@ -15,13 +33,55 @@ const AddRooms = () => {
   }
 
   const handleColorSelector = e => {
-    setWallColor(e.target.id.split('-').slice(1).join(''))
+    const target = e.target.id.split('-').slice(0, 1).join('')
+    if (target === 'wall')
+      setWallColor(e.target.id.split('-').slice(1).join(''))
+    if (target === 'floor')
+      setFloorColor(e.target.id.split('-').slice(1).join(''))
+    setWallColorUpdated(true)
   }
 
-  const handleColorPicker = color => {
-    console.log('test')
-    setWallColor(color)
+  const handleWallColorPicker = (color, e) => {
+    setWallColor(color.hex)
+    setWallColorUpdated(true)
   }
+
+  const handleFloorColorPicker = (color, e) => {
+    setFloorColor(color.hex)
+    setWallColorUpdated(true)
+  }
+
+  const handleSave = async e => {
+    e.preventDefault()
+    console.log('button pressed')
+    console.log(e.target.id)
+
+    setLoading(true)
+    graphqlClient
+      .mutate({
+        mutation: CREATE_ROOM,
+        variables: {
+          userId,
+          typeId: type,
+          wallColor,
+          floorColor,
+        },
+      })
+      .then(results => {
+        console.log('results', results.data)
+      })
+    setLoading(false)
+
+    history.push('/add-items')
+    console.log('SHOULD BE MOVED TO NEXT STEP')
+  }
+
+  if (loading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    )
 
   return (
     <>
@@ -30,17 +90,20 @@ const AddRooms = () => {
         {step === 'two' ? (
           <RoomDetails
             callback={handleColorSelector}
-            handleColorPicker={handleColorPicker}
+            handleWallColorPicker={handleWallColorPicker}
+            handleFloorColorPicker={handleFloorColorPicker}
             wallColor={wallColor}
+            floorColor={floorColor}
           />
         ) : (
           ''
         )}
-
-        <Link to="/room-details">
-          <button>Next</button>
-        </Link>
       </div>
+      <Footer
+        callback={handleSave}
+        backDisabled={backDisabled}
+        nextDisabled={nextDisabled}
+      />
     </>
   )
 }

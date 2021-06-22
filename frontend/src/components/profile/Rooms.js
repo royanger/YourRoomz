@@ -40,7 +40,7 @@ const Rooms = ({ userId }) => {
             <div>{room.wallColor ? room.wallColor : ''}</div>
             <div>{room.floorColor ? room.floorColor : ''}</div>
             <div>{room.furniture ? room.furniture.length : '0'}</div>
-            <div>{room.caritems ? room.cartitems.length : '0'}</div>
+            <div>{room.cartitems ? room.cartitems.length : '0'}</div>
             <div>
               <button>Edit</button>
             </div>
