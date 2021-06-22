@@ -58,7 +58,6 @@ export const resolvers = {
       })
     },
     cartitems: (parent, _args, context) => {
-      console.log('parent', parent)
       return context.prisma.cartItems.findMany({
         where: {
           roomId: parent.id,

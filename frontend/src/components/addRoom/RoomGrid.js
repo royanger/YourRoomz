@@ -14,7 +14,6 @@ const RoomGrid = ({ callback }) => {
         query: ROOM_TYPE_QUERY,
       })
       .then(results => {
-        console.log('results', results.data)
         setTypes(results.data.getRoomTypes)
       })
   }, [])

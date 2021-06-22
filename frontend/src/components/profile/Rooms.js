@@ -12,7 +12,6 @@ const Rooms = ({ userId }) => {
   const history = useHistory()
 
   React.useEffect(() => {
-    console.log('testing gpl query')
     graphqlClient
       .query({
         query: ROOMS_QUERY,
@@ -21,7 +20,6 @@ const Rooms = ({ userId }) => {
         },
       })
       .then(results => {
-        console.log('results', results.data)
         setRooms(results.data.findRoomsByUser)
       })
   }, [])

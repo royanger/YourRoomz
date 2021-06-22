@@ -70,8 +70,6 @@ const AddRooms = () => {
 
   const handleSave = async e => {
     e.preventDefault()
-    console.log('button pressed')
-    console.log(e.target.id)
 
     setLoading(true)
     graphqlClient
@@ -90,7 +88,6 @@ const AddRooms = () => {
     setLoading(false)
 
     history.push('/add-items')
-    console.log('SHOULD BE MOVED TO NEXT STEP')
   }
 
   if (loading)

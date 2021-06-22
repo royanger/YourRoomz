@@ -14,7 +14,6 @@ const Header = () => {
         <div className="container">
           <Brand />
           <nav>
-            {console.log('testing', isAuthenticated)}
             {isAuthenticated ? (
               <Profile />
             ) : (

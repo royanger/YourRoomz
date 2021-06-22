@@ -55,7 +55,6 @@ const AuthProvider = props => {
   }
 
   const contextValue = { authInfo, loading, logout }
-  //const contextValue = React.useMemo(() => ({ authInfo, loading }))
 
   return (
     <>
