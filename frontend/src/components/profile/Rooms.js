@@ -17,7 +17,7 @@ const Rooms = ({ userId }) => {
       })
       .then(results => {
         console.log('results', results.data)
-        setRooms(results.data.findRooms)
+        setRooms(results.data.findRoomsByUser)
       })
   }, [])
 

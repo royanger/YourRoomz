@@ -22,5 +22,48 @@
     height: 200px;
     background-color: gray;
     color: white;
+    cursor: pointer;
+
+    .name {
+      align-self: flex-end;
+      background-color: var(--light);
+      opacity: 0.8;
+      width: 100%;
+      border: var(--dark);
+      border-width: 1px;
+      border-style: solid;
+      color: var(--dark);
+      text-align: center;
+      padding: 5px;
+    }
+  }
+
+  .wall-color,
+  .floor-color {
+    width: 45%;
+    max-width: 1200px;
+    margin-right: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 30px 30px;
+    .color-card {
+      width: 120px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: grey;
+    }
+  }
+  section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .c-picker,
+  .f-picker {
+    position: relative;
+    left: 20px;
+    width: 20%;
   }
 }
