@@ -1,19 +1,17 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 
-const Button = ({ id, text, variant, to, callback, disabled, hidden }) => {
+const Button = ({ id, text, variant, callback, disabled, hidden }) => {
   if (hidden) return <div></div>
   return (
     <div className={`button ${variant}`}>
-      <Link to={to}>
-        <button
-          id={id}
-          onClick={callback}
-          className={`btn ${variant} ${disabled ? 'disabled' : ''}`}
-        >
-          {text}
-        </button>
-      </Link>
+      <button
+        id={id}
+        onClick={callback}
+        className={`btn ${variant} ${disabled ? 'disabled' : ''}`}
+      >
+        {text}
+      </button>
     </div>
   )
 }
