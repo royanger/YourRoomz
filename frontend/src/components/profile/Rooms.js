@@ -7,11 +7,13 @@ import { useRoomContext } from '../../lib/context/roomContext'
 import Button from '../Button'
 
 const Rooms = ({ userId }) => {
+  const [loading, setLoading] = React.useState(false)
   const [rooms, setRooms] = React.useState()
   const { selectRoom } = useRoomContext()
   const history = useHistory()
 
   React.useEffect(() => {
+    setLoading(true)
     graphqlClient
       .query({
         query: ROOMS_QUERY,
@@ -21,6 +23,7 @@ const Rooms = ({ userId }) => {
       })
       .then(results => {
         setRooms(results.data.findRoomsByUser)
+        setLoading(false)
       })
   }, [])
 
@@ -29,7 +32,7 @@ const Rooms = ({ userId }) => {
     history.push('/add-room')
   }
 
-  if (!rooms) return <Loader size={50} color="" />
+  if (loading) return <Loader size={50} color="" />
 
   return (
     <>
