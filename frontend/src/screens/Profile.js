@@ -1,15 +1,22 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
 import Rooms from '../components/profile/Rooms'
-
-//import { axiosConfig as axios } from '../lib/axios'
-//import IntroText from '../components/IntroText'
+import { useRoomContext } from '../lib/context/roomContext'
+import Button from '../components/Button'
 
 const Profile = () => {
   const {
     authInfo: { userId, givenName, displayName },
   } = useAuth()
+  const { selectRoom } = useRoomContext()
+  const history = useHistory()
+
+  // if user clicks to start new room, erase state from Room Context
+  const handleResetRoomContext = () => {
+    selectRoom(null)
+    history.push('/add-room')
+  }
 
   return (
     <div className="container profile">
@@ -22,7 +29,7 @@ const Profile = () => {
       <h2>Your Rooms!</h2>
       <Rooms userId={userId} />
 
-      <Link to="/add-room">Add Room</Link>
+      <Button text="Add Room" callback={handleResetRoomContext} />
     </div>
   )
 }
