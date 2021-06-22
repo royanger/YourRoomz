@@ -10,7 +10,7 @@ export const resolvers = {
         },
       })
     },
-    findRooms: (_parent, args, context) => {
+    findRoomsByUser: (_parent, args, context) => {
       return context.prisma.room.findMany({
         where: {
           userId: args.userId,
@@ -23,6 +23,9 @@ export const resolvers = {
           id: args.id,
         },
       })
+    },
+    getRoomTypes: (_parent, _args, context) => {
+      return context.prisma.roomType.findMany()
     },
   },
   Room: {

@@ -1,8 +1,8 @@
 import gpl from 'graphql-tag'
 
 export const ROOMS_QUERY = gpl`
-query findRooms($userId: String!) {
-   findRooms(userId: $userId) {
+query findRoomsByUser($userId: String!) {
+   findRoomsByUser(userId: $userId) {
      id
      name
      wallColor

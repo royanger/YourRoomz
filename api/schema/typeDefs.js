@@ -29,6 +29,7 @@ export const typeDefs = `
    type RoomType {
       id: String
       name: String
+      defaultImage: String
    }
 
    type Flooring {
@@ -62,11 +63,13 @@ export const typeDefs = `
       findUsers: [User!]
       # Find a user by their email
       findUserByEmail(email: String): User
-      # Get all rooms
+      # Get all rooms by userId
       # findRooms(userId: String): Room
-      findRooms(userId: String): [Room!]
+      findRoomsByUser(userId: String): [Room!]
       # Get a specific room and its related info
       findRoomById(id: String): Room
+      # Get Room Types
+      getRoomTypes: [RoomType!]
 
    }
 
