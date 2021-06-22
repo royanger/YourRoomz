@@ -1,0 +1,19 @@
+.container-recommend {
+  .main {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: lightgray;
+  }
+  .text {
+    text-align: center;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    .category {
+      height: 250px;
+      background-color: grey;
+    }
+  }
+}
