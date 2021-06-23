@@ -25,7 +25,7 @@ const Rooms = ({ userId }) => {
         setRooms(results.data.findRoomsByUser)
         setLoading(false)
       })
-  }, [])
+  }, [userId])
 
   const handleEditRoom = e => {
     selectRoom(rooms.find(x => x.id === e.target.id))

@@ -4,19 +4,25 @@ import IntroText from '../IntroText'
 import { ROOM_TYPE_QUERY } from '../../graphql/roomType'
 import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
+import { useRoomContext } from '../../lib/context/roomContext'
 
 const RoomGrid = ({ callback }) => {
   const [types, setTypes] = React.useState()
+  const { roomInfo } = useRoomContext()
 
   React.useEffect(() => {
-    graphqlClient
-      .query({
-        query: ROOM_TYPE_QUERY,
-      })
-      .then(results => {
-        setTypes(results.data.getRoomTypes)
-      })
-  }, [])
+    // avoid trying to query and remount if there is a room selected
+    // user is editing/resuming and will be moved to next step
+    if (!roomInfo) {
+      graphqlClient
+        .query({
+          query: ROOM_TYPE_QUERY,
+        })
+        .then(results => {
+          setTypes(results.data.getRoomTypes)
+        })
+    }
+  }, [roomInfo])
 
   if (!types) return <Loader size={50} color="" />
 
