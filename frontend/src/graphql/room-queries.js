@@ -45,6 +45,10 @@ query {
        id
        color
        categoryId
+       category {
+          id
+          name
+       }
      }
      user {
        id

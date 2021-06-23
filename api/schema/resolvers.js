@@ -65,6 +65,15 @@ export const resolvers = {
       })
     },
   },
+  Furniture: {
+    category: (parent, _args, context) => {
+      return context.prisma.category.findMany({
+        where: {
+          id: parent.categoryId,
+        },
+      })
+    },
+  },
   Mutation: {
     createUser: (_parent, args, context) => {
       return context.prisma.user.create({

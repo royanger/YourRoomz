@@ -42,6 +42,11 @@ export const typeDefs = `
       color: String
       categoryId: String
       roomId: String
+      category: [Category]
+   }
+   type Category {
+      id: String
+      name: String
    }
 
    type Cart {
