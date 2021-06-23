@@ -1,0 +1,42 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-weight: bold;
+    font-size: 65px;
+    line-height: 120%;
+    letter-spacing: 0.2px;
+  }
+
+  h2 {
+    font-weight: medium;
+    font-size: 36px;
+    letter-spacing: 0.2px;
+  }
+
+  h3 {
+    font-weight: semibold;
+    font-size: 32px;
+    letter-spacing: 0.1px;
+  }
+
+  h4 {
+    font-weight: medium;
+    font-size: 26px;
+    letter-spacing: 0.2px;
+  }
+
+  h5 {
+    font-weight: semibold;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  h6 {
+    font-weight: medium;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+  }
+}

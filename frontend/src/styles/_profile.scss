@@ -2,7 +2,7 @@
   padding: 0 10px;
 
   .rooms {
-    border: 1px solid var(--dark);
+    border: 1px solid var(--text);
     display: grid;
     grid-template-columns: 3fr repeat(5, 1fr);
 

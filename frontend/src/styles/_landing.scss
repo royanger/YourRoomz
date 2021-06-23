@@ -29,7 +29,7 @@
     align-items: center;
 
     > div {
-      background-color: var(--light);
+      background-color: var(--white);
       grid-column: 2/3;
       padding: 40px;
       height: min-content;
@@ -51,7 +51,7 @@
         content: '';
         position: absolute;
         height: 1px;
-        border-top: 1px solid var(--dark);
+        border-top: 1px solid var(--text);
         margin-left: 15px;
         width: calc(100% - 75px);
         top: 0;

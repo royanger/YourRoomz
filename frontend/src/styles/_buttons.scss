@@ -1,6 +1,6 @@
 .button {
   background-color: transparent;
-  color: var(--light);
+  color: var(--white);
   border-radius: 25px;
   border: none;
   display: inline-block;
@@ -14,10 +14,11 @@
   }
   button {
     padding: 15px 30px;
-    font-size: 20px;
-    line-height: 32px;
+    font-size: 18px;
+    line-height: 160%;
+    letter-spacing: 0.2px;
     background-color: var(--brand-primary);
-    color: var(--light);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     border: none;
@@ -29,7 +30,7 @@
     }
 
     &.light {
-      background-color: var(--light);
+      background-color: var(--white);
       color: var(--brand-primary);
       border: 2px solid var(--brand-primary);
     }
