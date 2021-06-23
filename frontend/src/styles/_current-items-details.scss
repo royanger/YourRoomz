@@ -72,22 +72,4 @@
       background-color: grey;
     }
   }
-  .grid-two {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    // gap: 10px;
-    .existing-two {
-      height: 60px;
-      background-color: grey;
-    }
-    > div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border:solid 1pt black
-    }
-    .existing-two-bottom {
-      height: 100px;
-    }
-  }
 }

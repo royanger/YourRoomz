@@ -7,7 +7,6 @@ import Loader from 'react-ts-loaders'
 import AddCurrentItems from './screens/AddCurrentItems'
 import AddRoom from './screens/AddRoom'
 import CategoryRecommendations from './screens/CategoryRecommendations'
-import CurrentItemsDetails from './screens/CurrentItemsDetails'
 import Login from './screens/Login'
 import Landing from './screens/Landing'
 import Recommendations from './screens/Recommendations'
@@ -67,12 +66,6 @@ const App = () => {
             path={'/category-recommendations'}
             exact
             component={CategoryRecommendations}
-          />
-          <RouteController
-            routeType={'private'}
-            path={'/add-details'}
-            exact
-            component={CurrentItemsDetails}
           />
           <RouteController
             routeType={'private'}

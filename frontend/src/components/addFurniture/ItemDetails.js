@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import IntroText from '../components/IntroText'
-import HeroCard from '../components/HeroCard'
+import IntroText from '../IntroText'
+import HeroCard from '../HeroCard'
 
-const CurrentItemsDetails = () => {
+const ItemDetails = () => {
   return (
     <>
       <div className="container existing-items">
@@ -54,48 +53,9 @@ const CurrentItemsDetails = () => {
           <HeroCard link="link" to="/" text="" variant="card material" />
           <HeroCard link="link" to="/" text="" variant="card material" />
         </div>
-        <div>
-          <IntroText
-            variant="text"
-            heading="Choose pre-existing items(s)"
-            paragraph="Choose the item(s) that looks similar to what you have."
-          />
-        </div>
-        <div className="grid-one">
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        </div>
-        <div>
-          <IntroText
-            variant="text"
-            heading="Your pre-existing items(s)"
-            paragraph="Here is a list of pre-existing item(s)"
-          />
-        </div>
-        <div className="grid-two">
-          <HeroCard to="/" text="Furniture Type" variant="card existing-two" />
-          <HeroCard to="/" text="Color" variant="card existing-two" />
-          <HeroCard to="/" text="Material" variant="card existing-two" />
-          <HeroCard to="/" text="Image" variant="card existing-two" />
-          <HeroCard to="/" text="" variant="card existing-two" />
-          <HeroCard to="/" text="" variant="card existing-two-bottom" />
-          <HeroCard to="/" text="" variant="card existing-two-bottom" />
-          <HeroCard to="/" text="" variant="card existing-two-bottom" />
-          <HeroCard to="/" text="" variant="card existing-two-bottom" />
-          <HeroCard to="/" text="" variant="card existing-two-bottom" />
-        </div>
       </div>
-      <Link to="/add-items">Back</Link>
-      <Link to="/category-recommendations">Next</Link>
     </>
   )
 }
 
-export default CurrentItemsDetails
+export default ItemDetails
