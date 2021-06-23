@@ -1,10 +1,10 @@
 import * as React from 'react'
 import HeroCard from '../HeroCard'
-import IntroText from '../IntroText'
 import { ROOM_TYPE_QUERY } from '../../graphql/roomType'
 import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
 import { useRoomContext } from '../../lib/context/roomContext'
+import Title from '../Title'
 
 const RoomGrid = ({ callback }) => {
   const [types, setTypes] = React.useState()
@@ -28,11 +28,9 @@ const RoomGrid = ({ callback }) => {
 
   return (
     <>
-      <IntroText
-        variant="room-heading"
-        heading="Which room are you designing?"
-        paragraph="Pick one room"
-      />
+      <Title type="h1">Which room are you designing?</Title>
+      <p>Pick one room</p>
+
       <div className="room-grid">
         {types?.map(type => {
           return (

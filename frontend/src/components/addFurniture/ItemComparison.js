@@ -1,17 +1,15 @@
 import * as React from 'react'
-import IntroText from '../IntroText'
 import HeroCard from '../HeroCard'
+import Title from '../Title'
 
 const ItemComparison = () => {
   return (
     <>
       <div className="container existing-items">
         <div>
-          <IntroText
-            variant="text"
-            heading="Choose pre-existing items(s)"
-            paragraph="Choose the item(s) that looks similar to what you have."
-          />
+          <Title type="h1">Choose pre-existing items</Title>
+
+          <p>Choose the item(s) that looks similar to what you have.</p>
         </div>
         <div className="grid-one">
           <HeroCard link="link" to="/" text="" variant="card existing-one" />

@@ -15,6 +15,9 @@ main {
 .container {
   width: 100%;
   max-width: 1440px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .loader-container {
   width: 100vw;

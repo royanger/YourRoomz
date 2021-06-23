@@ -1,7 +1,7 @@
 import * as React from 'react'
-import IntroText from '../IntroText'
 import { colorList } from '../../lib/colors'
 import { ChromePicker } from 'react-color'
+import Title from '../Title'
 
 const RoomDetails = ({
   callback,
@@ -13,13 +13,14 @@ const RoomDetails = ({
 }) => {
   return (
     <>
-      <IntroText
-        variant="heading"
-        heading={`What is your ${typeName ? typeName : 'room'} color?`}
-        paragraph={`Choose your ${
-          typeName ? typeName : 'room'
-        } wall color and floor color`}
-      />
+      <Title type="h1">
+        {`What is your ${typeName ? typeName : 'room'} color?`}
+      </Title>
+
+      <p>{`Choose your ${
+        typeName ? typeName : 'room'
+      } wall color and floor color`}</p>
+
       <section>
         <div className="wall-color">
           {colorList.map(item => {

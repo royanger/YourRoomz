@@ -1,5 +1,5 @@
 import * as React from 'react'
-import IntroText from '../IntroText'
+import Title from '../Title'
 import { useRoomContext } from '../../lib/context/roomContext'
 import { ROOM_QUERY } from '../../graphql/room-queries'
 import { graphqlClient } from '../../lib/graphql'
@@ -30,11 +30,9 @@ const ItemList = () => {
     <>
       <div className="container existing-items">
         <div>
-          <IntroText
-            variant="text"
-            heading="Your pre-existing items(s)"
-            paragraph="Here is a list of pre-existing item(s)"
-          />
+          <Title type="h1">Your pre-existing items(s)</Title>
+
+          <p>Here is a list of pre-existing items</p>
         </div>
         <div className="">
           {furniture?.map(item => {

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import LoginButton from '../components/LoginButton'
-import IntroText from '../components/IntroText'
+import Title from '../components/Title'
 
 const providers = [
   {
@@ -24,11 +24,9 @@ const Login = () => {
   return (
     <>
       <div className="container login">
-        <IntroText
-          variant="login-heading"
-          heading="Get decor recommendations for free"
-          paragraph="Sign into your account"
-        />
+        <Title type="h1">Get decor recommendations for free</Title>
+
+        <p>Sign into your account</p>
         <div className="login-btn-container">
           {providers.map(({ provider, title }) => {
             return (

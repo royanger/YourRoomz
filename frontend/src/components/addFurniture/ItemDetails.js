@@ -1,16 +1,17 @@
 import * as React from 'react'
-import IntroText from '../IntroText'
+import Title from '../Title'
 import HeroCard from '../HeroCard'
 
 const ItemDetails = () => {
   return (
     <>
       <div className="container existing-items">
-        <IntroText
-          variant="text"
-          heading="What pre-existing items do you have?"
-          paragraph="We'll show you pictures of items to pick from based on the criteria you provide"
-        />
+        <Title type="h1">What pre-existing items do you have?</Title>
+
+        <p>
+          We'll show you pictures of items to pick from based on the criteria
+          you provide
+        </p>
         {/* Has been created for layout purposes */}
         <form action="">
           <label for="furniture-type">Furniture Type:</label>
