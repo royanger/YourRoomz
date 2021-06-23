@@ -37,16 +37,26 @@ export const typeDefs = `
       name: String
       rooms: [Room]
    }
+
    type Furniture {
       id: String
       color: String
-      categoryId: String
       roomId: String
+      categoryId: String
       category: [Category]
+      materialId: String
+      material: [FurnitureMaterial]
    }
+
+   type FurnitureMaterial {
+      id: String
+      name: String
+   }
+
    type Category {
       id: String
       name: String
+      imagE: String
    }
 
    type Cart {

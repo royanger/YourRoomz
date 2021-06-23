@@ -73,6 +73,13 @@ export const resolvers = {
         },
       })
     },
+    material: (parent, _args, context) => {
+      return context.prisma.category.findMany({
+        where: {
+          id: parent.materialId,
+        },
+      })
+    },
   },
   Mutation: {
     createUser: (_parent, args, context) => {

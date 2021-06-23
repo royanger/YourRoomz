@@ -54,6 +54,7 @@ model Flooring {
 model Category {
    id             String   @id @default(uuid())
    name           String
+   image          String?
    furniture      Furniture[]
 
 }
@@ -65,6 +66,14 @@ model Furniture {
    category    Category @relation(fields: [categoryId], references:[id])
    roomId      String
    room        Room     @relation(fields: [roomId], references:[id])
+   MaterialID  String
+   material    FurnitureMaterial @relation(fields: [MaterialID], references:[id])
+}
+
+model FurnitureMaterial {
+   id          String   @id @default(uuid())
+   name        String
+   furniture   Furniture[]
 }
 
 model Cart {
