@@ -4,11 +4,15 @@ import { useRoomContext } from '../../lib/context/roomContext'
 import { ROOM_QUERY } from '../../graphql/room-queries'
 import { CATEGORY_QUERY } from '../../graphql/category'
 import { graphqlClient } from '../../lib/graphql'
-import Loader from 'react-ts-loaders'
+import CategoryList from './CategoryList'
 
 const ItemList = () => {
   const { roomInfo } = useRoomContext()
-  const [categories, setCategories] = React.useState({})
+  const [categories, setCategories] = React.useState()
+  const [category, setCategory] = React.useState({
+    id: false,
+    name: 'Please select a furniture category',
+  })
   const [furniture, setFurniture] = React.useState()
 
   React.useEffect(() => {
@@ -36,6 +40,16 @@ const ItemList = () => {
       })
   }, [])
 
+  React.useEffect(() => {
+    if (category && category.id) {
+      console.log('CORRECT CAT PICKED')
+    }
+  }, [category])
+
+  const updateCategory = e => {
+    setCategory(e)
+  }
+
   return (
     <>
       <div className="container existing-items">
@@ -59,6 +73,17 @@ const ItemList = () => {
               </div>
             )
           })}
+
+          {categories && category ? (
+            <CategoryList
+              categories={categories}
+              category={category}
+              setCategory={setCategory}
+              updateCategory={updateCategory}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </>
