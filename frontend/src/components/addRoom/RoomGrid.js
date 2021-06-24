@@ -14,6 +14,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
 
   const handleClick = e => {
     setType(e.target.id)
+    setTypeName(e.target.innerText)
   }
 
   React.useEffect(() => {

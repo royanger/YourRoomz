@@ -13,9 +13,10 @@ const AddRooms = () => {
   const {
     authInfo: { userId },
   } = useAuth()
-  const { roomInfo } = useRoomContext()
+  const { roomInfo, selectRoom } = useRoomContext()
   const [loading, setLoading] = React.useState(false)
   const [type, setType] = React.useState('')
+  const [typeName, setTypeName] = React.useState()
 
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
@@ -23,7 +24,7 @@ const AddRooms = () => {
     if (type) setNextDisabled(false)
   }, [type])
 
-  // if RoomContext has stored room info, load that into state
+  //if RoomContext has stored room info, load that into state
   React.useEffect(() => {
     if (roomInfo) {
       setLoading(true)
@@ -37,6 +38,7 @@ const AddRooms = () => {
     e.preventDefault()
     if (roomInfo?.id) {
       console.log('room exists, need to update')
+      history.push('/add-room-details')
     } else {
       setLoading(true)
       graphqlClient
@@ -50,8 +52,9 @@ const AddRooms = () => {
         })
         .then(results => {
           console.log('results', results.data)
+          selectRoom({ ...roomInfo, roomtype: [{ id: type, name: typeName }] })
           setLoading(false)
-          history.push('/add-items')
+          history.push('/add-room-details')
         })
     }
   }
@@ -66,7 +69,7 @@ const AddRooms = () => {
   return (
     <>
       <div className="container room">
-        <RoomGrid type={type} setType={setType} />
+        <RoomGrid type={type} setType={setType} setTypeName={setTypeName} />
       </div>
       <Footer
         callback={handleSave}
