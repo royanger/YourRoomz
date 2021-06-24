@@ -4,9 +4,11 @@ import { useAuth } from './lib/context/authContext'
 import Loader from 'react-ts-loaders'
 
 // import the screens
-import AddCurrentItems from './screens/AddCurrentItems'
 import AddRoom from './screens/AddRoom'
 import AddRoomDetails from './screens/AddRoomDetails'
+import AddFurniture from './screens/AddFurniture'
+import AddFurnitureDetails from './screens/AddFurnitureDetails'
+import AddFurnitureComparison from './screens/AddFurnitureComparison'
 import CategoryRecommendations from './screens/CategoryRecommendations'
 import Login from './screens/Login'
 import Landing from './screens/Landing'
@@ -64,9 +66,21 @@ const App = () => {
           />
           <RouteController
             routeType={'private'}
-            path={'/add-items'}
+            path={'/add-furniture'}
             exact
-            component={AddCurrentItems}
+            component={AddFurniture}
+          />
+          <RouteController
+            routeType={'private'}
+            path={'/add-furniture-details'}
+            exact
+            component={AddFurnitureDetails}
+          />
+          <RouteController
+            routeType={'private'}
+            path={'/add-furniture-comparison'}
+            exact
+            component={AddFurnitureComparison}
           />
           <RouteController
             routeType={'private'}
