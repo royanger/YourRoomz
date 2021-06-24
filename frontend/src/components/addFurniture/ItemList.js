@@ -2,12 +2,13 @@ import * as React from 'react'
 import Title from '../Title'
 import { useRoomContext } from '../../lib/context/roomContext'
 import { ROOM_QUERY } from '../../graphql/room-queries'
+import { CATEGORY_QUERY } from '../../graphql/category'
 import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
 
 const ItemList = () => {
   const { roomInfo } = useRoomContext()
-
+  const [categories, setCategories] = React.useState({})
   const [furniture, setFurniture] = React.useState()
 
   React.useEffect(() => {
@@ -24,6 +25,16 @@ const ItemList = () => {
         })
     }
   }, [roomInfo])
+
+  React.useEffect(() => {
+    graphqlClient
+      .query({
+        query: CATEGORY_QUERY,
+      })
+      .then(results => {
+        setCategories(results.data.getFurnitureCategories)
+      })
+  }, [])
 
   return (
     <>

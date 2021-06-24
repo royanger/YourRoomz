@@ -38,7 +38,10 @@ const RoomDetails = ({
           })}
         </div>
         <div className="c-picker">
-          <ChromePicker color={wallColor} onChange={handleWallColorPicker} />
+          <ChromePicker
+            color={wallColor ? wallColor : '#4646B3'}
+            onChange={handleWallColorPicker}
+          />
         </div>
       </section>
       <section>
@@ -58,7 +61,10 @@ const RoomDetails = ({
           })}
         </div>
         <div className="f-picker">
-          <ChromePicker color={floorColor} onChange={handleFloorColorPicker} />
+          <ChromePicker
+            color={floorColor ? floorColor : '#4646B3'}
+            onChange={handleFloorColorPicker}
+          />
         </div>
       </section>
     </>

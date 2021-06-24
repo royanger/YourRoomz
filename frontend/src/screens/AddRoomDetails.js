@@ -5,6 +5,7 @@ import RoomDetails from '../components/addRoom/RoomDetails'
 import { useAuth } from '../lib/context/authContext'
 import { useRoomContext } from '../lib/context/roomContext'
 import Loader from 'react-ts-loaders'
+import Footer from '../components/footer/Footer'
 
 const AddRoomDetails = () => {
   const history = useHistory()
@@ -13,22 +14,26 @@ const AddRoomDetails = () => {
   } = useAuth()
   const { roomInfo } = useRoomContext()
   const [loading, setLoading] = React.useState(false)
-  const [wallColor, setWallColor] = React.useState('#BA284E')
-  const [floorColor, setFloorColor] = React.useState('#414367')
-  const [wallColorUpdated, setWallColorUpdated] = React.useState(false)
-  const [backDisabled, setBackDisabled] = React.useState(true)
+  const [wallColor, setWallColor] = React.useState('')
+  const [floorColor, setFloorColor] = React.useState('')
+  const [typeName, setTypeName] = React.useState('')
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
   // if RoomContext has stored room info, load that into state
   React.useEffect(() => {
     if (roomInfo) {
       setLoading(true)
-      setWallColor(roomInfo.wallColor)
-      setFloorColor(roomInfo.floorColor)
+      setWallColor(roomInfo?.wallColor)
+      setFloorColor(roomInfo?.floorColor)
+      setTypeName(roomInfo.roomtype[0].name)
       setNextDisabled(false)
       setLoading(false)
     }
-  }, [])
+  }, [roomInfo])
+
+  React.useEffect(() => {
+    if (wallColor && floorColor) setNextDisabled(false)
+  }, [wallColor, floorColor])
 
   const handleColorSelector = e => {
     const target = e.target.id.split('-').slice(0, 1).join('')
@@ -36,31 +41,37 @@ const AddRoomDetails = () => {
       setWallColor(e.target.id.split('-').slice(1).join(''))
     if (target === 'floor')
       setFloorColor(e.target.id.split('-').slice(1).join(''))
-    setWallColorUpdated(true)
   }
 
   const handleWallColorPicker = (color, e) => {
     setWallColor(color.hex)
-    setWallColorUpdated(true)
   }
 
   const handleFloorColorPicker = (color, e) => {
     setFloorColor(color.hex)
-    setWallColorUpdated(true)
+  }
+
+  const handleSave = () => {
+    console.log('saving!')
+    history.push('/add-furniture')
   }
 
   return (
     <>
-      <Title type="h1">Add Room Details</Title>
-      <p>What is your wall and floor color?</p>
-
-      <RoomDetails
-      // callback={handleColorSelector}
-      // handleWallColorPicker={handleWallColorPicker}
-      // handleFloorColorPicker={handleFloorColorPicker}
-      // wallColor={wallColor}
-      // floorColor={floorColor}
-      // typeName={typeName}
+      <div className="container room">
+        <RoomDetails
+          callback={handleColorSelector}
+          handleWallColorPicker={handleWallColorPicker}
+          handleFloorColorPicker={handleFloorColorPicker}
+          wallColor={wallColor}
+          floorColor={floorColor}
+          typeName={typeName}
+        />
+      </div>
+      <Footer
+        callback={handleSave}
+        nextDisabled={nextDisabled}
+        prev="/add-room"
       />
     </>
   )
