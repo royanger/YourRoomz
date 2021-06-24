@@ -12,16 +12,17 @@ const ItemList = () => {
 
   React.useEffect(() => {
     if (roomInfo) {
+      console.log('room id', roomInfo.id)
       graphqlClient
         .query({
           query: ROOM_QUERY,
           variables: {
-            id: roomInfo.id,
+            roomId: roomInfo.id,
           },
         })
         .then(results => {
+          console.log(results.data.findRoomById)
           setFurniture(results.data.findRoomById.furniture)
-          console.log(results.data.findRoomById.furniture)
         })
     }
   }, [roomInfo])
@@ -42,6 +43,7 @@ const ItemList = () => {
                   <li>{item.id}</li>
                   <li>{item.category[0].name}</li>
                   <li>{item.color}</li>
+                  <li>{item.material[0].name}</li>
                 </ul>
                 <br />
                 <br />

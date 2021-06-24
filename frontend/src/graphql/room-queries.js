@@ -2,8 +2,8 @@ import gpl from 'graphql-tag'
 
 export const CREATE_ROOM = gpl`
 
-mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String) {
-   createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor) {
+mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterial: String) {
+   createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterial) {
      id
    }
  }
@@ -31,8 +31,8 @@ query findRoomsByUser($userId: String!) {
 `
 
 export const ROOM_QUERY = gpl`
-query {
-   findRoomById(id: "c717aa08-e757-4f84-b166-9cfd47d58d50") {
+query findRoomById($roomId: String) {
+   findRoomById(id: $roomId) {
      id
      name
      wallColor
@@ -46,6 +46,11 @@ query {
        color
        categoryId
        category {
+          id
+          name
+       }
+
+       material {
           id
           name
        }

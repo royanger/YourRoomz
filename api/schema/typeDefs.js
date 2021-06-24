@@ -44,7 +44,7 @@ export const typeDefs = `
       roomId: String
       categoryId: String
       category: [Category]
-      materialId: String
+      MaterialId: String
       material: [FurnitureMaterial]
    }
 
@@ -94,7 +94,7 @@ export const typeDefs = `
       # Update a user
       updateUser( id: String, data: UpdateUserInput): User
       # Add a new room
-      createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String): Room
+      createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String, floorMaterialId: String): Room
    }
 
    input UpdateUserInput {

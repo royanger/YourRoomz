@@ -74,9 +74,10 @@ export const resolvers = {
       })
     },
     material: (parent, _args, context) => {
-      return context.prisma.category.findMany({
+      console.log(parent)
+      return context.prisma.furnitureMaterial.findMany({
         where: {
-          id: parent.materialId,
+          id: parent.MaterialId,
         },
       })
     },
