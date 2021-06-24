@@ -21,6 +21,10 @@
     color: white;
     cursor: pointer;
 
+    &.active {
+      border: 2px solid var(--brand-primary);
+    }
+
     .name {
       align-self: flex-end;
       background-color: var(--white);

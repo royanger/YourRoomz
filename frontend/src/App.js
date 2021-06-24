@@ -6,6 +6,7 @@ import Loader from 'react-ts-loaders'
 // import the screens
 import AddCurrentItems from './screens/AddCurrentItems'
 import AddRoom from './screens/AddRoom'
+import AddRoomDetails from './screens/AddRoomDetails'
 import CategoryRecommendations from './screens/CategoryRecommendations'
 import Login from './screens/Login'
 import Landing from './screens/Landing'
@@ -54,6 +55,12 @@ const App = () => {
             path={'/add-room'}
             exact
             component={AddRoom}
+          />
+          <RouteController
+            routeType={'private'}
+            path={'/add-room-details'}
+            exact
+            component={AddRoomDetails}
           />
           <RouteController
             routeType={'private'}

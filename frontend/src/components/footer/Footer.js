@@ -2,7 +2,13 @@ import * as React from 'react'
 import FooterPortal from '../portals/Footer'
 import Button from '../Button'
 
-const Footer = ({ nextDisabled, backDisabled, callback }) => {
+const Footer = ({
+  nextDisabled,
+  backDisabled,
+  callback,
+  backVariant,
+  nextVariant,
+}) => {
   return (
     <FooterPortal>
       <footer>
@@ -13,7 +19,7 @@ const Footer = ({ nextDisabled, backDisabled, callback }) => {
                 <Button
                   id="footerBack"
                   text="Back"
-                  variant="small light"
+                  variant={`small light ${backVariant}`}
                   disabled={backDisabled}
                   callback={callback}
                 />
@@ -22,7 +28,7 @@ const Footer = ({ nextDisabled, backDisabled, callback }) => {
                 <Button
                   id="footerNext"
                   text="Next"
-                  variant="small"
+                  variant={`small ${nextVariant}`}
                   disabled={nextDisabled}
                   callback={callback}
                 />

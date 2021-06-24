@@ -45,6 +45,10 @@
       background: transparent;
       color: var(--disabled);
     }
+
+    &.hidden {
+      display: none;
+    }
   }
 }
 

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-const HeroCard = ({ text, variant, id, image, callback }) => {
+const Card = ({ text, className, id, image, handler, type }) => {
   return (
     <>
       <div
-        onClick={callback}
-        className={variant}
+        onClick={handler}
+        className={`${className} room-card ${id === type ? 'active' : ''}`}
         id={id}
         style={{
           backgroundImage: `url(/images/rooms/${image})`,
@@ -18,4 +18,4 @@ const HeroCard = ({ text, variant, id, image, callback }) => {
   )
 }
 
-export default HeroCard
+export default Card
