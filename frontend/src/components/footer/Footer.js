@@ -1,5 +1,6 @@
 import * as React from 'react'
 import FooterPortal from '../portals/Footer'
+import { useHistory } from 'react-router-dom'
 import Button from '../Button'
 
 const Footer = ({
@@ -8,7 +9,14 @@ const Footer = ({
   callback,
   backVariant,
   nextVariant,
+  prev,
 }) => {
+  const history = useHistory()
+
+  const handleBack = el => {
+    history.push(prev)
+  }
+
   return (
     <FooterPortal>
       <footer>
@@ -21,7 +29,8 @@ const Footer = ({
                   text="Back"
                   variant={`small light ${backVariant}`}
                   disabled={backDisabled}
-                  callback={callback}
+                  callback={handleBack}
+                  onClick={handleBack}
                 />
               </li>
               <li className="right">
