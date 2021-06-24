@@ -13,14 +13,15 @@ export const typeDefs = `
 
   type Room {
       id: ID
-      userId: String
-      typeId: String
+      userId: String!
+      typeId: String!
       name: String
       wallColor: String
       floorColor: String
-      floorMaterialId: String
+      floorMaterialId: String!
       furniture: [Furniture]
       user: [User]
+      type: [RoomType]
       flooring: [Flooring]
       cartitems: [CartItems]
       roomtype: [RoomType]

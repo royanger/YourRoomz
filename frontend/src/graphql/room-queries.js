@@ -1,9 +1,8 @@
 import gpl from 'graphql-tag'
 
 export const CREATE_ROOM = gpl`
-
-mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterial: String) {
-   createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterial) {
+mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
+   createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterialId) {
      id
    }
  }

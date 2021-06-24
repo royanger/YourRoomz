@@ -106,12 +106,27 @@ export const resolvers = {
       })
     },
     createRoom: (_parent, args, context) => {
+      console.log(args)
       return context.prisma.room.create({
         data: {
-          userId: args.userId,
-          typeId: args.typeId,
+          user: {
+            connect: {
+              id: args.userId,
+            },
+          },
+          type: {
+            connect: {
+              id: args.typeId,
+            },
+          },
           wallColor: args.wallColor,
           floorColor: args.floorColor,
+
+          flooring: {
+            connect: {
+              id: args.floorMaterialId,
+            },
+          },
         },
       })
     },
