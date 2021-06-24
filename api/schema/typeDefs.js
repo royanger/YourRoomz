@@ -57,7 +57,7 @@ export const typeDefs = `
    type Category {
       id: String
       name: String
-      imagE: String
+      image: String
    }
 
    type Cart {
@@ -86,6 +86,8 @@ export const typeDefs = `
       findRoomById(id: String): Room
       # Get Room Types
       getRoomTypes: [RoomType!]
+      # Get Furniture categories
+      getFurnitureCategories: [Category]
 
    }
 
