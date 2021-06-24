@@ -23,7 +23,6 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
         query: ROOM_TYPE_QUERY,
       })
       .then(results => {
-        console.log(results.data.getRoomTypes)
         setTypes(results.data.getRoomTypes)
       })
   }, [roomInfo])
@@ -37,7 +36,6 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
 
       <div className="room-grid">
         {types?.map(roomType => {
-          //  return <>{console.log('id', )}</>
           return (
             <Card
               key={roomType.id}

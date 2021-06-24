@@ -51,7 +51,6 @@ const AddRooms = () => {
           },
         })
         .then(results => {
-          console.log('results', results.data)
           selectRoom({ ...roomInfo, roomtype: [{ id: type, name: typeName }] })
           setLoading(false)
           history.push('/add-room-details')

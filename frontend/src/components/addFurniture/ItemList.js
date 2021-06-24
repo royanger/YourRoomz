@@ -12,7 +12,6 @@ const ItemList = () => {
 
   React.useEffect(() => {
     if (roomInfo) {
-      console.log('room id', roomInfo.id)
       graphqlClient
         .query({
           query: ROOM_QUERY,
@@ -21,7 +20,6 @@ const ItemList = () => {
           },
         })
         .then(results => {
-          console.log(results.data.findRoomById)
           setFurniture(results.data.findRoomById.furniture)
         })
     }

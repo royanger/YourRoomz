@@ -8,8 +8,7 @@ const Profile = () => {
 
   const {
     logout,
-    isAuthenticated,
-    authInfo: { displayName, givenName, familyName, email, gravatar },
+    authInfo: { gravatar },
   } = useAuth()
 
   const handleMenuStatus = () =>
