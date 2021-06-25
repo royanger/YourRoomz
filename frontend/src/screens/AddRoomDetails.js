@@ -59,13 +59,24 @@ const AddRoomDetails = () => {
   return (
     <>
       <div className="container room">
-        <RoomDetails
+        <Title type="h1">
+          {`What is your ${typeName ? typeName : 'room'} color?`}
+        </Title>
+
+        <p>{`Choose your ${
+          typeName ? typeName : 'room'
+        } wall color and floor color`}</p>
+        <SelectColor
           callback={handleColorSelector}
-          handleWallColorPicker={handleWallColorPicker}
-          handleFloorColorPicker={handleFloorColorPicker}
-          wallColor={wallColor}
-          floorColor={floorColor}
-          typeName={typeName}
+          idPrefix="wall"
+          handleColorPicker={handleWallColorPicker}
+          color={wallColor}
+        />
+        <SelectColor
+          callback={handleColorSelector}
+          idPrefix="floor"
+          handleColorPicker={handleFloorColorPicker}
+          color={floorColor}
         />
       </div>
       <Footer
