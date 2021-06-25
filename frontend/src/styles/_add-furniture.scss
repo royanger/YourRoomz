@@ -33,3 +33,35 @@
     }
   }
 }
+.color-selector {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 30px;
+
+  .colors {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+
+    .color-card {
+      width: 80px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: grey;
+    }
+  }
+}
+
+.material-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 60px;
+  max-width: 80%;
+  > div {
+    border: 1px solid var(--borders);
+    width: 80px;
+    height: 80px;
+  }
+}

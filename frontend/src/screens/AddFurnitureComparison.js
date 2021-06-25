@@ -1,11 +1,10 @@
 import * as React from 'react'
-// import { useRoomContext } from '../lib/context/roomContext'
-import ItemDetails from '../components/addFurniture/ItemDetails'
-
+//import { useRoomContext } from '../lib/context/roomContext'
+import ItemComparison from '../components/addFurniture/ItemComparison'
 import Footer from '../components/footer/Footer'
 
-const AddFurnitureComparison = () => {
-  // const { roomId, updateRoomInfo } = useRoomContext()
+const AddFurnitureDetails = () => {
+  //   const { roomId, updateRoomInfo } = useRoomContext()
 
   const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)
@@ -17,7 +16,7 @@ const AddFurnitureComparison = () => {
 
   return (
     <>
-      <ItemDetails />
+      <ItemComparison />
 
       <Footer
         callback={handleSave}
@@ -28,4 +27,4 @@ const AddFurnitureComparison = () => {
   )
 }
 
-export default AddFurnitureComparison
+export default AddFurnitureDetails

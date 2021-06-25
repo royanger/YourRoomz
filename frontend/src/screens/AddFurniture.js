@@ -11,6 +11,7 @@ const AddFurniture = () => {
   const history = useHistory()
   const { updateNewFurniture } = useRoomContext()
   const [nextDisabled, setNextDisabled] = React.useState(true)
+
   const [categories, setCategories] = React.useState()
   const [category, setCategory] = React.useState({
     id: false,

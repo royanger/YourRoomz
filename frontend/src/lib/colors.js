@@ -10,10 +10,9 @@ export const colorList = [
   { name: 'Blue', color: '#0246FD' },
   { name: 'Blue-Green', color: '#0392CE' },
   { name: 'Green', color: '#65AF31' },
-  { name: 'Yellow-Green', color: '#D0EA2B' },
   { name: 'Biege', color: '#ece0cf' },
   { name: 'Light-Grey', color: '#d1d1d1' },
-  { name: 'Dark-Grey', color: '#a1a1a1#' },
+  { name: 'Dark-Grey', color: '#a1a1a1' },
   { name: 'White', color: '#f0f0f0' },
   { name: 'Black', color: '#0f0f0f' },
 ]
