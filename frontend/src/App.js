@@ -6,7 +6,7 @@ import Loader from 'react-ts-loaders'
 // import the screens
 import AddRoom from './screens/AddRoom'
 import AddRoomDetails from './screens/AddRoomDetails'
-import AddFurniture from './screens/AddFurniture'
+import AddFurnitureList from './screens/AddFurnitureList'
 import AddFurnitureDetails from './screens/AddFurnitureDetails'
 import AddFurnitureComparison from './screens/AddFurnitureComparison'
 import CategoryRecommendations from './screens/CategoryRecommendations'
@@ -68,7 +68,7 @@ const App = () => {
             routeType={'private'}
             path={'/add-furniture'}
             exact
-            component={AddFurniture}
+            component={AddFurnitureList}
           />
           <RouteController
             routeType={'private'}

@@ -53,7 +53,7 @@ const AddRoomDetails = () => {
 
   const handleSave = () => {
     console.log('saving!')
-    history.push('/add-furniture')
+    history.push('/add-furniture-details')
   }
 
   return (
