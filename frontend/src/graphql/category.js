@@ -9,3 +9,12 @@ export const CATEGORY_QUERY = gpl`
       }
    }
 `
+
+export const MATERIAL_QUERY = gpl`
+   query {
+      getFurnitureMaterial {
+      id
+      name
+      }
+   }
+`

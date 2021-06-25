@@ -30,6 +30,9 @@ export const resolvers = {
     getFurnitureCategories: (_parent, _args, context) => {
       return context.prisma.category.findMany()
     },
+    getFurnitureMaterial: (_parent, _args, context) => {
+      return context.prisma.furnitureMaterial.findMany()
+    },
   },
   Room: {
     furniture: (parent, _args, context) => {

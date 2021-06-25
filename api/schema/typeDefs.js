@@ -88,6 +88,8 @@ export const typeDefs = `
       getRoomTypes: [RoomType!]
       # Get Furniture categories
       getFurnitureCategories: [Category]
+      # Get Furniture Material
+      getFurnitureMaterial: [FurnitureMaterial]
 
    }
 
