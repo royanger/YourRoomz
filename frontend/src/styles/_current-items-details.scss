@@ -1,24 +1,4 @@
 .existing-items {
-  width: 50%;
-  max-width: 800px;
-
-  p {
-    margin: 15px 0 15px 0;
-  }
-
-  > form {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-
-    label {
-      margin: 10px 0 10px 0;
-    }
-
-    select {
-      padding: 10px;
-    }
-  }
   .card {
     background-color: grey;
   }

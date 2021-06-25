@@ -1,0 +1,35 @@
+.existing-items {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  .list {
+    width: 100%;
+    > div {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr;
+      border: 1px solid var(--borders);
+      width: 100%;
+    }
+  }
+}
+.add-furniture-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    width: 80%;
+    text-align: left;
+    padding: 5px 10px;
+  }
+  ul {
+    width: 80%;
+    list-style: none;
+    border: 1px solid var(--borders);
+
+    li {
+      padding: 5px 10px;
+    }
+  }
+}

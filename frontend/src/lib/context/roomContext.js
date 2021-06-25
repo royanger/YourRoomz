@@ -4,12 +4,22 @@ const RoomContext = React.createContext()
 
 const RoomProvider = props => {
   const [roomInfo, setRoomInfo] = React.useState(null)
+  const [newFurniture, setNewFurniture] = React.useState()
 
   const selectRoom = room => {
     setRoomInfo(room)
   }
 
-  const contextValue = { roomInfo, selectRoom }
+  const updateNewFurniture = furniture => {
+    setNewFurniture(furniture)
+  }
+
+  const contextValue = {
+    roomInfo,
+    updateRoomInfo,
+    newFurniture,
+    updateNewFurniture,
+  }
 
   return (
     <>
