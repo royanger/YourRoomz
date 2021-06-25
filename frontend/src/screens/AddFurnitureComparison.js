@@ -5,7 +5,7 @@ import ItemDetails from '../components/addFurniture/ItemDetails'
 import Footer from '../components/footer/Footer'
 
 const AddFurnitureComparison = () => {
-  // const { roomId, selectRoom } = useRoomContext()
+  // const { roomId, updateRoomInfo } = useRoomContext()
 
   const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)

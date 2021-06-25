@@ -13,7 +13,7 @@ const AddRooms = () => {
   const {
     authInfo: { userId },
   } = useAuth()
-  const { roomInfo, selectRoom } = useRoomContext()
+  const { roomInfo, updateRoomInfo } = useRoomContext()
   const [loading, setLoading] = React.useState(false)
   const [type, setType] = React.useState('')
   const [typeName, setTypeName] = React.useState()
@@ -51,7 +51,10 @@ const AddRooms = () => {
           },
         })
         .then(results => {
-          selectRoom({ ...roomInfo, roomtype: [{ id: type, name: typeName }] })
+          updateRoomInfo({
+            ...roomInfo,
+            roomtype: [{ id: type, name: typeName }],
+          })
           setLoading(false)
           history.push('/add-room-details')
         })

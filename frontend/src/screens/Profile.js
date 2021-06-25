@@ -9,12 +9,12 @@ const Profile = () => {
   const {
     authInfo: { userId, givenName, displayName },
   } = useAuth()
-  const { selectRoom } = useRoomContext()
+  const { updateRoomInfo } = useRoomContext()
   const history = useHistory()
 
   // if user clicks to start new room, erase state from Room Context
   const handleResetRoomContext = () => {
-    selectRoom(null)
+    updateRoomInfo(null)
     history.push('/add-room')
   }
 

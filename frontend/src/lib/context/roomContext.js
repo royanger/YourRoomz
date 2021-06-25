@@ -6,7 +6,7 @@ const RoomProvider = props => {
   const [roomInfo, setRoomInfo] = React.useState(null)
   const [newFurniture, setNewFurniture] = React.useState()
 
-  const selectRoom = room => {
+  const updateRoomInfo = room => {
     setRoomInfo(room)
   }
 

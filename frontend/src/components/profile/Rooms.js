@@ -9,7 +9,7 @@ import Button from '../Button'
 const Rooms = ({ userId }) => {
   const [loading, setLoading] = React.useState(false)
   const [rooms, setRooms] = React.useState()
-  const { selectRoom } = useRoomContext()
+  const { updateRoomInfo } = useRoomContext()
   const history = useHistory()
 
   React.useEffect(() => {
@@ -28,7 +28,7 @@ const Rooms = ({ userId }) => {
   }, [userId])
 
   const handleEditRoom = e => {
-    selectRoom(rooms.find(x => x.id === e.target.id))
+    updateRoomInfo(rooms.find(x => x.id === e.target.id))
     history.push('/add-room')
   }
 
