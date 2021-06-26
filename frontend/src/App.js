@@ -66,7 +66,7 @@ const App = () => {
           />
           <RouteController
             routeType={'private'}
-            path={'/add-furniture'}
+            path={'/add-furniture-list'}
             exact
             component={AddFurnitureList}
           />

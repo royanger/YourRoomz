@@ -1,19 +1,14 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import Title from '../components/Title'
-import RoomDetails from '../components/addRoom/RoomDetails'
-import { useAuth } from '../lib/context/authContext'
 import { useRoomContext } from '../lib/context/roomContext'
-import Loader from 'react-ts-loaders'
 import Footer from '../components/footer/Footer'
+import SelectColor from '../components/addFurniture/SelectColor'
 
 const AddRoomDetails = () => {
   const history = useHistory()
-  const {
-    authInfo: { userId },
-  } = useAuth()
   const { roomInfo } = useRoomContext()
-  const [loading, setLoading] = React.useState(false)
+
   const [wallColor, setWallColor] = React.useState('')
   const [floorColor, setFloorColor] = React.useState('')
   const [typeName, setTypeName] = React.useState('')
@@ -22,12 +17,10 @@ const AddRoomDetails = () => {
   // if RoomContext has stored room info, load that into state
   React.useEffect(() => {
     if (roomInfo) {
-      setLoading(true)
       setWallColor(roomInfo?.wallColor)
       setFloorColor(roomInfo?.floorColor)
       setTypeName(roomInfo.roomtype[0].name)
       setNextDisabled(false)
-      setLoading(false)
     }
   }, [roomInfo])
 

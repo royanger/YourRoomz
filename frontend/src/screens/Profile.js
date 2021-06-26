@@ -9,8 +9,12 @@ const Profile = () => {
   const {
     authInfo: { userId, givenName, displayName },
   } = useAuth()
-  const { updateRoomInfo } = useRoomContext()
+  const { updateRoomInfo, refetch } = useRoomContext()
   const history = useHistory()
+
+  React.useEffect(() => {
+    refetch()
+  })
 
   // if user clicks to start new room, erase state from Room Context
   const handleResetRoomContext = () => {
