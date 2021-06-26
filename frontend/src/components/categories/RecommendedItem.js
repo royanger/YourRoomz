@@ -1,9 +1,11 @@
 import * as React from 'react'
 
-const RecommendedItem = ({ category }) => {
+const RecommendedItem = ({ category, handleClick }) => {
   return (
     <div
       className="item"
+      onClick={handleClick}
+      id={category.id}
       style={{
         backgroundImage: `url('/images/furniture-styles/${category.image}')`,
       }}
