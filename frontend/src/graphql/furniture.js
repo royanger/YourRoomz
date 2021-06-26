@@ -16,3 +16,15 @@ export const CREATE_FURNITURE = gpl`
    }
  }
  `
+
+export const GET_CATEGORY_STYLES = gpl`
+   query getCategoryStyles($categoryId: String) {
+      getCategoryStyles(
+         categoryId: $categoryId
+      ) {
+         id
+         tag
+         image
+      }
+   }
+ `

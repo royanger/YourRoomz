@@ -1,27 +1,43 @@
 import * as React from 'react'
 import HeroCard from '../HeroCard'
-import Title from '../Title'
+import { GET_CATEGORY_STYLES } from '../../graphql/furniture'
+import { graphqlClient } from '../../lib/graphql'
+import { useRoomContext } from '../../lib/context/roomContext'
+import SimilarItem from './SimilarItem'
 
-const ItemComparison = () => {
+const ItemComparison = ({ handleClick }) => {
+  const [categoryStyles, setCategoryStyles] = React.useState()
+  const { newFurniture } = useRoomContext()
+
+  React.useEffect(() => {
+    graphqlClient
+      .query({
+        query: GET_CATEGORY_STYLES,
+        variables: {
+          categoryId: newFurniture,
+        },
+      })
+      .then(results => {
+        setCategoryStyles(results.data.getCategoryStyles)
+      })
+  })
+
   return (
     <>
-      <div className="container existing-items">
-        <div>
-          <Title type="h1">Choose pre-existing items</Title>
+      <div className="comparison">
+        {categoryStyles?.map(style => {
+          return <SimilarItem categoryStyle={style} handleClick={handleClick} />
+        })}
 
-          <p>Choose the item(s) that looks similar to what you have.</p>
-        </div>
-        <div className="grid-one">
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-          <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        </div>
+        {/* <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" />
+        <HeroCard link="link" to="/" text="" variant="card existing-one" /> */}
       </div>
     </>
   )

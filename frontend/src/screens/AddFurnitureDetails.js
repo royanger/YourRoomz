@@ -12,7 +12,7 @@ import SelectMaterial from '../components/addFurniture/SelectMaterial'
 
 const AddFurnitureDetails = () => {
   const history = useHistory()
-  const { roomId, roomInfo, updateRoomInfo } = useRoomContext()
+  const { roomId, roomInfo, updateNewFurniture } = useRoomContext()
 
   const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)
@@ -65,10 +65,6 @@ const AddFurnitureDetails = () => {
 
   const handleSave = async e => {
     e.preventDefault()
-    console.log('room', roomInfo.id)
-    console.log('color', color)
-    console.log('material', material)
-    console.log('category', category.id)
     graphqlClient
       .mutate({
         mutation: CREATE_FURNITURE,
@@ -82,6 +78,7 @@ const AddFurnitureDetails = () => {
       })
       .then(results => {
         console.log('results', results)
+        updateNewFurniture(category.id)
         history.push('/add-furniture-comparison')
       })
   }
