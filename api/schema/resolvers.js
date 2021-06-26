@@ -33,6 +33,13 @@ export const resolvers = {
     getFurnitureMaterial: (_parent, _args, context) => {
       return context.prisma.furnitureMaterial.findMany()
     },
+    getCategoryStyles: (_parent, args, context) => {
+      return context.prisma.categoryStyles.findMany({
+        where: {
+          categoryId: args.categoryId,
+        },
+      })
+    },
   },
   Room: {
     furniture: (parent, _args, context) => {

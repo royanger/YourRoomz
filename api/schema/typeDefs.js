@@ -102,6 +102,8 @@ export const typeDefs = `
       getFurnitureCategories: [Category]
       # Get Furniture Material
       getFurnitureMaterial: [FurnitureMaterial]
+      # Get Category Styles
+      getCategoryStyles(categoryId: String): [CategoryStyles]
 
    }
 
