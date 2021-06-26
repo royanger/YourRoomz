@@ -48,6 +48,7 @@ model RoomType {
 model Flooring {
    id       String   @id @default(uuid())
    name     String
+   image    String?
    rooms    Room[]
 }
 
@@ -56,23 +57,35 @@ model Category {
    name           String
    image          String?
    furniture      Furniture[]
+   cagetorystyles CategoryStyles[]
+}
 
+model CategoryStyles {
+   id             String   @id @default(uuid())
+   categoryId     String
+   category       Category @relation(fields: [categoryId], references:[id])
+   tag            String
+   image          String
+   furniture      Furniture[]
 }
 
 model Furniture {
-   id          String   @id @default(uuid())
-   color       String
-   categoryId  String
-   category    Category @relation(fields: [categoryId], references:[id])
-   roomId      String
-   room        Room     @relation(fields: [roomId], references:[id])
-   MaterialId  String
-   material    FurnitureMaterial @relation(fields: [MaterialId], references:[id])
+   id                String   @id @default(uuid())
+   color             String
+   categoryId        String
+   category          Category @relation(fields: [categoryId], references:[id])
+   roomId            String
+   room              Room     @relation(fields: [roomId], references:[id])
+   MaterialId        String
+   material          FurnitureMaterial @relation(fields: [MaterialId], references:[id])
+   CategoryStyleId   String
+   categorystyle     CategoryStyles @relation(fields: [CategoryStyleId], references:[id])
 }
 
 model FurnitureMaterial {
    id          String   @id @default(uuid())
    name        String
+   image       String?
    furniture   Furniture[]
 }
 

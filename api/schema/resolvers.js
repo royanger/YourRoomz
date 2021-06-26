@@ -136,5 +136,33 @@ export const resolvers = {
         },
       })
     },
+    createFurniture: (_parent, args, context) => {
+      console.log(args)
+      return context.prisma.furniture.create({
+        data: {
+          room: {
+            connect: {
+              id: args.roomId,
+            },
+          },
+          color: args.color,
+          category: {
+            connect: {
+              id: args.categoryId,
+            },
+          },
+          material: {
+            connect: {
+              id: args.materialId,
+            },
+          },
+          categorystyle: {
+            connect: {
+              id: args.styleId,
+            },
+          },
+        },
+      })
+    },
   },
 }

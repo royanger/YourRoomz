@@ -15,6 +15,7 @@ export const MATERIAL_QUERY = gpl`
       getFurnitureMaterial {
       id
       name
+      image
       }
    }
 `

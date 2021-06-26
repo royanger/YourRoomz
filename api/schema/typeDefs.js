@@ -36,6 +36,7 @@ export const typeDefs = `
    type Flooring {
       id: String
       name: String
+      image: String
       rooms: [Room]
    }
 
@@ -47,16 +48,27 @@ export const typeDefs = `
       category: [Category]
       MaterialId: String
       material: [FurnitureMaterial]
+      CategoryStyleId: String
+      categorystyles: [CategoryStyles]
    }
 
    type FurnitureMaterial {
       id: String
       name: String
+      image: String
    }
 
    type Category {
       id: String
       name: String
+      image: String
+   }
+
+   type CategoryStyles {
+      id: String
+      categoryId: String
+      category: [Category]
+      tag: String
       image: String
    }
 
@@ -100,6 +112,7 @@ export const typeDefs = `
       updateUser( id: String, data: UpdateUserInput): User
       # Add a new room
       createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String, floorMaterialId: String): Room
+      createFurniture(roomId: String, color: String, categoryId: String, materialId: String, styleId: String ): Furniture
    }
 
    input UpdateUserInput {
