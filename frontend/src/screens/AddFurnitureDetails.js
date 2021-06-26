@@ -1,6 +1,8 @@
 import * as React from 'react'
-// import { useRoomContext } from '../lib/context/roomContext'
+import { useHistory } from 'react-router-dom'
+import { useRoomContext } from '../lib/context/roomContext'
 import { CATEGORY_QUERY, MATERIAL_QUERY } from '../graphql/category'
+import { CREATE_FURNITURE } from '../graphql/furniture'
 import { graphqlClient } from '../lib/graphql'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
@@ -9,11 +11,14 @@ import SelectColor from '../components/addFurniture/SelectColor'
 import SelectMaterial from '../components/addFurniture/SelectMaterial'
 
 const AddFurnitureDetails = () => {
-  // const { roomId, updateRoomInfo } = useRoomContext()
+  const history = useHistory()
+  const { roomId, roomInfo, updateRoomInfo } = useRoomContext()
 
   const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)
+  const [materialList, setMaterialList] = React.useState()
   const [material, setMaterial] = React.useState()
+  const [color, setColor] = React.useState()
   const [categories, setCategories] = React.useState()
   const [category, setCategory] = React.useState({
     id: false,
@@ -36,13 +41,49 @@ const AddFurnitureDetails = () => {
         query: MATERIAL_QUERY,
       })
       .then(results => {
-        setMaterial(results.data.getFurnitureMaterial)
+        setMaterialList(results.data.getFurnitureMaterial)
       })
   }, [])
 
+  React.useEffect(() => {
+    if (category.id && color && material) {
+      setNextDisabled(false)
+    }
+  }, [color, material, category])
+
+  const updateCategory = e => {
+    setCategory(e)
+  }
+
+  const updateColor = e => {
+    setColor(e.target.id)
+  }
+
+  const updateMaterial = e => {
+    setMaterial(e.target.id)
+  }
+
   const handleSave = async e => {
     e.preventDefault()
-    console.log('saving')
+    console.log('room', roomInfo.id)
+    console.log('color', color)
+    console.log('material', material)
+    console.log('category', category.id)
+    graphqlClient
+      .mutate({
+        mutation: CREATE_FURNITURE,
+        variables: {
+          roomId: roomInfo.id,
+          color: color,
+          materialId: material,
+          categoryId: category.id,
+          styleId: '8242700c-c6d3-4ab9-8dff-b8f755045cfb',
+        },
+      })
+      .then(results => {
+        console.log('results', results)
+        history.push('/add-furniture-comparison')
+      })
   }
 
   return (
@@ -59,18 +100,27 @@ const AddFurnitureDetails = () => {
           categories={categories}
           category={category}
           setCategory={setCategory}
+          updateCategory={updateCategory}
         />
       ) : (
         ''
       )}
 
-      <SelectColor />
-      {material ? <SelectMaterial material={material} /> : ''}
+      <SelectColor callback={updateColor} />
+
+      {materialList ? (
+        <SelectMaterial
+          materialList={materialList}
+          updateMaterial={updateMaterial}
+        />
+      ) : (
+        ''
+      )}
 
       <Footer
         callback={handleSave}
-        backDisabled={backDisabled}
         nextDisabled={nextDisabled}
+        prev="/add-room-details"
       />
     </>
   )

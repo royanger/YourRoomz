@@ -2,13 +2,12 @@ import { colorList } from '../../lib/colors'
 import { ChromePicker } from 'react-color'
 
 const SelectColor = ({ callback, idPrefix, handleColorPicker, color }) => {
-  console.log('color', color)
   return (
     <section>
       <div className="color-selector">
         <div className="colors">
           {colorList.map(item => {
-            const id = idPrefix ? `${idPrefix}-${item.color}` : item
+            const id = idPrefix ? `${idPrefix}-${item.color}` : item.color
             return (
               <div
                 key={id}
