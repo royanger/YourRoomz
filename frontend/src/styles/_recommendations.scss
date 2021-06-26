@@ -1,0 +1,35 @@
+.recommendations {
+  .interface {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    column-gap: 20px;
+
+    .current-furniture {
+      border: 2px solid red;
+
+      .furniture-item {
+        width: 300px;
+        height: 300px;
+        background-color: var(--brand-primary-400);
+        margin-bottom: 2rem;
+      }
+    }
+
+    .comparison {
+      width: 100%;
+
+      border: 2px solid red;
+    }
+
+    .results {
+      border: 2px solid red;
+
+      .result-item {
+        width: 300px;
+        height: 300px;
+        background-color: var(--brand-primary-400);
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
