@@ -143,6 +143,18 @@ export const resolvers = {
         },
       })
     },
+    updateRoom: (_parent, args, context) => {
+      console.log(args)
+      return context.prisma.room.update({
+        where: { id: args.id },
+        data: {
+          typeId: args.typeId,
+
+          wallColor: args.wallColor,
+          floorColor: args.floorColor,
+        },
+      })
+    },
     createFurniture: (_parent, args, context) => {
       console.log(args)
       return context.prisma.furniture.create({

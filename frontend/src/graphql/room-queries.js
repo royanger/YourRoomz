@@ -16,6 +16,22 @@ mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floor
  }
 `
 
+export const UPDATE_ROOM = gpl`
+mutation updateRoom( $id: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
+   updateRoom( id: $id, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterialId) {
+     id
+     name
+     wallColor
+     floorColor
+     roomtype {
+        id
+        name
+     }
+
+   }
+ }
+`
+
 export const ROOMS_QUERY = gpl`
 query findRoomsByUser($userId: String!) {
    findRoomsByUser(userId: $userId) {

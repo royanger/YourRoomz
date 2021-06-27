@@ -114,6 +114,7 @@ export const typeDefs = `
       updateUser( id: String, data: UpdateUserInput): User
       # Add a new room
       createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String, floorMaterialId: String): Room
+      updateRoom(id: String, typeId: String, wallColor: String, floorColor: String, floorMaterialId: String): Room
       createFurniture(roomId: String, color: String, categoryId: String, materialId: String, styleId: String ): Furniture
    }
 
