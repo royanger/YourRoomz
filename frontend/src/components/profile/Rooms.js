@@ -1,34 +1,32 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
-import { ROOMS_QUERY } from '../../graphql/room-queries'
-import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
-import { useRoomContext } from '../../lib/context/roomContext'
-import Button from '../Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { getRoomsById, roomsSelector } from '../../lib/redux/roomsSlice'
+import { setRoomId } from '../../lib/redux/roomSlice'
+import RoomRow from './RoomRow'
 
 const Rooms = ({ userId }) => {
-  const [loading, setLoading] = React.useState(false)
-  const [rooms, setRooms] = React.useState()
-  const { updateRoomInfo } = useRoomContext()
+  const dispatch = useDispatch()
+  const { loading, roomsList } = useSelector(roomsSelector)
+
   const history = useHistory()
 
   React.useEffect(() => {
-    setLoading(true)
-    graphqlClient
-      .query({
-        query: ROOMS_QUERY,
-        variables: {
-          userId,
-        },
-      })
-      .then(results => {
-        setRooms(results.data.findRoomsByUser)
-        setLoading(false)
-      })
-  }, [userId])
+    dispatch(getRoomsById(userId))
+  }, [dispatch, userId])
 
-  const handleEditRoom = e => {
-    updateRoomInfo(rooms.find(x => x.id === e.target.id))
+  const handleEditRoom = async e => {
+    const unformattedRoom = roomsList.find(x => x.id === e.target.id)
+    const formattedRoom = {
+      id: unformattedRoom.id,
+      wallColor: unformattedRoom.wallColor,
+      floorColor: unformattedRoom.floorColor,
+      cartitems: unformattedRoom.cartitems,
+      furniture: unformattedRoom.furniture,
+      roomtype: unformattedRoom.roomtype[0],
+    }
+    await dispatch(setRoomId(formattedRoom))
     history.push('/add-room')
   }
 
@@ -44,23 +42,9 @@ const Rooms = ({ userId }) => {
         <div>Cart Items</div>
         <div></div>
       </div>
-      {rooms?.map(room => {
+      {roomsList?.map(room => {
         return (
-          <div className="rooms" key={room.id}>
-            <div>{room.name !== null ? room.name : room.roomtype[0].name}</div>
-            <div>{room.wallColor ? room.wallColor : ''}</div>
-            <div>{room.floorColor ? room.floorColor : ''}</div>
-            <div>{room.furniture ? room.furniture.length : '0'}</div>
-            <div>{room.cartitems ? room.cartitems.length : '0'}</div>
-            <div>
-              <Button
-                id={room.id}
-                variant="small"
-                callback={handleEditRoom}
-                text="Edit"
-              />
-            </div>
-          </div>
+          <RoomRow key={room.id} room={room} handleEditRoom={handleEditRoom} />
         )
       })}
     </>

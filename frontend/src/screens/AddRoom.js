@@ -5,15 +5,18 @@ import Footer from '../components/footer/Footer'
 import { CREATE_ROOM } from '../graphql/room-queries'
 import { graphqlClient } from '../lib/graphql'
 import { useAuth } from '../lib/context/authContext'
-import { useRoomContext } from '../lib/context/roomContext'
+import { useDispatch, useSelector } from 'react-redux'
 import Loader from 'react-ts-loaders'
+import { roomSelector, updateRoomInfo } from '../lib/redux/roomSlice'
 
 const AddRooms = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
+  const { roomInfo } = useSelector(roomSelector)
+
   const {
     authInfo: { userId },
   } = useAuth()
-  const { roomInfo, updateRoomInfo } = useRoomContext()
   const [loading, setLoading] = React.useState(false)
   const [type, setType] = React.useState('')
   const [typeName, setTypeName] = React.useState()
@@ -28,7 +31,7 @@ const AddRooms = () => {
   React.useEffect(() => {
     if (roomInfo) {
       setLoading(true)
-      setType(roomInfo.roomtype[0].id)
+      setType(roomInfo.roomtype.id)
       setNextDisabled(false)
       setLoading(false)
     }
@@ -38,26 +41,24 @@ const AddRooms = () => {
     e.preventDefault()
     if (roomInfo?.id) {
       console.log('room exists, need to update')
-      history.push('/add-room-details')
-    } else {
-      setLoading(true)
-      graphqlClient
-        .mutate({
-          mutation: CREATE_ROOM,
-          variables: {
-            userId: userId,
-            typeId: type,
-            floorMaterialId: '260c8fd9-d830-4946-9f90-e13c11a9ba77',
+      console.log(roomInfo)
+      const updatedRoomInfo = {
+        id: type,
+        name: typeName,
+      }
+      dispatch(
+        updateRoomInfo({
+          ...roomInfo,
+          roomtype: {
+            id: type,
+            name: typeName,
           },
         })
-        .then(results => {
-          updateRoomInfo({
-            ...roomInfo,
-            roomtype: [{ id: type, name: typeName }],
-          })
-          setLoading(false)
-          history.push('/add-room-details')
-        })
+      )
+      // history.push('/add-room-details')
+    } else {
+      dispatch(updateRoomInfo({ roomtype: { id: type, name: typeName } }))
+      //history.push('/add-room-details')
     }
   }
 
