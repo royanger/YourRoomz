@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRoomsById, roomsSelector } from '../../lib/redux/roomsSlice'
 import { setRoomId } from '../../lib/redux/roomSlice'
 import RoomRow from './RoomRow'
+import { formatRoomObj } from '../../lib/helpers/formatRoomObj'
 
 const Rooms = ({ userId }) => {
   const dispatch = useDispatch()
@@ -17,15 +18,9 @@ const Rooms = ({ userId }) => {
   }, [dispatch, userId])
 
   const handleEditRoom = async e => {
-    const unformattedRoom = roomsList.find(x => x.id === e.target.id)
-    const formattedRoom = {
-      id: unformattedRoom.id,
-      wallColor: unformattedRoom.wallColor,
-      floorColor: unformattedRoom.floorColor,
-      cartitems: unformattedRoom.cartitems,
-      furniture: unformattedRoom.furniture,
-      roomtype: unformattedRoom.roomtype[0],
-    }
+    const formattedRoom = formatRoomObj(
+      roomsList.find(x => x.id === e.target.id)
+    )
     await dispatch(setRoomId(formattedRoom))
     history.push('/add-room')
   }

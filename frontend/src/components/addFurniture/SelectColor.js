@@ -13,7 +13,9 @@ const SelectColor = ({ callback, idPrefix, handleColorPicker, color }) => {
                 key={id}
                 id={id}
                 onClick={callback}
-                className="color-card"
+                className={`color-card ${
+                  color === item.color ? 'active' : ''
+                } `}
                 style={{ backgroundColor: item.color }}
               >
                 {item.name}

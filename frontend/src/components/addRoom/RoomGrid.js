@@ -3,14 +3,10 @@ import Card from './Card'
 import { ROOM_TYPE_QUERY } from '../../graphql/roomType'
 import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
-import { useRoomContext } from '../../lib/context/roomContext'
 import Title from '../Title'
 
 const RoomGrid = ({ type, setType, setTypeName }) => {
-  const { roomInfo } = useRoomContext()
   const [types, setTypes] = React.useState()
-
-  let classes = 'room-card'
 
   const handleClick = e => {
     setType(e.target.id)
@@ -25,7 +21,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
       .then(results => {
         setTypes(results.data.getRoomTypes)
       })
-  }, [roomInfo])
+  }, [])
 
   if (!types) return <Loader size={50} color="" />
 
@@ -43,7 +39,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
               text={roomType.name}
               image={roomType.defaultImage}
               handler={handleClick}
-              variant={classes}
+              variant="room-card"
               type={type}
             />
           )

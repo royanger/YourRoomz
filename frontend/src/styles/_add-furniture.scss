@@ -50,6 +50,10 @@
       align-items: center;
       justify-content: center;
       background-color: grey;
+
+      &.active {
+        border: 10px solid #fff;
+      }
     }
   }
 }
