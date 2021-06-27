@@ -23,7 +23,6 @@ const CurrentFurniture = () => {
       {furniture?.map(item => {
         return (
           <div key={item.id} className="furniture-item">
-            {console.log(item)}
             {item.category[0].name}
             <br />
             Image to come

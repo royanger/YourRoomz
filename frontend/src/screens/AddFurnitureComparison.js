@@ -12,7 +12,6 @@ const AddFurnitureDetails = () => {
   const [seletectedStyle, setSelectedStyle] = React.useState()
 
   const handleClick = e => {
-    console.log('style clicked', e.target.id)
     setSelectedStyle(e.target.id)
     setNextDisabled(false)
   }

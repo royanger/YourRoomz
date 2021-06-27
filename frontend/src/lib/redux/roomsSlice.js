@@ -29,7 +29,6 @@ export const { roomsStart, roomsSuccess, roomsFail } = roomsSlice.actions
 export const roomsSelector = state => state.rooms
 
 export const getRoomsById = userId => async dispatch => {
-  console.log('success')
   dispatch(roomsStart())
   try {
     graphqlClient

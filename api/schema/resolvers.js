@@ -87,7 +87,6 @@ export const resolvers = {
       })
     },
     material: (parent, _args, context) => {
-      console.log(parent)
       return context.prisma.furnitureMaterial.findMany({
         where: {
           id: parent.MaterialId,
@@ -119,7 +118,6 @@ export const resolvers = {
       })
     },
     createRoom: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.room.create({
         data: {
           user: {
@@ -144,7 +142,6 @@ export const resolvers = {
       })
     },
     updateRoom: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.room.update({
         where: { id: args.id },
         data: {
@@ -156,7 +153,6 @@ export const resolvers = {
       })
     },
     createFurniture: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.furniture.create({
         data: {
           room: {

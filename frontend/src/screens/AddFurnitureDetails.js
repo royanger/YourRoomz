@@ -77,7 +77,6 @@ const AddFurnitureDetails = () => {
         },
       })
       .then(results => {
-        console.log('results', results)
         updateNewFurniture(category.id)
         history.push('/add-furniture-comparison')
       })

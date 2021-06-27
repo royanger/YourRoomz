@@ -76,12 +76,10 @@ export const updateRoomInfo = roomType => async dispatch => {
 }
 
 export const updateWallColor = wallColor => async dispatch => {
-  console.log('wall color updated')
   dispatch(setColors({ wallColor: wallColor }))
 }
 
 export const updateFloorColor = floorColor => async dispatch => {
-  console.log('floor color updated')
   dispatch(setColors({ floorColor: floorColor }))
 }
 
@@ -109,7 +107,6 @@ export const createRoom = (user, room) => async dispatch => {
 
 export const updateRoom = room => async dispatch => {
   dispatch(updateRoomStart())
-  console.log(room)
   await graphqlClient
     .mutate({
       mutation: UPDATE_ROOM,

@@ -50,28 +50,22 @@ const AddRoomDetails = () => {
   }
 
   const handleWallColorPicker = (color, e) => {
-    console.log('testing wall')
     setWallColor(color.hex)
     dispatch(updateWallColor(color.hex))
   }
 
   const handleFloorColorPicker = (color, e) => {
-    console.log('testing floor')
     setFloorColor(color.hex)
     dispatch(updateFloorColor(color.hex))
   }
 
   const handleSave = async () => {
     if (roomInfo.id) {
-      console.log('updating!')
       await dispatch(updateRoom(roomInfo))
     } else {
       await dispatch(createRoom(authInfo.userId, roomInfo))
-      console.log('creating')
     }
-
     //  await dispatch(getRoomsById(authInfo.userId))
-
     history.push('/add-furniture-details')
   }
 
