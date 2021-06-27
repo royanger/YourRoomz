@@ -12,7 +12,7 @@ const AddRooms = () => {
   const [type, setType] = React.useState('')
   const [typeName, setTypeName] = React.useState()
   const [nextDisabled, setNextDisabled] = React.useState(true)
-  const activeType = roomInfo ? roomInfo.roomtype.id : ''
+  const activeType = roomInfo.roomType ? roomInfo.roomtype.id : ''
 
   React.useEffect(() => {
     if (type) setNextDisabled(false)

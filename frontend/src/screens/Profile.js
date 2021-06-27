@@ -2,23 +2,21 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
 import Rooms from '../components/profile/Rooms'
-import { useRoomContext } from '../lib/context/roomContext'
 import Button from '../components/Button'
+import { useDispatch } from 'react-redux'
+import { clearRoom } from '../lib/redux/roomSlice'
 
 const Profile = () => {
+  const dispatch = useDispatch()
   const {
     authInfo: { userId, givenName, displayName },
   } = useAuth()
-  const { updateRoomInfo, refetch } = useRoomContext()
-  const history = useHistory()
 
-  React.useEffect(() => {
-    refetch()
-  })
+  const history = useHistory()
 
   // if user clicks to start new room, erase state from Room Context
   const handleResetRoomContext = () => {
-    updateRoomInfo(null)
+    dispatch(clearRoom())
     history.push('/add-room')
   }
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   roomSelector,
   createRoom,
+  updateRoom,
   updateRoomInfo,
   updateWallColor,
   updateFloorColor,
@@ -61,12 +62,17 @@ const AddRoomDetails = () => {
   }
 
   const handleSave = async () => {
-    console.log('saving!')
+    if (roomInfo.id) {
+      console.log('updating!')
+      await dispatch(updateRoom(roomInfo))
+    } else {
+      await dispatch(createRoom(authInfo.userId, roomInfo))
+      console.log('creating')
+    }
 
-    await dispatch(createRoom(authInfo.userId, roomInfo))
     //  await dispatch(getRoomsById(authInfo.userId))
 
-    //  history.push('/add-furniture-details')
+    history.push('/add-furniture-details')
   }
 
   return (
