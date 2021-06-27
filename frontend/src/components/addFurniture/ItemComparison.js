@@ -1,5 +1,4 @@
 import * as React from 'react'
-import HeroCard from '../HeroCard'
 import { GET_CATEGORY_STYLES } from '../../graphql/furniture'
 import { graphqlClient } from '../../lib/graphql'
 import { useRoomContext } from '../../lib/context/roomContext'
@@ -28,16 +27,6 @@ const ItemComparison = ({ handleClick }) => {
         {categoryStyles?.map(style => {
           return <SimilarItem categoryStyle={style} handleClick={handleClick} />
         })}
-
-        {/* <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" />
-        <HeroCard link="link" to="/" text="" variant="card existing-one" /> */}
       </div>
     </>
   )
