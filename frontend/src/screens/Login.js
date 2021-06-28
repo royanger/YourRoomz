@@ -6,14 +6,20 @@ const providers = [
   {
     title: 'Google',
     provider: 'google',
+    color: '#5185EC',
+    icon: 'google',
   },
   {
     title: 'Twitter',
     provider: 'twitter',
+    color: '#6AABE8',
+    icon: 'twitter',
   },
   {
     title: 'GitHub',
     provider: 'github',
+    color: 'rgb(36, 41, 46)',
+    icon: 'github',
   },
 ]
 
@@ -24,15 +30,20 @@ const Login = () => {
   return (
     <>
       <div className="container login">
-        <Title type="h1">Get decor recommendations for free</Title>
+        <h1>
+          <img src="/images/YourRoomz-logo.png" alt="YourRoomz" />
+        </h1>
+        <Title type="h1">Get Recommendations For Free</Title>
 
-        <p>Sign into your account</p>
+        <p>Create and account or Sign in</p>
         <div className="login-btn-container">
-          {providers.map(({ provider, title }) => {
+          {providers.map(({ provider, title, color, icon }) => {
             return (
               <LoginButton
-                text={`Sign in with ${title} `}
+                text={`Sign in with ${title}`}
                 callback={() => loginCallback(provider)}
+                color={color}
+                icon={icon}
               />
             )
           })}

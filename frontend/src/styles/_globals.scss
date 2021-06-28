@@ -16,7 +16,7 @@
   --default: #cacccf;
   --borders: #dbdde0;
   --disabled: #e8e8e8;
-  --gray-bg: #f9f9fa;
+  --gray-bg: #e5e5e5;
   --white: #fff;
   --warning-100: #f8c462;
   --warning-200: #f5a614;
@@ -55,8 +55,13 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
+#root {
+  background-color: var(--gray-bg);
+}
+
 main {
   margin-bottom: 100px;
+  background-color: var(--gray-bg);
 }
 
 *,
