@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ROOMS_QUERY } from '../../graphql/room-queries'
+import { ROOMS_QUERY } from '../graphql/room-queries'
 import { graphqlClient } from '../graphql'
 
 export const roomsSlice = createSlice({

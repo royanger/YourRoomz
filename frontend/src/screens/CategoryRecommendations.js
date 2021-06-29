@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Title from '../components/Title'
-import { CATEGORY_QUERY } from '../graphql/category'
+import { CATEGORY_QUERY } from '../lib/graphql/category'
 import { graphqlClient } from '../lib/graphql'
 import RecommendedItem from '../components/categories/RecommendedItem'
 import Footer from '../components/footer/Footer'

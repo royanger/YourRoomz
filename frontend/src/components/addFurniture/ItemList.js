@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Title from '../Title'
 import { useRoomContext } from '../../lib/context/roomContext'
-import { ROOM_QUERY } from '../../graphql/room-queries'
+import { ROOM_QUERY } from '../../lib/graphql/room-queries'
 import { graphqlClient } from '../../lib/graphql'
 import ExistingItemRow from './ExistingItemRow'
 

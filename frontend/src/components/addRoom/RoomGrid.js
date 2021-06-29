@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Card from './Card'
-import { ROOM_TYPE_QUERY } from '../../graphql/roomType'
+import { ROOM_TYPE_QUERY } from '../../lib/graphql/roomType'
 import { graphqlClient } from '../../lib/graphql'
 import Loader from 'react-ts-loaders'
 import Title from '../Title'

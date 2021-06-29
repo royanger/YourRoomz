@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ROOM_QUERY } from '../../graphql/room-queries'
+import { ROOM_QUERY } from '../../lib/graphql/room-queries'
 import { graphqlClient } from '../../lib/graphql'
 
 const RoomContext = React.createContext()

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { GET_CATEGORY_STYLES } from '../../graphql/furniture'
+import { GET_CATEGORY_STYLES } from '../../lib/graphql/furniture'
 import { graphqlClient } from '../../lib/graphql'
 import { useRoomContext } from '../../lib/context/roomContext'
 import SimilarItem from './SimilarItem'
