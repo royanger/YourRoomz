@@ -18,6 +18,8 @@ export const resolvers = {
       })
     },
     findRoomById: (_parent, args, context) => {
+      console.log('attmepted')
+      console.log(args)
       return context.prisma.room.findUnique({
         where: {
           id: args.id,

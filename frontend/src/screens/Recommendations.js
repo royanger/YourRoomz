@@ -20,7 +20,6 @@ const Recommendations = () => {
       .get('https://api.rainforestapi.com/request', { params })
       .then(results => {
         // print the JSON response from Rainforest API
-        console.log(results.data)
         setResults(results.data.search_results)
       })
       .catch(error => {
