@@ -11,6 +11,7 @@ const Profile = () => {
   const {
     authInfo: { userId, givenName, displayName },
   } = useAuth()
+  //   const { data: rooms, isLoading, isFetching } = useGetRoomsQuery({ userId })
 
   const history = useHistory()
 
@@ -19,6 +20,10 @@ const Profile = () => {
     dispatch(clearRoom())
     history.push('/add-room')
   }
+
+  //   if (status) {
+  //     return <div>'STATUS' {status}</div>
+  //   }
 
   return (
     <div className="container profile">
@@ -29,6 +34,9 @@ const Profile = () => {
       )}
 
       <h2>Your Rooms!</h2>
+      <br />
+      <br />
+      <br />
       <Rooms userId={userId} />
 
       <Button text="Add Room" callback={handleResetRoomContext} />

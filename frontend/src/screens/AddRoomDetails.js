@@ -2,21 +2,26 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
 import { useDispatch, useSelector } from 'react-redux'
+import { useMutation, QueryClient } from 'react-query'
+import {
+  createRoomMutation,
+  updateRoomMutation,
+} from '../lib/react-query/roomQueries'
 import {
   roomSelector,
-  createRoom,
+  //   createRoom,
   updateRoom,
   updateRoomInfo,
   updateWallColor,
   updateFloorColor,
 } from '../lib/redux/roomSlice'
-import { getRoomsById } from '../lib/redux/roomsSlice'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
 import SelectColor from '../components/addFurniture/SelectColor'
 
 const AddRoomDetails = () => {
   const history = useHistory()
+  const queryClient = new QueryClient()
   const dispatch = useDispatch()
   const { roomInfo } = useSelector(roomSelector)
   const { authInfo } = useAuth()
@@ -32,6 +37,18 @@ const AddRoomDetails = () => {
       setNextDisabled(false)
     }
   }, [roomInfo])
+
+  const createRoom = useMutation(createRoomMutation, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('rooms')
+    },
+  })
+
+  const updateRoom = useMutation(updateRoomMutation, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('rooms')
+    },
+  })
 
   React.useEffect(() => {
     if (wallColor && floorColor) setNextDisabled(false)
@@ -61,11 +78,21 @@ const AddRoomDetails = () => {
 
   const handleSave = async () => {
     if (roomInfo.id) {
-      await dispatch(updateRoom(roomInfo))
+      updateRoom.mutate({
+        id: roomInfo.id,
+        typeId: roomInfo.roomtype.id,
+        wallColor,
+        floorColor,
+      })
     } else {
-      await dispatch(createRoom(authInfo.userId, roomInfo))
+      createRoom.mutate({
+        userId: authInfo.userId,
+        typeId: roomInfo.roomtype.id,
+        wallColor,
+        floorColor,
+      })
     }
-    //  await dispatch(getRoomsById(authInfo.userId))
+
     history.push('/add-furniture-details')
   }
 

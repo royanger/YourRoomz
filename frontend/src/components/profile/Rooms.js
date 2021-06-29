@@ -2,46 +2,55 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import Loader from 'react-ts-loaders'
 import { useDispatch, useSelector } from 'react-redux'
-import { getRoomsById, roomsSelector } from '../../lib/redux/roomsSlice'
+import { QueryClient } from 'react-query'
 import { setRoomId } from '../../lib/redux/roomSlice'
 import RoomRow from './RoomRow'
 import { formatRoomObj } from '../../lib/helpers/formatRoomObj'
+import { useRoomsById } from '../../lib/react-query/roomQueries'
+// import { queryCache } from
 
 const Rooms = ({ userId }) => {
+  const queryClient = new QueryClient()
   const dispatch = useDispatch()
-  const { loading, roomsList } = useSelector(roomsSelector)
+  const { data, error, isFetching } = useRoomsById(userId)
+  queryClient.refetchQueries({ stale: true })
 
   const history = useHistory()
 
-  React.useEffect(() => {
-    dispatch(getRoomsById(userId))
-  }, [dispatch, userId])
-
   const handleEditRoom = async e => {
-    const formattedRoom = formatRoomObj(
-      roomsList.find(x => x.id === e.target.id)
-    )
+    const formattedRoom = formatRoomObj(data.find(x => x.id === e.target.id))
     await dispatch(setRoomId(formattedRoom))
     history.push('/add-room')
   }
 
-  if (loading) return <Loader size={50} color="" />
+  if (isFetching) {
+    return <Loader size={50} color="" />
+  }
+  if (error) {
+    return <div>There was a problem fetching the room list</div>
+  }
 
   return (
     <>
-      <div className="rooms title">
-        <div>Room</div>
-        <div>Wall Color</div>
-        <div>Floor Color</div>
-        <div>Furniture</div>
-        <div>Cart Items</div>
-        <div></div>
+      <div>
+        <div className="rooms title">
+          <div>Room</div>
+          <div>Wall Color</div>
+          <div>Floor Color</div>
+          <div>Furniture</div>
+          <div>Cart Items</div>
+          <div></div>
+        </div>
+        {data?.map(room => {
+          return (
+            <RoomRow
+              key={room.id}
+              room={room}
+              handleEditRoom={handleEditRoom}
+            />
+          )
+        })}
       </div>
-      {roomsList?.map(room => {
-        return (
-          <RoomRow key={room.id} room={room} handleEditRoom={handleEditRoom} />
-        )
-      })}
     </>
   )
 }
