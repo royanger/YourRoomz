@@ -16,7 +16,7 @@ const Profile = () => {
   const history = useHistory()
 
   // if user clicks to start new room, erase state from Room Context
-  const handleResetRoomContext = () => {
+  const handleResetRoom = () => {
     dispatch(clearRoom())
     history.push('/add-room')
   }
@@ -39,7 +39,7 @@ const Profile = () => {
       <br />
       <Rooms userId={userId} />
 
-      <Button text="Add Room" callback={handleResetRoomContext} />
+      <Button text="Add Room" callback={handleResetRoom} />
     </div>
   )
 }

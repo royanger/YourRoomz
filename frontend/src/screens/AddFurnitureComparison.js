@@ -1,12 +1,10 @@
 import * as React from 'react'
-//import { useRoomContext } from '../lib/context/roomContext'
 import ItemComparison from '../components/addFurniture/ItemComparison'
 import Footer from '../components/footer/Footer'
 import Title from '../components/Title'
 import { useHistory } from 'react-router-dom'
 
 const AddFurnitureDetails = () => {
-  //   const { roomId, updateRoomInfo } = useRoomContext()
   const history = useHistory()
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [seletectedStyle, setSelectedStyle] = React.useState()

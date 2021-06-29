@@ -1,12 +1,13 @@
 import * as React from 'react'
 import Title from '../Title'
-import { useRoomContext } from '../../lib/context/roomContext'
+import { useSelector } from 'react-redux'
+import { roomSelector } from '../../lib/redux/roomSlice'
 import { ROOM_QUERY } from '../../lib/graphql/room-queries'
 import { graphqlClient } from '../../lib/graphql'
 import ExistingItemRow from './ExistingItemRow'
 
 const ItemList = () => {
-  const { roomInfo } = useRoomContext()
+  const { roomInfo } = useSelector(roomSelector)
   const [furniture, setFurniture] = React.useState()
 
   React.useEffect(() => {

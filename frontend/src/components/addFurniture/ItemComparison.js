@@ -1,19 +1,20 @@
 import * as React from 'react'
 import { GET_CATEGORY_STYLES } from '../../lib/graphql/furniture'
 import { graphqlClient } from '../../lib/graphql'
-import { useRoomContext } from '../../lib/context/roomContext'
+import { useSelector } from 'react-redux'
+import { roomSelector } from '../../lib/redux/roomSlice'
 import SimilarItem from './SimilarItem'
 
 const ItemComparison = ({ handleClick }) => {
   const [categoryStyles, setCategoryStyles] = React.useState()
-  const { newFurniture } = useRoomContext()
+  const { roomInfo } = useSelector(roomSelector)
 
   React.useEffect(() => {
     graphqlClient
       .query({
         query: GET_CATEGORY_STYLES,
         variables: {
-          categoryId: newFurniture,
+          categoryId: roomInfo.newFurnitureId,
         },
       })
       .then(results => {

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { CREATE_ROOM, UPDATE_ROOM } from '../../lib/graphql/room-queries'
 import { graphqlClient } from '../graphql'
 import { formatRoomObj } from '../helpers/formatRoomObj'
-import { getRoomsById } from './roomsSlice'
 
 export const roomSlice = createSlice({
   name: 'room',
@@ -49,6 +48,9 @@ export const roomSlice = createSlice({
     clearRoomInfo: (state, { payload }) => {
       state.roomInfo = {}
     },
+    addFurniture: (state, { payload }) => {
+      state.roomInfo.newFurnitureId = payload
+    },
   },
 })
 
@@ -63,6 +65,7 @@ export const {
   updateRoomSuccess,
   updateRoomError,
   clearRoomInfo,
+  addFurniture,
 } = roomSlice.actions
 
 export const roomSelector = state => state.room
@@ -100,9 +103,6 @@ export const createRoom = (user, room) => async dispatch => {
     .then(results => {
       dispatch(saveRoomSuccess(formatRoomObj(results.data.createRoom)))
     })
-  // Appears to run correctly after the above save, but rooms list not updated
-  // with the new room
-  dispatch(getRoomsById(user))
 }
 
 export const updateRoom = room => async dispatch => {
@@ -115,7 +115,6 @@ export const updateRoom = room => async dispatch => {
         typeId: room.roomtype.id,
         wallColor: room.wallColor,
         floorColor: room.floorColor,
-        //  floorMaterialId: '260c8fd9-d830-4946-9f90-e13c11a9ba77',
       },
     })
     .then(results => {
@@ -128,6 +127,10 @@ export const updateRoom = room => async dispatch => {
 
 export const clearRoom = () => dispatch => {
   dispatch(clearRoomInfo())
+}
+
+export const updateNewFurniture = newFurniture => async dispatch => {
+  dispatch(addFurniture(newFurniture))
 }
 
 export default roomSlice.reducer

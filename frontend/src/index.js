@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { ApolloProvider } from '@apollo/client'
 import { graphqlClient } from './lib/graphql'
 import { AuthProvider } from './lib/context/authContext'
-import { RoomProvider } from './lib/context/roomContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import store from './store'
@@ -20,9 +19,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ApolloProvider client={graphqlClient}>
         <AuthProvider>
-          <RoomProvider>
-            <App />
-          </RoomProvider>
+          <App />
         </AuthProvider>
       </ApolloProvider>
     </Provider>

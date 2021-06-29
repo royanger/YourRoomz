@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useRoomContext } from '../lib/context/roomContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { roomSelector, updateNewFurniture } from '../lib/redux/roomSlice'
 import { CATEGORY_QUERY, MATERIAL_QUERY } from '../lib/graphql/category'
 import { CREATE_FURNITURE } from '../lib/graphql/furniture'
 import { graphqlClient } from '../lib/graphql'
@@ -12,8 +13,8 @@ import SelectMaterial from '../components/addFurniture/SelectMaterial'
 
 const AddFurnitureDetails = () => {
   const history = useHistory()
-  const { roomId, roomInfo, updateNewFurniture } = useRoomContext()
-
+  const dispatch = useDispatch()
+  const { roomInfo } = useSelector(roomSelector)
   const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [materialList, setMaterialList] = React.useState()
@@ -77,7 +78,7 @@ const AddFurnitureDetails = () => {
         },
       })
       .then(results => {
-        updateNewFurniture(category.id)
+        dispatch(updateNewFurniture(category.id))
         history.push('/add-furniture-comparison')
       })
   }

@@ -29,7 +29,7 @@ const AddRoomDetails = () => {
   const [floorColor, setFloorColor] = React.useState('')
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
-  // if RoomContext has stored room info, load that into state
+  // if Redux has stored room info, load that into state
   React.useEffect(() => {
     if (roomInfo) {
       setWallColor(roomInfo?.wallColor)
