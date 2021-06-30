@@ -12,6 +12,16 @@ Run `npm install` in each of the following directories.
 - /api
 - /frontend
 
+## Configuring the application
+
+In /api, change `.env.blank` to `.env`. Fill in the fields with the required information.
+
+`SECRET` - randomly generated string for protecting seesions
+
+`DATABASE_URL` - connection string, including username, password, host, port to your Postgres DB
+
+`GOOGLE`, `TWITTER` and `GITHUB` - the API and secret from auth0 configured Google, Twitter and Github applications
+
 ## Starting Application
 
 From the root directory, rung `npm run dev` and it will concurrently start the React application on http://localhost:3000 and the Node API http://localhost:5000/
