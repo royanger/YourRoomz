@@ -9,9 +9,6 @@ import {
 } from '../lib/react-query/roomQueries'
 import {
   roomSelector,
-  //   createRoom,
-  updateRoom,
-  updateRoomInfo,
   updateWallColor,
   updateFloorColor,
 } from '../lib/redux/roomSlice'

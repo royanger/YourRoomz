@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import Loader from 'react-ts-loaders'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { QueryClient } from 'react-query'
 import { setRoomId } from '../../lib/redux/roomSlice'
 import RoomRow from './RoomRow'

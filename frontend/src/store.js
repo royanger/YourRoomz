@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import roomsReducer from './lib/redux/roomsSlice'
 import roomReducer from './lib/redux/roomSlice'
 import { api } from './lib/redux/roomsService'

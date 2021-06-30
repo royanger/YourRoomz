@@ -15,7 +15,6 @@ const AddFurnitureDetails = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { roomInfo } = useSelector(roomSelector)
-  const [backDisabled, setBackDisabled] = React.useState(true)
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [materialList, setMaterialList] = React.useState()
   const [material, setMaterial] = React.useState()

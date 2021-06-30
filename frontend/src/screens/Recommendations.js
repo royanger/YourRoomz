@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import CurrentFurniture from '../components/recommendations/CurrentFurniture'
 import Comparison from '../components/recommendations/Comparison'
 import Results from '../components/recommendations/Results'
 
 const params = {
-  api_key: '614DE52894DC4AA3B0D1CBCAD6C9A4A2',
+  api_key: 'process.env.REACT_APP_RAINFOREST_API',
   type: 'search',
   amazon_domain: 'amazon.com',
   search_term: 'coffee table',

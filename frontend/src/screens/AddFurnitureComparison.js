@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 const AddFurnitureDetails = () => {
   const history = useHistory()
   const [nextDisabled, setNextDisabled] = React.useState(true)
-  const [seletectedStyle, setSelectedStyle] = React.useState()
+  const [, setSelectedStyle] = React.useState()
 
   const handleClick = e => {
     setSelectedStyle(e.target.id)
@@ -15,7 +15,7 @@ const AddFurnitureDetails = () => {
   }
 
   const handleSave = () => {
-    history.push('/category-recommendations')
+    history.push('/add-furniture-list')
   }
 
   return (
