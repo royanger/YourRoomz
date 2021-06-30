@@ -10,6 +10,7 @@ const Footer = ({
   backVariant,
   nextVariant,
   prev,
+  furnitureList,
 }) => {
   const history = useHistory()
 
@@ -17,10 +18,14 @@ const Footer = ({
     history.push(prev)
   }
 
+  const handleAddFurniture = () => {
+    history.push('/add-furniture-details')
+  }
+
   return (
     <FooterPortal>
       <footer>
-        <div className="container">
+        <div className={`container ${furnitureList ? 'threecol' : 'twocol'}`}>
           <nav>
             <ul>
               <li>
@@ -33,6 +38,18 @@ const Footer = ({
                   onClick={handleBack}
                 />
               </li>
+              {furnitureList ? (
+                <li>
+                  <Button
+                    id="footerAlt"
+                    text="Add another furniture item"
+                    variant="small light"
+                    callback={handleAddFurniture}
+                  />
+                </li>
+              ) : (
+                ''
+              )}
               <li className="right">
                 <Button
                   id="footerNext"

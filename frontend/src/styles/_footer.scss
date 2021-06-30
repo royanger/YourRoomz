@@ -8,11 +8,9 @@ footer {
   background-color: var(--white);
   color: var(--brand-primary);
   padding: 20px 0;
-  //   -webkit-box-shadow: -6px 5px 30px 0px rgba(0,0,0,0.66);
-  // -moz-box-shadow: -6px 5px 30px 0px rgba(0,0,0,0.66);
   box-shadow: -6px 10px 25px 0px rgba(0, 0, 0, 0.66);
 
-  > .container {
+  > .container.twocol {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,6 +39,14 @@ footer {
         padding: 10px 20px;
         display: inline;
       }
+    }
+  }
+  > .container.threecol nav ul {
+    grid-template-columns: auto 1fr auto;
+
+    li:nth-child(2) {
+      padding: 0 30px;
+      justify-self: end;
     }
   }
 }
