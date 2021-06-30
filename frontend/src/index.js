@@ -23,7 +23,7 @@ ReactDOM.render(
         </AuthProvider>
       </ApolloProvider>
     </Provider>
-    <ReactQueryDevtools />
+    {/* <ReactQueryDevtools /> */}
   </QueryClientProvider>,
   root
 )

@@ -24,7 +24,11 @@ const AddFurnitureList = () => {
     <>
       <ItemList />
 
-      <Footer nextDisabled={nextDisabled} callback={callback} />
+      <Footer
+        nextDisabled={nextDisabled}
+        callback={callback}
+        furnitureList={true}
+      />
     </>
   )
 }
