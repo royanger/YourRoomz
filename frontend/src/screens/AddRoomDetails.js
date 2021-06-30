@@ -93,7 +93,11 @@ const AddRoomDetails = () => {
       })
     }
 
-    history.push('/add-furniture-details')
+    if (roomInfo.furniture && roomInfo.furniture.length > 0) {
+      history.push('/add-furniture-list')
+    } else {
+      history.push('/add-furniture-details')
+    }
   }
 
   return (

@@ -76,6 +76,7 @@ query findRoomById($roomId: String) {
        material {
           id
           name
+          image
        }
      }
      user {
