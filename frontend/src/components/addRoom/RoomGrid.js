@@ -7,7 +7,6 @@ import Title from '../Title'
 
 const RoomGrid = ({ type, setType, setTypeName }) => {
   const [types, setTypes] = React.useState()
-
   const handleClick = e => {
     setType(e.target.id)
     setTypeName(e.target.innerText)

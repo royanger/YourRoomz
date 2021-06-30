@@ -1,8 +1,6 @@
 import * as React from 'react'
 
 const Card = ({ text, className, id, image, handler, type }) => {
-  console.log('typee', type)
-  console.log('id', id)
   return (
     <>
       <div
