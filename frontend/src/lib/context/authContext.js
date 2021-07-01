@@ -21,7 +21,7 @@ const AuthProvider = props => {
       let gravatar
       if (res.data.user.email) {
         const hashedEmail = md5(res.data.user.email)
-        gravatar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=150?d=http%3A%2F%2Flocalhost.com%3A3000%2Fimages%2Fprofile.pngg`
+        gravatar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=150&d=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png`
       }
       setAuthInfo(prevState => ({
         ...prevState,
