@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../lib/context/authContext'
 import { formatName } from '../../lib/helpers/formatUserInfo'
+import useVisible from '../../lib/hooks/useVisible'
 
 const LayerGroup = () => {
   return (
@@ -45,20 +46,35 @@ const SquareSVG = () => {
 }
 
 const Profile = () => {
-  const [menuOpen, setMenuOpen] = React.useState('')
-
+  //   const [menuOpen, setMenuOpen] = React.useState('')
+  const { ref, isVisible, setIsVisible } = useVisible(false)
   const {
     logout,
     authInfo,
     authInfo: { gravatar },
   } = useAuth()
 
-  const handleMenuStatus = () =>
-    setMenuOpen(prevState => {
-      return prevState === 'open' ? '' : 'open'
-    })
+  const handleKeyPress = e => {
+    if (e.key === 'Escape') {
+      setIsVisible(false)
+    }
+  }
 
-  const handleMenuClose = () => setMenuOpen('')
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyPress)
+  })
+
+  const handleMenuStatus = () => {
+    console.log(isVisible)
+    setIsVisible(prevState => {
+      return prevState === true ? false : true
+    })
+  }
+
+  const handleMenuClose = () => {
+    //  setMenuOpen('')
+    setIsVisible(false)
+  }
   const formattedName = formatName(authInfo)
   const name = formatName ? formattedName : 'Profile'
 
@@ -68,7 +84,10 @@ const Profile = () => {
         <button className="profile-img" onClick={handleMenuStatus}>
           <img src={gravatar} alt="Profile" />
         </button>
-        <div className={`profile-menu-container ${menuOpen}`}>
+        <div
+          ref={ref}
+          className={`profile-menu-container ${isVisible ? 'open' : 'closed'}`}
+        >
           <div className={`profile-menu`}>
             <SquareSVG />
             <div className="inner-container">
