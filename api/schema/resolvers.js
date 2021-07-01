@@ -181,5 +181,12 @@ export const resolvers = {
         },
       })
     },
+    deleteFurniture: (_parent, args, context) => {
+      return context.prisma.furniture.delete({
+        where: {
+          id: args.id,
+        },
+      })
+    },
   },
 }

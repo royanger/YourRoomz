@@ -2,7 +2,10 @@ import * as React from 'react'
 import Title from '../Title'
 import ExistingItemRow from './ExistingItemRow'
 
-const ItemList = ({ furniture }) => {
+const ItemList = ({ furniture, handleDelete }) => {
+  const handleDelete2 = e => {
+    console.log('delete', e.target.id)
+  }
   return (
     <>
       <div className="container existing-items">
@@ -13,7 +16,13 @@ const ItemList = ({ furniture }) => {
         </div>
         <div className="list">
           {furniture?.map(item => {
-            return <ExistingItemRow key={item.id} item={item} />
+            return (
+              <ExistingItemRow
+                key={item.id}
+                item={item}
+                handleDelete={handleDelete}
+              />
+            )
           })}
         </div>
       </div>

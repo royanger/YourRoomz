@@ -24,7 +24,6 @@ const AddFurnitureDetails = () => {
 
   const createFurniture = useMutation(createFurnitureMutation, {
     onSuccess: () => {
-      console.log('FURNITURE ADDED')
       queryClient.invalidateQueries('styles')
       queryClient.invalidateQueries('room')
       history.push('/add-furniture-list')

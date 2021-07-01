@@ -33,7 +33,6 @@ const createRoomMutation = async ({
   wallColor,
   floorColor,
 }) => {
-  console.log(userId, typeId, wallColor, floorColor)
   const results = await graphqlClient.mutate({
     mutation: CREATE_ROOM,
     variables: {
@@ -48,7 +47,6 @@ const createRoomMutation = async ({
 }
 
 const updateRoomMutation = async ({ id, typeId, wallColor, floorColor }) => {
-  console.log(id, typeId, wallColor, floorColor)
   const results = await graphqlClient.mutate({
     mutation: UPDATE_ROOM,
     variables: {

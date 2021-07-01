@@ -1,5 +1,9 @@
 import { useQuery, useQueryClient } from 'react-query'
-import { CREATE_FURNITURE, GET_CATEGORY_STYLES } from '../graphql/furniture'
+import {
+  CREATE_FURNITURE,
+  GET_CATEGORY_STYLES,
+  DELETE_FURNITURE,
+} from '../graphql/furniture'
 import { graphqlClient } from '../graphql'
 
 const getCategoryStylesQuery = async categoryId => {
@@ -32,6 +36,16 @@ const createFurnitureMutation = async ({
   return results.data.createFurniture
 }
 
+const deleteFurnitureMutation = async ({ id }) => {
+  const results = await graphqlClient.mutate({
+    mutation: DELETE_FURNITURE,
+    variables: {
+      id,
+    },
+  })
+  return results.data.deleteFurniture
+}
+
 // const updateRoomMutation = async ({ id, typeId, wallColor, floorColor }) => {
 //   console.log(id, typeId, wallColor, floorColor)
 //   const results = await graphqlClient.mutate({
@@ -57,4 +71,4 @@ function useCategoryStyles(categoryId) {
   )
 }
 
-export { createFurnitureMutation, useCategoryStyles }
+export { createFurnitureMutation, deleteFurnitureMutation, useCategoryStyles }

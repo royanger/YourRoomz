@@ -28,3 +28,11 @@ export const GET_CATEGORY_STYLES = gpl`
       }
    }
  `
+
+export const DELETE_FURNITURE = gpl`
+   mutation deleteFurniture($id: String) {
+      deleteFurniture(id: $id) {
+         id
+      }
+   }
+`
