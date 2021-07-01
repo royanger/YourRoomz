@@ -56,10 +56,20 @@ header {
     width: 200px;
     right: 0;
     top: 100px;
+    z-index: -5;
     background: transparent;
 
     &.open {
       opacity: 1;
+      z-index: 1;
+
+      .arrow {
+        z-index: 2;
+      }
+
+      .inner-container {
+        z-index: 5;
+      }
     }
     .arrow {
       height: 40px;
@@ -68,8 +78,9 @@ header {
       top: -15px;
       position: absolute;
       right: 15px;
+      z-index: -5;
       transform: rotate(45deg);
-      z-index: 2;
+
       color: var(--white);
     }
   }
@@ -85,7 +96,7 @@ header {
       background: var(--white);
       position: relative;
       right: 0;
-      z-index: 1000;
+      z-index: -5;
       border-radius: 5px;
     }
 

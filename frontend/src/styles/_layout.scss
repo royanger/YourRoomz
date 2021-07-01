@@ -1,9 +1,6 @@
 .wrapper {
   width: 100%;
-  // Changed this to 80vh, hoping to remove. - RA
-  // 100vh does 'Header height + 100vh + Footer height', or more than 100vh
-  // Header and Footer should not be inside of <main>
-  min-height: 80vh;
+  min-height: calc(100vh - 120px);
   display: flex;
 }
 
