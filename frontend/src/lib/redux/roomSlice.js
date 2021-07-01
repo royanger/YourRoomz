@@ -49,7 +49,7 @@ export const roomSlice = createSlice({
       state.roomInfo = {}
     },
     addFurniture: (state, { payload }) => {
-      state.roomInfo.newFurnitureId = payload
+      state.roomInfo.newFurniture = payload
     },
   },
 })

@@ -1,16 +1,16 @@
 import { useQuery, useQueryClient } from 'react-query'
-import { CREATE_FURNITURE } from '../graphql/furniture'
+import { CREATE_FURNITURE, GET_CATEGORY_STYLES } from '../graphql/furniture'
 import { graphqlClient } from '../graphql'
 
-// const getRoomsByUserId = async userId => {
-//   const results = await graphqlClient.query({
-//     query: ROOMS_QUERY,
-//     variables: {
-//       userId,
-//     },
-//   })
-//   return results.data.findRoomsByUser
-// }
+const getCategoryStylesQuery = async categoryId => {
+  const results = await graphqlClient.query({
+    query: GET_CATEGORY_STYLES,
+    variables: {
+      categoryId,
+    },
+  })
+  return results.data.getCategoryStyles
+}
 
 const createFurnitureMutation = async ({
   roomId,
@@ -51,4 +51,10 @@ const createFurnitureMutation = async ({
 //   return useQuery(['rooms', userId], () => getRoomsByUserId(userId))
 // }
 
-export { createFurnitureMutation }
+function useCategoryStyles(categoryId) {
+  return useQuery(['styles', categoryId], () =>
+    getCategoryStylesQuery(categoryId)
+  )
+}
+
+export { createFurnitureMutation, useCategoryStyles }

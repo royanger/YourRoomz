@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { roomSelector, updateNewFurniture } from '../lib/redux/roomSlice'
 import { CATEGORY_QUERY, MATERIAL_QUERY } from '../lib/graphql/category'
-import { QueryClient, useMutation } from 'react-query'
-import { createFurnitureMutation } from '../lib/react-query/furnitureQueries'
+import { QueryClient } from 'react-query'
 import { graphqlClient } from '../lib/graphql'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
@@ -15,8 +14,6 @@ import SelectMaterial from '../components/addFurniture/SelectMaterial'
 const AddFurnitureDetails = () => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const queryClient = new QueryClient()
-  const { roomInfo } = useSelector(roomSelector)
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [materialList, setMaterialList] = React.useState()
   const [material, setMaterial] = React.useState()
@@ -53,14 +50,6 @@ const AddFurnitureDetails = () => {
     }
   }, [color, material, category])
 
-  const createFurniture = useMutation(createFurnitureMutation, {
-    onSuccess: () => {
-      console.log('FURNITURE ADDED')
-      //   queryClient.invalidateQueries('')
-      history.push('/add-furniture-comparison')
-    },
-  })
-
   const updateCategory = e => {
     setCategory(e)
   }
@@ -76,13 +65,14 @@ const AddFurnitureDetails = () => {
   const handleSave = async e => {
     e.preventDefault()
 
-    createFurniture.mutate({
-      roomId: roomInfo.id,
-      color: color,
-      materialId: material,
-      categoryId: category.id,
-      styleId: '8242700c-c6d3-4ab9-8dff-b8f755045cfb',
-    })
+    dispatch(
+      updateNewFurniture({
+        color: color,
+        materialId: material,
+        categoryId: category.id,
+      })
+    )
+    history.push('/add-furniture-comparison')
   }
 
   return (

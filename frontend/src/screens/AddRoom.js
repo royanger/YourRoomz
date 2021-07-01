@@ -15,7 +15,10 @@ const AddRooms = () => {
   const activeType = roomInfo.roomtype ? roomInfo.roomtype.id : ''
 
   React.useEffect(() => {
-    if (roomInfo.roomtype?.id) setNextDisabled(false)
+    if (roomInfo.roomtype?.id) {
+      setNextDisabled(false)
+      setType(roomInfo.roomtype.id)
+    }
   }, [roomInfo.roomtype?.id])
 
   React.useEffect(() => {

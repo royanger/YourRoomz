@@ -1,5 +1,10 @@
 import { useQuery, useQueryClient } from 'react-query'
-import { ROOMS_QUERY, CREATE_ROOM, UPDATE_ROOM } from '../graphql/room-queries'
+import {
+  ROOMS_QUERY,
+  CREATE_ROOM,
+  UPDATE_ROOM,
+  ROOM_QUERY,
+} from '../graphql/room-queries'
 import { graphqlClient } from '../graphql'
 
 const getRoomsByUserId = async userId => {
@@ -10,6 +15,16 @@ const getRoomsByUserId = async userId => {
     },
   })
   return results.data.findRoomsByUser
+}
+
+const getRoomById = async roomId => {
+  const results = await graphqlClient.query({
+    query: ROOM_QUERY,
+    variables: {
+      roomId,
+    },
+  })
+  return results.data.findRoomById
 }
 
 const createRoomMutation = async ({
@@ -51,6 +66,10 @@ function useRoomsById(userId) {
   return useQuery(['rooms', userId], () => getRoomsByUserId(userId))
 }
 
+function useRoomById(roomId) {
+  return useQuery(['room', roomId], () => getRoomById(roomId))
+}
+
 // function useCreateRoom(userId, typeId, wallColor, floorColor) {
 //   return useQueryClient(
 //     ['newroom', userId, typeId, wallColor, floorColor],
@@ -58,4 +77,4 @@ function useRoomsById(userId) {
 //   )
 // }
 
-export { useRoomsById, createRoomMutation, updateRoomMutation }
+export { useRoomsById, useRoomById, createRoomMutation, updateRoomMutation }
