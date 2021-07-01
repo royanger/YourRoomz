@@ -3,6 +3,7 @@ import Brand from './Brand'
 import Button from '../Button'
 import Profile from './Profile'
 import { useAuth } from '../../lib/context/authContext'
+import CartButton from './Cartbutton'
 
 const Header = () => {
   const {
@@ -14,6 +15,8 @@ const Header = () => {
         <div className="container">
           <Brand />
           <nav>
+            <CartButton />
+
             {isAuthenticated ? (
               <Profile />
             ) : (

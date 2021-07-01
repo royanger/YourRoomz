@@ -25,8 +25,8 @@ header {
     justify-content: flex-end;
     flex-grow: 1;
 
-    a,
-    button {
+    > a,
+    > button {
       padding: 10px 20px;
     }
   }
@@ -48,18 +48,94 @@ header {
     }
   }
 
-  .profile-menu {
-    border: 2px solid red;
+  .profile-menu-container {
     position: absolute;
-    display: none;
+    display: block;
+    opacity: 0;
+    transition: all 0.35s ease;
+    width: 200px;
+    right: 0;
+    top: 100px;
+    background: transparent;
 
     &.open {
-      display: block;
+      opacity: 1;
+    }
+    .arrow {
+      height: 40px;
+      width: 40px;
+      box-shadow: 0 0 10px var(--borders);
+      top: -15px;
+      position: absolute;
+      right: 15px;
+      transform: rotate(45deg);
+      z-index: 2;
+      color: var(--white);
+    }
+  }
+  .profile-menu {
+    box-shadow: 0 0 10px var(--borders);
+    border-radius: 5px;
+    background: var(--white);
+    z-index: 1;
+    position: absolute;
+    right: 0;
+
+    .inner-container {
+      background: var(--white);
+      position: relative;
+      right: 0;
+      z-index: 1000;
+      border-radius: 5px;
     }
 
     > div {
       display: flex;
       flex-direction: column;
+
+      > div {
+        padding: 10px 20px;
+
+        svg {
+          width: 20px;
+          height: auto;
+          margin-right: 7px;
+        }
+
+        a,
+        a:visited,
+        button {
+          color: var(--text);
+          text-decoration: none;
+        }
+      }
+      .name {
+        padding-bottom: 0px;
+        font-weight: bold;
+
+        a {
+          text-decoration: none;
+          color: --var(--black);
+        }
+      }
+
+      .email {
+        padding-top: 0px;
+        font-size: 14px;
+      }
+
+      .rooms {
+        padding-top: 20px;
+        border-top: 1px solid var(--borders);
+      }
+
+      .logout {
+        button {
+          //  display: flex;
+          background: transparent;
+          border: none;
+        }
+      }
     }
   }
 }
