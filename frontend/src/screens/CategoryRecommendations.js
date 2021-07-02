@@ -38,12 +38,13 @@ const CategoryRecommendations = () => {
 
   return (
     <>
-      <div className="recommendations">
-        <Title type="h1">
-          What category of items do you want us to recommend?
-        </Title>
+      <div className="container recommendations">
+        <Title type="h1">What category of furniture should we recommend?</Title>
 
-        <p>Choose the category of you want us to recommend</p>
+        <p>
+          Select any furniture categories that you’re sure you want included in
+          our recommendations.
+        </p>
 
         <div className="grid">
           {categories?.map(category => {
@@ -52,6 +53,7 @@ const CategoryRecommendations = () => {
                 key={category.id}
                 category={category}
                 handleClick={handleClick}
+                checked={true}
               />
             )
           })}
