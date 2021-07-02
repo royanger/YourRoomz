@@ -32,8 +32,8 @@ const Rooms = ({ userId }) => {
 
   return (
     <>
-      <div>
-        <div className="rooms title">
+      <div className="rooms">
+        <div className="grid title">
           <div>Room</div>
           <div>Wall Color</div>
           <div>Floor Color</div>

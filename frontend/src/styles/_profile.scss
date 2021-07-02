@@ -2,20 +2,24 @@
   padding: 0 10px;
 
   .rooms {
-    border: 1px solid var(--text);
-    display: grid;
-    grid-template-columns: 3fr repeat(5, 1fr);
     width: 100%;
 
-    &.title {
-      font-weight: bold;
-    }
+    .grid {
+      border: 1px solid var(--text);
+      display: grid;
+      grid-template-columns: 3fr repeat(5, 1fr);
+      width: 100%;
 
-    > div {
-      padding: 5px 10px;
-    }
-    &:last-of-type {
-      margin-bottom: 50px;
+      &.title {
+        font-weight: bold;
+      }
+
+      > div {
+        padding: 5px 10px;
+      }
+      &:last-of-type {
+        margin-bottom: 50px;
+      }
     }
   }
 }

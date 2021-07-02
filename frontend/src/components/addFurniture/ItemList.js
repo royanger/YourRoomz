@@ -3,9 +3,6 @@ import Title from '../Title'
 import ExistingItemRow from './ExistingItemRow'
 
 const ItemList = ({ furniture, handleDelete }) => {
-  const handleDelete2 = e => {
-    console.log('delete', e.target.id)
-  }
   return (
     <>
       <div className="container existing-items">

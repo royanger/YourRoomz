@@ -1,7 +1,6 @@
 .room {
   &-grid {
-    width: 70%;
-    max-width: 1200px;
+    width: 100%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -46,7 +45,7 @@
     gap: 30px 30px;
     .color-card {
       width: 120px;
-      height: 80px;
+      height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -57,11 +56,5 @@
     margin-top: 20px;
     display: flex;
     justify-content: center;
-  }
-  .c-picker,
-  .f-picker {
-    position: relative;
-    left: 20px;
-    width: 20%;
   }
 }

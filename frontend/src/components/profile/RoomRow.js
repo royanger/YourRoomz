@@ -3,7 +3,7 @@ import Button from '../Button'
 
 const RoomRow = ({ room, handleEditRoom }) => {
   return (
-    <div className="rooms">
+    <div className="grid">
       <div>{room.name !== null ? room.name : room.roomtype[0].name}</div>
       <div>{room.wallColor ? room.wallColor : ''}</div>
       <div>{room.floorColor ? room.floorColor : ''}</div>
