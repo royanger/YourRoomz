@@ -36,11 +36,13 @@ model Room {
    flooring          Flooring    @relation(fields: [floorMaterialId], references: [id])
    furniture         Furniture[]
    cartItem          CartItems[]
+   reccommended      RecommendedCateogires[]
 }
 
 model RoomType {
    id             String   @id @default(uuid())
    name           String
+   active         Boolean  @default(false)
    rooms          Room[]
    defaultImage   String?
 }
@@ -58,6 +60,15 @@ model Category {
    image          String?
    furniture      Furniture[]
    cagetorystyles CategoryStyles[]
+   recommended    RecommendedCateogires[]
+}
+
+model RecommendedCateogires {
+   id             String   @id @default(uuid())
+   roomId         String
+   room           Room     @relation(fields: [roomId], references:[id])
+   categoryId     String
+   category       Category @relation(fields: [categoryId], references:[id])
 }
 
 model CategoryStyles {
