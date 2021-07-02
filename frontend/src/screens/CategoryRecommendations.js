@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 const CategoryRecommendations = () => {
   const history = useHistory()
   const [categories, setCategories] = React.useState()
-  const [selectedCategories, setSelectedCategories] = React.useState()
+  const [selectedCategories, setSelectedCategories] = React.useState([])
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
   React.useEffect(() => {
@@ -28,8 +28,19 @@ const CategoryRecommendations = () => {
     }
   }, [selectedCategories])
 
-  const handleClick = e => {
-    setSelectedCategories(e.target.id)
+  const handleClick = id => {
+    console.log(selectedCategories.includes(id))
+    if (selectedCategories.includes(id)) {
+      // remove from array
+      const items = [...selectedCategories]
+      items.splice(selectedCategories.indexOf(id), 1)
+      setSelectedCategories(items)
+    } else {
+      // add category id to array
+      setSelectedCategories(prevState => {
+        return [...prevState, id]
+      })
+    }
   }
 
   const handleSave = e => {
@@ -54,6 +65,7 @@ const CategoryRecommendations = () => {
                 category={category}
                 handleClick={handleClick}
                 checked={true}
+                selectedCategories={selectedCategories}
               />
             )
           })}

@@ -24,11 +24,17 @@ const Square = () => {
   )
 }
 
-const RecommendedItem = ({ category, handleClick, checked }) => {
+const RecommendedItem = ({
+  category,
+  handleClick,
+
+  selectedCategories,
+}) => {
+  const checked = selectedCategories.includes(category.id) ? true : false
   return (
     <div
       className="item"
-      onClick={handleClick}
+      onClick={() => handleClick(category.id)}
       id={category.id}
       style={{
         backgroundImage: `url('/images/categories/${category.image}')`,
