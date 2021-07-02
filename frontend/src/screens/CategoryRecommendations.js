@@ -5,12 +5,17 @@ import { graphqlClient } from '../lib/graphql'
 import RecommendedItem from '../components/categories/RecommendedItem'
 import Footer from '../components/footer/Footer'
 import { useHistory } from 'react-router-dom'
+import { useRecommendedCategories } from '../lib/react-query/categoryQueries'
+import { useSelector } from 'react-redux'
+import { roomSelector } from '../lib/redux/roomSlice'
 
 const CategoryRecommendations = () => {
   const history = useHistory()
   const [categories, setCategories] = React.useState()
   const [selectedCategories, setSelectedCategories] = React.useState([])
   const [nextDisabled, setNextDisabled] = React.useState(true)
+  const { roomInfo } = useSelector(roomSelector)
+  const { data, error, isFetching } = useRecommendedCategories(roomInfo.id)
 
   React.useEffect(() => {
     graphqlClient
@@ -29,7 +34,6 @@ const CategoryRecommendations = () => {
   }, [selectedCategories])
 
   const handleClick = id => {
-    console.log(selectedCategories.includes(id))
     if (selectedCategories.includes(id)) {
       // remove from array
       const items = [...selectedCategories]
@@ -44,7 +48,7 @@ const CategoryRecommendations = () => {
   }
 
   const handleSave = e => {
-    history.push('/recommendations')
+    //  history.push('/recommendations')
   }
 
   return (

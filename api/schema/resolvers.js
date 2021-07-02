@@ -18,7 +18,6 @@ export const resolvers = {
       })
     },
     findRoomById: (_parent, args, context) => {
-      console.log('attmepted')
       console.log(args)
       return context.prisma.room.findUnique({
         where: {
@@ -39,6 +38,14 @@ export const resolvers = {
       return context.prisma.categoryStyles.findMany({
         where: {
           categoryId: args.categoryId,
+        },
+      })
+    },
+    getRecommendedCategories: (_parent, args, context) => {
+      console.log(args)
+      return context.prisma.recommendedCategories.findMany({
+        where: {
+          roomId: args.roomId,
         },
       })
     },
@@ -183,6 +190,30 @@ export const resolvers = {
     },
     deleteFurniture: (_parent, args, context) => {
       return context.prisma.furniture.delete({
+        where: {
+          id: args.id,
+        },
+      })
+    },
+    createRecommendedCategory: (_parent, args, context) => {
+      console.log(args)
+      return context.prisma.recommendedCategories.create({
+        data: {
+          room: {
+            connect: {
+              id: args.roomId,
+            },
+          },
+          category: {
+            connect: {
+              id: args.categoryId,
+            },
+          },
+        },
+      })
+    },
+    deleteRecommendedCategory: (_parent, args, context) => {
+      return context.prisma.recommendedCategories.delete({
         where: {
           id: args.id,
         },

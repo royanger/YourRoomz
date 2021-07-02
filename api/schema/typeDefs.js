@@ -30,6 +30,7 @@ export const typeDefs = `
    type RoomType {
       id: String
       name: String
+      active: Boolean
       defaultImage: String
    }
 
@@ -62,6 +63,14 @@ export const typeDefs = `
       id: String
       name: String
       image: String
+   }
+
+   type RecommendedCategories {
+      id: String
+      roomId: String
+      room: [Room]
+      categoryId: String
+      category: [Category]
    }
 
    type CategoryStyles {
@@ -104,6 +113,8 @@ export const typeDefs = `
       getFurnitureMaterial: [FurnitureMaterial]
       # Get Category Styles
       getCategoryStyles(categoryId: String): [CategoryStyles]
+      # Get a all records for recommended Categories
+      getRecommendedCategories(roomId: String): [RecommendedCategories]
 
    }
 
@@ -117,6 +128,8 @@ export const typeDefs = `
       updateRoom(id: String, typeId: String, wallColor: String, floorColor: String, floorMaterialId: String): Room
       createFurniture(roomId: String, color: String, categoryId: String, materialId: String, styleId: String ): Furniture
       deleteFurniture( id: String): Furniture
+      createRecommendedCategory(roomId: String, categoryId: String): RecommendedCategories
+      deleteRecommendedCategory(id: String): RecommendedCategories
    }
 
    input UpdateUserInput {

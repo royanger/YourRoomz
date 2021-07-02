@@ -40,6 +40,7 @@ const Login = () => {
           {providers.map(({ provider, title, color, icon }) => {
             return (
               <LoginButton
+                key={provider}
                 text={`Sign in with ${title}`}
                 callback={() => loginCallback(provider)}
                 color={color}
