@@ -46,7 +46,6 @@ const SquareSVG = () => {
 }
 
 const Profile = () => {
-  //   const [menuOpen, setMenuOpen] = React.useState('')
   const { ref, isVisible, setIsVisible } = useVisible(false)
   const {
     logout,
@@ -65,14 +64,12 @@ const Profile = () => {
   })
 
   const handleMenuStatus = () => {
-    console.log(isVisible)
     setIsVisible(prevState => {
-      return prevState === true ? false : true
+      return prevState ? false : true
     })
   }
 
   const handleMenuClose = () => {
-    //  setMenuOpen('')
     setIsVisible(false)
   }
   const formattedName = formatName(authInfo)
@@ -80,12 +77,11 @@ const Profile = () => {
 
   return (
     <>
-      <div className="profile-button">
+      <div ref={ref} className="profile-button">
         <button className="profile-img" onClick={handleMenuStatus}>
           <img src={gravatar} alt="Profile" />
         </button>
         <div
-          ref={ref}
           className={`profile-menu-container ${isVisible ? 'open' : 'closed'}`}
         >
           <div className={`profile-menu`}>
@@ -103,7 +99,7 @@ const Profile = () => {
                   ''
                 )}
                 <div className="rooms">
-                  <Link to="/profile">
+                  <Link to="/profile" onClick={handleMenuClose}>
                     <LayerGroup /> My Rooms
                   </Link>
                 </div>
