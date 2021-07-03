@@ -18,7 +18,6 @@ export const resolvers = {
       })
     },
     findRoomById: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.room.findUnique({
         where: {
           id: args.id,
@@ -42,7 +41,6 @@ export const resolvers = {
       })
     },
     getRecommendedCategories: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.recommendedCategories.findMany({
         where: {
           roomId: args.roomId,
@@ -196,7 +194,6 @@ export const resolvers = {
       })
     },
     createRecommendedCategory: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.recommendedCategories.create({
         data: {
           room: {

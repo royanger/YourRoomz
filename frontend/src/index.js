@@ -1,7 +1,5 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import { ApolloProvider } from '@apollo/client'
-import { graphqlClient } from './lib/graphql'
 import { AuthProvider } from './lib/context/authContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -17,11 +15,9 @@ const queryClient = new QueryClient()
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <ApolloProvider client={graphqlClient}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </ApolloProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </Provider>
     {/* <ReactQueryDevtools /> */}
   </QueryClientProvider>,

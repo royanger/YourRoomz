@@ -1,28 +1,19 @@
 import * as React from 'react'
 import Card from './Card'
-import { ROOM_TYPE_QUERY } from '../../lib/graphql/roomType'
-import { graphqlClient } from '../../lib/graphql'
+import { useQuery } from 'react-query'
+import { getRoomTypes } from '../../lib/graphql/roomQueries'
 import Loader from 'react-ts-loaders'
 import Title from '../Title'
 
 const RoomGrid = ({ type, setType, setTypeName }) => {
-  const [types, setTypes] = React.useState()
   const handleClick = e => {
     setType(e.target.id)
     setTypeName(e.target.innerText)
   }
 
-  React.useEffect(() => {
-    graphqlClient
-      .query({
-        query: ROOM_TYPE_QUERY,
-      })
-      .then(results => {
-        setTypes(results.data.getRoomTypes)
-      })
-  }, [])
+  const { data, isFetching, error } = useQuery(['rooms', {}], getRoomTypes)
 
-  if (!types) return <Loader size={50} color="" />
+  if (isFetching) return <Loader size={50} color="" />
 
   return (
     <>
@@ -30,7 +21,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
       <p>Pick one room</p>
 
       <div className="room-grid">
-        {types?.map(roomType => {
+        {data?.map(roomType => {
           return (
             <Card
               key={roomType.id}

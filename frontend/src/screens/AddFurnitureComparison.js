@@ -3,11 +3,9 @@ import ItemComparison from '../components/addFurniture/ItemComparison'
 import Footer from '../components/footer/Footer'
 import Title from '../components/Title'
 import { useHistory } from 'react-router-dom'
-import { QueryClient, useMutation } from 'react-query'
-import {
-  createFurnitureMutation,
-  useCategoryStyles,
-} from '../lib/react-query/furnitureQueries'
+import { QueryClient, useMutation, useQuery } from 'react-query'
+import { getCategoryStyles } from '../lib/graphql/categoryQueries'
+import { createFurniture } from '../lib/graphql/furnitureQueries'
 import { roomSelector } from '../lib/redux/roomSlice'
 import { useSelector } from 'react-redux'
 import Loader from 'react-ts-loaders'
@@ -18,11 +16,13 @@ const AddFurnitureDetails = () => {
   const { roomInfo } = useSelector(roomSelector)
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [selectedStyle, setSelectedStyle] = React.useState()
-  const { data, error, isFetching } = useCategoryStyles(
-    roomInfo.newFurniture.categoryId
+
+  const { data, isFetching, error } = useQuery(
+    ['ret-cats', { categoryId: roomInfo.newFurniture.categoryId }],
+    getCategoryStyles
   )
 
-  const createFurniture = useMutation(createFurnitureMutation, {
+  const createFurnitureMutation = useMutation(createFurniture, {
     onSuccess: () => {
       queryClient.invalidateQueries('styles')
       queryClient.invalidateQueries('room')
@@ -36,7 +36,7 @@ const AddFurnitureDetails = () => {
   }
 
   const handleSave = () => {
-    createFurniture.mutate({
+    createFurnitureMutation.mutate({
       roomId: roomInfo.id,
       color: roomInfo.newFurniture.color,
       materialId: roomInfo.newFurniture.materialId,

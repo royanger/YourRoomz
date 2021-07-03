@@ -1,48 +1,41 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { roomSelector, updateNewFurniture } from '../lib/redux/roomSlice'
-import { CATEGORY_QUERY, MATERIAL_QUERY } from '../lib/graphql/category'
-import { QueryClient } from 'react-query'
-import { graphqlClient } from '../lib/graphql'
+import { useDispatch } from 'react-redux'
+import { updateNewFurniture } from '../lib/redux/roomSlice'
+import { useQuery } from 'react-query'
+import {
+  getFurnitureCategories,
+  getFurnitureMaterial,
+} from '../lib/graphql/categoryQueries'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
 import CategoryList from '../components/addFurniture/CategoryList'
 import SelectColor from '../components/addFurniture/SelectColor'
 import SelectMaterial from '../components/addFurniture/SelectMaterial'
+import Loader from 'react-ts-loaders'
 
 const AddFurnitureDetails = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [nextDisabled, setNextDisabled] = React.useState(true)
-  const [materialList, setMaterialList] = React.useState()
   const [material, setMaterial] = React.useState()
   const [color, setColor] = React.useState()
-  const [categories, setCategories] = React.useState()
   const [category, setCategory] = React.useState({
     id: false,
     name: 'Please select a furniture category',
   })
 
-  React.useEffect(() => {
-    graphqlClient
-      .query({
-        query: CATEGORY_QUERY,
-      })
-      .then(results => {
-        setCategories(results.data.getFurnitureCategories)
-      })
-  }, [])
+  const {
+    data: categories,
+    isFetching: isFetchingCats,
+    error: errorCats,
+  } = useQuery(['categories'], getFurnitureCategories)
 
-  React.useEffect(() => {
-    graphqlClient
-      .query({
-        query: MATERIAL_QUERY,
-      })
-      .then(results => {
-        setMaterialList(results.data.getFurnitureMaterial)
-      })
-  }, [])
+  const {
+    data: materialList,
+    isFetching: isFetchingMats,
+    error: errorMats,
+  } = useQuery(['materials'], getFurnitureMaterial)
 
   React.useEffect(() => {
     if (category.id && color && material) {
@@ -73,6 +66,14 @@ const AddFurnitureDetails = () => {
       })
     )
     history.push('/add-furniture-comparison')
+  }
+
+  if (isFetchingMats || isFetchingCats) {
+    return <Loader />
+  }
+
+  if (errorMats || errorCats) {
+    return 'There was an error fetching information from the database'
   }
 
   return (

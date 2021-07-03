@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { roomSelector } from '../lib/redux/roomSlice'
 import { QueryClient, useMutation, useQuery } from 'react-query'
 import { findRoomById } from '../lib/graphql/roomQueries'
-import { deleteFurnitureMutation } from '../lib/react-query/furnitureQueries'
+import { deleteFurniture } from '../lib/graphql/furnitureQueries'
 import ItemList from '../components/addFurniture/ItemList'
 import Footer from '../components/footer/Footer'
 import Loader from 'react-ts-loaders'
@@ -16,7 +16,7 @@ const AddFurnitureList = () => {
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
   const { data, isFetching, error } = useQuery(
-    ['furniture', { roomId: roomInfo.id }],
+    ['room-types', { roomId: roomInfo.id }],
     findRoomById
   )
 
@@ -26,7 +26,7 @@ const AddFurnitureList = () => {
     }
   }, [roomInfo])
 
-  const deleteFurniture = useMutation(deleteFurnitureMutation, {
+  const deleteFurnitureMutation = useMutation(deleteFurniture, {
     onSuccess: () => {
       console.log('item deleted')
       queryClient.invalidateQueries('room')
@@ -39,7 +39,7 @@ const AddFurnitureList = () => {
 
   const handleDelete = id => {
     console.log('id', id)
-    deleteFurniture.mutate({
+    deleteFurnitureMutation.mutate({
       id: id,
     })
   }

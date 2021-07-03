@@ -35,8 +35,7 @@ export async function updateRoom({
   floorMaterialId,
 }) {
   const data = await fetchData(
-    `
-      mutation updateRoom( $id: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
+    `mutation updateRoom( $id: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
          updateRoom( id: $id, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterialId) {
            id
            name
@@ -135,4 +134,20 @@ export async function findRoomById(key) {
     { variables: { roomId } }
   )
   return data?.findRoomById
+}
+
+export async function getRoomTypes() {
+  const data = await fetchData(
+    `
+      query {
+         getRoomTypes {
+            id
+            name
+            defaultImage
+         }
+      }
+   `,
+    { variables: {} }
+  )
+  return data?.getRoomTypes
 }

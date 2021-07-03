@@ -1,37 +1,38 @@
 import * as React from 'react'
 import Title from '../components/Title'
-import { CATEGORY_QUERY } from '../lib/graphql/category'
-import { graphqlClient } from '../lib/graphql'
 import RecommendedItem from '../components/categories/RecommendedItem'
 import Footer from '../components/footer/Footer'
 import { useHistory } from 'react-router-dom'
-import { useMutation, QueryClient } from 'react-query'
+import { useMutation, QueryClient, useQuery } from 'react-query'
 import {
-  useRecommendedCategories,
-  createRecommendedCategoryMutation,
-  deleteRecommendedCategoryMutation,
-} from '../lib/react-query/categoryQueries'
+  getFurnitureCategories,
+  createRecommendedCategory,
+  deleteRecommendedCategory,
+  getRecommendedCategories,
+} from '../lib/graphql/categoryQueries'
 import { useSelector } from 'react-redux'
 import { roomSelector } from '../lib/redux/roomSlice'
 
 const CategoryRecommendations = () => {
   const history = useHistory()
   const queryClient = new QueryClient()
-  const [categories, setCategories] = React.useState()
   const [selectedCategories, setSelectedCategories] = React.useState([])
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const { roomInfo } = useSelector(roomSelector)
-  const { data, error, isFetching } = useRecommendedCategories(roomInfo.id)
+  const {
+    data: recommendedCategories,
+    isFetching: isFetchingRecommendedCats,
+    error: errorRecommendedCats,
+  } = useQuery(
+    ['recommended-cats', { roomId: roomInfo.id }],
+    getRecommendedCategories
+  )
 
-  React.useEffect(() => {
-    graphqlClient
-      .query({
-        query: CATEGORY_QUERY,
-      })
-      .then(results => {
-        setCategories(results.data.getFurnitureCategories)
-      })
-  }, [])
+  const {
+    data: categories,
+    isFetching: isFetchingCats,
+    error: errorCats,
+  } = useQuery(['categories'], getFurnitureCategories)
 
   React.useEffect(() => {
     if (selectedCategories) {
@@ -40,25 +41,25 @@ const CategoryRecommendations = () => {
   }, [selectedCategories])
 
   React.useEffect(() => {
-    if (data) {
-      setSelectedCategories(...data)
+    if (recommendedCategories) {
+      setSelectedCategories(...recommendedCategories)
     }
-  }, [data])
+  }, [recommendedCategories])
 
-  const createRecommendedCategory = useMutation(
-    createRecommendedCategoryMutation,
+  const createRecommendedCategoryMutation = useMutation(
+    createRecommendedCategory,
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('rec-cats')
+        //   queryClient.invalidateQueries('rooms')
       },
     }
   )
 
-  const deleteRecommendedCategory = useMutation(
-    deleteRecommendedCategoryMutation,
+  const deleteRecommendedCategoryMutation = useMutation(
+    deleteRecommendedCategory,
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('rec-cats')
+        //   queryClient.invalidateQueries('rooms')
       },
     }
   )
@@ -66,19 +67,19 @@ const CategoryRecommendations = () => {
   const handleClick = id => {
     if (selectedCategories) {
       // remove from array
-      const items = [...data]
+      const items = [...recommendedCategories]
       //items.splice(selectedCategories.indexOf(id), 1)
       setSelectedCategories(items)
 
       console.log('test')
-      console.log(data)
-      console.log(data?.indexOf(id))
+      console.log(recommendedCategories)
+      console.log(recommendedCategories?.indexOf(id))
       console.log(
-        data.filter(function (item) {
+        recommendedCategories.filter(function (item) {
           return item.categoryId === id
         })
       )
-      // deleteRecommendedCategory.mutate({
+      // deleteRecommendedCategoryMutation.mutate({
       //    categoryId: id
       // })
     } else {
@@ -86,7 +87,7 @@ const CategoryRecommendations = () => {
       setSelectedCategories(prevState => {
         return [...prevState, id]
       })
-      createRecommendedCategory.mutate({
+      createRecommendedCategoryMutation.mutate({
         roomId: roomInfo.id,
         categoryId: id,
       })
