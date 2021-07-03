@@ -2,17 +2,21 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import Loader from 'react-ts-loaders'
 import { useDispatch } from 'react-redux'
-import { QueryClient } from 'react-query'
+import { QueryClient, useQuery } from 'react-query'
 import { setRoomId } from '../../lib/redux/roomSlice'
 import RoomRow from './RoomRow'
 import { formatRoomObj } from '../../lib/helpers/formatRoomObj'
-import { useRoomsById } from '../../lib/react-query/roomQueries'
-// import { queryCache } from
+import { findRoomsByUser } from '../../lib/graphql/roomQueries'
 
 const Rooms = ({ userId }) => {
   const queryClient = new QueryClient()
   const dispatch = useDispatch()
-  const { data, error, isFetching } = useRoomsById(userId)
+
+  const { data, isFetching, error } = useQuery(
+    ['rooms', { userId: userId }],
+    findRoomsByUser
+  )
+
   queryClient.refetchQueries({ stale: true })
 
   const history = useHistory()

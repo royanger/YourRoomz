@@ -5,12 +5,18 @@ import { graphqlClient } from '../lib/graphql'
 import RecommendedItem from '../components/categories/RecommendedItem'
 import Footer from '../components/footer/Footer'
 import { useHistory } from 'react-router-dom'
-import { useRecommendedCategories } from '../lib/react-query/categoryQueries'
+import { useMutation, QueryClient } from 'react-query'
+import {
+  useRecommendedCategories,
+  createRecommendedCategoryMutation,
+  deleteRecommendedCategoryMutation,
+} from '../lib/react-query/categoryQueries'
 import { useSelector } from 'react-redux'
 import { roomSelector } from '../lib/redux/roomSlice'
 
 const CategoryRecommendations = () => {
   const history = useHistory()
+  const queryClient = new QueryClient()
   const [categories, setCategories] = React.useState()
   const [selectedCategories, setSelectedCategories] = React.useState([])
   const [nextDisabled, setNextDisabled] = React.useState(true)
@@ -33,22 +39,62 @@ const CategoryRecommendations = () => {
     }
   }, [selectedCategories])
 
+  React.useEffect(() => {
+    if (data) {
+      setSelectedCategories(...data)
+    }
+  }, [data])
+
+  const createRecommendedCategory = useMutation(
+    createRecommendedCategoryMutation,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('rec-cats')
+      },
+    }
+  )
+
+  const deleteRecommendedCategory = useMutation(
+    deleteRecommendedCategoryMutation,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('rec-cats')
+      },
+    }
+  )
+
   const handleClick = id => {
-    if (selectedCategories.includes(id)) {
+    if (selectedCategories) {
       // remove from array
-      const items = [...selectedCategories]
-      items.splice(selectedCategories.indexOf(id), 1)
+      const items = [...data]
+      //items.splice(selectedCategories.indexOf(id), 1)
       setSelectedCategories(items)
+
+      console.log('test')
+      console.log(data)
+      console.log(data?.indexOf(id))
+      console.log(
+        data.filter(function (item) {
+          return item.categoryId === id
+        })
+      )
+      // deleteRecommendedCategory.mutate({
+      //    categoryId: id
+      // })
     } else {
       // add category id to array
       setSelectedCategories(prevState => {
         return [...prevState, id]
       })
+      createRecommendedCategory.mutate({
+        roomId: roomInfo.id,
+        categoryId: id,
+      })
     }
   }
 
   const handleSave = e => {
-    //  history.push('/recommendations')
+    history.push('/recommendations')
   }
 
   return (

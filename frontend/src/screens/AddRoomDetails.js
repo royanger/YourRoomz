@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
 import { useDispatch, useSelector } from 'react-redux'
 import { useMutation, QueryClient } from 'react-query'
-import {
-  createRoomMutation,
-  updateRoomMutation,
-} from '../lib/react-query/roomQueries'
+import { createRoom, updateRoom } from '../lib/graphql/roomQueries'
 import {
   roomSelector,
   updateWallColor,
@@ -35,13 +32,13 @@ const AddRoomDetails = () => {
     }
   }, [roomInfo])
 
-  const createRoom = useMutation(createRoomMutation, {
+  const createRoomMutation = useMutation(createRoom, {
     onSuccess: () => {
       queryClient.invalidateQueries('rooms')
     },
   })
 
-  const updateRoom = useMutation(updateRoomMutation, {
+  const updateRoomMutation = useMutation(updateRoom, {
     onSuccess: () => {
       queryClient.invalidateQueries('rooms')
     },
@@ -75,18 +72,19 @@ const AddRoomDetails = () => {
 
   const handleSave = async () => {
     if (roomInfo.id) {
-      updateRoom.mutate({
+      updateRoomMutation.mutate({
         id: roomInfo.id,
         typeId: roomInfo.roomtype.id,
         wallColor,
         floorColor,
       })
     } else {
-      createRoom.mutate({
+      createRoomMutation.mutate({
         userId: authInfo.userId,
         typeId: roomInfo.roomtype.id,
         wallColor,
         floorColor,
+        floorMaterialId: '260c8fd9-d830-4946-9f90-e13c11a9ba77',
       })
     }
 

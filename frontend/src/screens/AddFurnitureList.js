@@ -2,8 +2,8 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { roomSelector } from '../lib/redux/roomSlice'
-import { QueryClient, useMutation } from 'react-query'
-import { useRoomById } from '../lib/react-query/roomQueries'
+import { QueryClient, useMutation, useQuery } from 'react-query'
+import { findRoomById } from '../lib/graphql/roomQueries'
 import { deleteFurnitureMutation } from '../lib/react-query/furnitureQueries'
 import ItemList from '../components/addFurniture/ItemList'
 import Footer from '../components/footer/Footer'
@@ -14,7 +14,11 @@ const AddFurnitureList = () => {
   const queryClient = new QueryClient()
   const { roomInfo } = useSelector(roomSelector)
   const [nextDisabled, setNextDisabled] = React.useState(true)
-  const { data, error, isFetching } = useRoomById(roomInfo.id)
+
+  const { data, isFetching, error } = useQuery(
+    ['furniture', { roomId: roomInfo.id }],
+    findRoomById
+  )
 
   React.useEffect(() => {
     if (roomInfo && roomInfo.furniture.length > 0) {

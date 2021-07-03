@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ROOMS_QUERY } from '../graphql/room-queries'
-import { graphqlClient } from '../graphql'
 
 export const roomsSlice = createSlice({
   name: 'rooms',
@@ -27,29 +25,5 @@ export const roomsSlice = createSlice({
 export const { roomsStart, roomsSuccess, roomsFail } = roomsSlice.actions
 
 export const roomsSelector = state => state.rooms
-
-export const getRoomsById = userId => async dispatch => {
-  dispatch(roomsStart())
-  try {
-    graphqlClient
-      .query({
-        query: ROOMS_QUERY,
-        variables: {
-          userId,
-        },
-      })
-      .then(results => {
-        dispatch(roomsSuccess(results.data.findRoomsByUser))
-      })
-  } catch (error) {
-    dispatch(
-      roomsFail(
-        roomsFail(
-          'There was a problem fetching rooms information from the database'
-        )
-      )
-    )
-  }
-}
 
 export default roomsSlice.reducer

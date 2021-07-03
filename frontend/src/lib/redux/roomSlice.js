@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { CREATE_ROOM, UPDATE_ROOM } from '../../lib/graphql/room-queries'
-import { graphqlClient } from '../graphql'
 import { formatRoomObj } from '../helpers/formatRoomObj'
 
 export const roomSlice = createSlice({
@@ -84,45 +82,6 @@ export const updateWallColor = wallColor => async dispatch => {
 
 export const updateFloorColor = floorColor => async dispatch => {
   dispatch(setColors({ floorColor: floorColor }))
-}
-
-export const createRoom = (user, room) => async dispatch => {
-  dispatch(saveRoomStart())
-
-  await graphqlClient
-    .mutate({
-      mutation: CREATE_ROOM,
-      variables: {
-        userId: user,
-        typeId: room.roomtype.id,
-        wallColor: room.wallColor,
-        floorColor: room.floorColor,
-        floorMaterialId: '260c8fd9-d830-4946-9f90-e13c11a9ba77',
-      },
-    })
-    .then(results => {
-      dispatch(saveRoomSuccess(formatRoomObj(results.data.createRoom)))
-    })
-}
-
-export const updateRoom = room => async dispatch => {
-  dispatch(updateRoomStart())
-  await graphqlClient
-    .mutate({
-      mutation: UPDATE_ROOM,
-      variables: {
-        id: room.id,
-        typeId: room.roomtype.id,
-        wallColor: room.wallColor,
-        floorColor: room.floorColor,
-      },
-    })
-    .then(results => {
-      dispatch(updateRoomSuccess(formatRoomObj(results.data.updateRoom)))
-    })
-  // Appears to run correctly after the above save, but rooms list not updated
-  // with the new room
-  //   dispatch(getRoomsById(user))
 }
 
 export const clearRoom = () => dispatch => {
