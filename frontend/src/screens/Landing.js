@@ -16,8 +16,11 @@ const Landing = () => {
               Lorem ipsum dolor sit amet, consectetur adipisc elit. Nam nisl
               placerat vitae sit tellus. Amet ac sed porttitor eget interdum.
             </p>
-
-            <Button to="/login" text="Get Started" />
+            <div className="button">
+              <Link to="/login">
+                <button className="getstarted button">Get Started</button>
+              </Link>
+            </div>
           </div>
         </div>
       </main>

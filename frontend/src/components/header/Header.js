@@ -1,9 +1,9 @@
 import * as React from 'react'
 import Brand from './Brand'
-import Button from '../Button'
 import Profile from './Profile'
 import { useAuth } from '../../lib/context/authContext'
 import CartButton from './Cartbutton'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const {
@@ -20,7 +20,11 @@ const Header = () => {
             {isAuthenticated ? (
               <Profile />
             ) : (
-              <Button text="Login" to="/login" />
+              <div className="button">
+                <Link to="/login">
+                  <button className="button">Login</button>
+                </Link>
+              </div>
             )}
           </nav>
         </div>
