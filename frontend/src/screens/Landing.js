@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/header/Header'
-import Button from '../components/Button'
 
 const Landing = () => {
   return (
