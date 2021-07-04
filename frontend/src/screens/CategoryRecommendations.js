@@ -35,7 +35,6 @@ const CategoryRecommendations = () => {
     createRecommendedCategory,
     {
       onMutate: async values => {
-        console.log('values', values)
         await queryClient.cancelQueries([
           'selectedCategories',
           { roomId: roomInfo.id },
@@ -49,36 +48,55 @@ const CategoryRecommendations = () => {
         queryClient.setQueryData(
           ['selectedCategories', { roomId: roomInfo.id }],
           old => {
-            console.log('data', old)
-            console.log({ id: Date.now(), ...values })
-            return [...old, { id: Date.now(), ...values }]
+            if (old.length > 0) {
+              return [...old, { ...values }]
+            } else {
+              return [{ ...values }]
+            }
           }
         )
         return { previousRecommendedCats }
       },
-    },
-
-    {
-      onSuccess: () => {
+      onSettled: () => {
         queryClient.invalidateQueries([
           'selectedCategories',
           { roomId: roomInfo.id },
         ])
       },
     }
-    //  },
-    //  {
-    //    onSettled: () => {
-    //      queryClient.invalidateQueries(['selectedCategories', {roomId: roomInfo.id}])
-    //    },
-    //  }
   )
 
   const deleteRecommendedCategoryMutation = useMutation(
     deleteRecommendedCategory,
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries('selectedCategories')
+      onMutate: async values => {
+        await queryClient.cancelQueries([
+          'selectedCategories',
+          { roomId: roomInfo.id },
+        ])
+
+        const previousRecommendedCats = queryClient.getQueryData([
+          'selectedCategories',
+          { roomId: roomInfo.id },
+        ])
+
+        queryClient.setQueryData(
+          ['selectedCategories', { roomId: roomInfo.id }],
+          old => {
+            const filtered = old.filter(function (item) {
+              return item.id !== values.id
+            })
+            return [...filtered]
+          }
+        )
+
+        return { previousRecommendedCats }
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([
+          'selectedCategories',
+          { roomId: roomInfo.id },
+        ])
       },
     }
   )
@@ -124,7 +142,7 @@ const CategoryRecommendations = () => {
         </p>
 
         <div className="grid">
-          {categories?.data.map(category => {
+          {categories.data?.map(category => {
             return (
               <RecommendedItem
                 key={category.id}
