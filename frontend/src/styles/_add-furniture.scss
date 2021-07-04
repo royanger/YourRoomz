@@ -52,10 +52,10 @@
 
   .colors {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 
     .color-card {
-      width: 80px;
+      width: 120px;
       height: 120px;
       display: flex;
       align-items: center;

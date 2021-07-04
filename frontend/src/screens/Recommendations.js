@@ -1,42 +1,42 @@
 import * as React from 'react'
-import axios from 'axios'
-import CurrentFurniture from '../components/recommendations/CurrentFurniture'
+import SelectCategory from '../components/recommendations/SelectCategory'
+import SelectPriceRange from '../components/recommendations/SelectPriceRange'
 import Comparison from '../components/recommendations/Comparison'
 import Results from '../components/recommendations/Results'
-
-const params = {
-  api_key: 'process.env.REACT_APP_RAINFOREST_API',
-  type: 'search',
-  amazon_domain: 'amazon.com',
-  search_term: 'coffee table',
-}
+import Button from '../components/Button'
+import { useQueryClient, useQuery } from 'react-query'
+import useAmazonSearch, {
+  getAmazonSearch,
+} from '../lib/graphql/rainforestQueries'
+import { getMockAPISearch } from '../lib/graphql/mockapiQueries'
 
 const Recommendations = () => {
-  const [results, setResults] = React.useState()
+  //   const [results, setResults] = React.useState()
+  //   const queryClient = useQueryClient()
+  //   const amazonSearch = useAmazonSearch('blue rug')
+  //   const amazonSearch = useQuery(['amazon-search', 'blue rug'], getAmazonSearch)
+  const amazonSearch = useQuery(
+    ['amazon-search', { term: 'blue rug' }],
+    getMockAPISearch
+  )
 
-  React.useEffect(() => {
-    axios
-      .get('https://api.rainforestapi.com/request', { params })
-      .then(results => {
-        // print the JSON response from Rainforest API
-        setResults(results.data.search_results)
-      })
-      .catch(error => {
-        // catch and print the error
-        console.log(error)
-      })
-  }, [])
+  if (amazonSearch.error) {
+    return `<p>${amazonSearch.error}</p>`
+  }
+
   return (
-    <div className="recommendations">
-      <div>Recommendations screen</div>
-
+    <div className="container recommendations">
       <div className="interface">
-        <CurrentFurniture />
-
+        <div className="recommendation-menu">
+          <Button text="Add selected item(s) to cart" variant="small" />
+          <SelectCategory />
+          <SelectPriceRange />
+          {amazonSearch.data ? <Results results={amazonSearch.data} /> : ''}
+        </div>
         <Comparison />
-
-        {results ? <Results results={results} /> : ''}
       </div>
+
+      <div>Recommendations screen</div>
     </div>
   )
 }
