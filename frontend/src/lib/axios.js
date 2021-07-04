@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const axiosConfig = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:5000',
+  baseURL: process.env.REACT_APP_API_URI,
   timeout: 3000,
   headers: {
     'Content-Type': 'application/json',
