@@ -60,7 +60,7 @@ const AddFurnitureDetails = () => {
   }
 
   if (materialList.isLoading || categories.isLoading) {
-    return <Loader />
+    return <Loader type="ellipsis" size={200} color="var(--warning)" />
   }
 
   if (materialList.error || categories.error) {

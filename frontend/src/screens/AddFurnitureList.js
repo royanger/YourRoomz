@@ -60,7 +60,8 @@ const AddFurnitureList = () => {
     })
   }
 
-  if (roomQuery.isLoading) return <Loader />
+  if (roomQuery.isLoading)
+    return <Loader type="ellipsis" size={200} color="var(--warning)" />
   if (roomQuery.error) return 'There was was error loading your furniture list'
 
   return (

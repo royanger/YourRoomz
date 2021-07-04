@@ -13,7 +13,8 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
 
   const roomTypes = useQuery(['room-types'], getRoomTypes)
 
-  if (roomTypes.isLoading) return <Loader size={50} color="" />
+  if (roomTypes.isLoading)
+    return <Loader type="ellipsis" size={50} color="var(--warning)" />
 
   return (
     <>
