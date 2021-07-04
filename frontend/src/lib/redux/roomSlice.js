@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { formatRoomObj } from '../helpers/formatRoomObj'
+// import { formatRoomObj } from '../helpers/formatRoomObj'
 
 export const roomSlice = createSlice({
   name: 'room',

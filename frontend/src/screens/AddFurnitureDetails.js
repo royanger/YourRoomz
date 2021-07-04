@@ -25,17 +25,8 @@ const AddFurnitureDetails = () => {
     name: 'Please select a furniture category',
   })
 
-  const {
-    data: categories,
-    isFetching: isFetchingCats,
-    error: errorCats,
-  } = useQuery(['categories'], getFurnitureCategories)
-
-  const {
-    data: materialList,
-    isFetching: isFetchingMats,
-    error: errorMats,
-  } = useQuery(['materials'], getFurnitureMaterial)
+  const categories = useQuery(['categories'], getFurnitureCategories)
+  const materialList = useQuery(['materials'], getFurnitureMaterial)
 
   React.useEffect(() => {
     if (category.id && color && material) {
@@ -68,11 +59,11 @@ const AddFurnitureDetails = () => {
     history.push('/add-furniture-comparison')
   }
 
-  if (isFetchingMats || isFetchingCats) {
+  if (materialList.isLoading || categories.isLoading) {
     return <Loader />
   }
 
-  if (errorMats || errorCats) {
+  if (materialList.error || categories.error) {
     return 'There was an error fetching information from the database'
   }
 
@@ -87,7 +78,7 @@ const AddFurnitureDetails = () => {
 
       {categories && category ? (
         <CategoryList
-          categories={categories}
+          categories={categories.data}
           category={category}
           setCategory={setCategory}
           updateCategory={updateCategory}
@@ -100,7 +91,7 @@ const AddFurnitureDetails = () => {
 
       {materialList ? (
         <SelectMaterial
-          materialList={materialList}
+          materialList={materialList.data}
           updateMaterial={updateMaterial}
         />
       ) : (

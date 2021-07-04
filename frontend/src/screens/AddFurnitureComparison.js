@@ -3,7 +3,7 @@ import ItemComparison from '../components/addFurniture/ItemComparison'
 import Footer from '../components/footer/Footer'
 import Title from '../components/Title'
 import { useHistory } from 'react-router-dom'
-import { QueryClient, useMutation, useQuery } from 'react-query'
+import { useQueryClient, useMutation, useQuery } from 'react-query'
 import { getCategoryStyles } from '../lib/graphql/categoryQueries'
 import { createFurniture } from '../lib/graphql/furnitureQueries'
 import { roomSelector } from '../lib/redux/roomSlice'
@@ -12,20 +12,20 @@ import Loader from 'react-ts-loaders'
 
 const AddFurnitureDetails = () => {
   const history = useHistory()
-  const queryClient = new QueryClient()
+  const queryClient = useQueryClient()
   const { roomInfo } = useSelector(roomSelector)
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [selectedStyle, setSelectedStyle] = React.useState()
 
-  const { data, isFetching, error } = useQuery(
-    ['ret-cats', { categoryId: roomInfo.newFurniture.categoryId }],
+  const recommendedCategorioes = useQuery(
+    ['rec-cats', { categoryId: roomInfo.newFurniture.categoryId }],
     getCategoryStyles
   )
 
   const createFurnitureMutation = useMutation(createFurniture, {
     onSuccess: () => {
       queryClient.invalidateQueries('styles')
-      queryClient.invalidateQueries('room')
+      queryClient.invalidateQueries(['room', { roomId: roomInfo.id }])
       history.push('/add-furniture-list')
     },
   })
@@ -45,7 +45,7 @@ const AddFurnitureDetails = () => {
     })
   }
 
-  if (isFetching) return <Loader />
+  if (recommendedCategorioes.isLoading) return <Loader />
 
   return (
     <>
@@ -55,9 +55,16 @@ const AddFurnitureDetails = () => {
 
           <p>Choose the item that looks similar to what you have.</p>
         </div>
-        <ItemComparison handleClick={handleClick} styles={data} />
+        <ItemComparison
+          handleClick={handleClick}
+          styles={recommendedCategorioes.data}
+        />
 
-        <Footer callback={handleSave} nextDisabled={nextDisabled} />
+        <Footer
+          callback={handleSave}
+          nextDisabled={nextDisabled}
+          prev="/add-furniture-details"
+        />
       </div>
     </>
   )

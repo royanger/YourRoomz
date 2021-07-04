@@ -57,6 +57,7 @@ const AddRooms = () => {
         callback={handleSave}
         backVariant="hidden"
         nextDisabled={nextDisabled}
+        prev="/profile"
       />
     </>
   )

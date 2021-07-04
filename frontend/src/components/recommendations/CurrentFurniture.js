@@ -7,18 +7,11 @@ import { useSelector } from 'react-redux'
 const CurrentFurniture = () => {
   const { roomInfo } = useSelector(roomSelector)
 
-  const { data, isFetching, error } = useQuery(
-    ['room', { roomId: roomInfo.id }],
-    findRoomById
-  )
-
-  if (data) {
-    console.log(data)
-  }
+  const room = useQuery(['room', { roomId: roomInfo.id }], findRoomById)
 
   return (
     <div className="current-furniture">
-      {data?.furniture?.map(item => {
+      {room.data?.furniture?.map(item => {
         return (
           <div key={item.id} className="furniture-item">
             {item.category[0].name}

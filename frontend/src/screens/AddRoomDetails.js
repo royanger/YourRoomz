@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
 import { useDispatch, useSelector } from 'react-redux'
-import { useMutation, QueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { createRoom, updateRoom } from '../lib/graphql/roomQueries'
 import {
   roomSelector,
@@ -15,7 +15,7 @@ import SelectColor from '../components/addFurniture/SelectColor'
 
 const AddRoomDetails = () => {
   const history = useHistory()
-  const queryClient = new QueryClient()
+  const queryClient = useQueryClient()
   const dispatch = useDispatch()
   const { roomInfo } = useSelector(roomSelector)
   const { authInfo } = useAuth()

@@ -24,13 +24,14 @@ const Square = () => {
   )
 }
 
-const RecommendedItem = ({
-  category,
-  handleClick,
+const RecommendedItem = ({ category, handleClick, selectedCategories }) => {
+  const checked =
+    selectedCategories.filter(function (item) {
+      return item.categoryId === category.id
+    }).length > 0
+      ? true
+      : false
 
-  selectedCategories,
-}) => {
-  const checked = selectedCategories.includes(category.id) ? true : false
   return (
     <div
       className="item"

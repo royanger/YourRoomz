@@ -11,9 +11,9 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
     setTypeName(e.target.innerText)
   }
 
-  const { data, isFetching, error } = useQuery(['rooms', {}], getRoomTypes)
+  const roomTypes = useQuery(['room-types'], getRoomTypes)
 
-  if (isFetching) return <Loader size={50} color="" />
+  if (roomTypes.isLoading) return <Loader size={50} color="" />
 
   return (
     <>
@@ -21,7 +21,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
       <p>Pick one room</p>
 
       <div className="room-grid">
-        {data?.map(roomType => {
+        {roomTypes.data?.map(roomType => {
           return (
             <Card
               key={roomType.id}

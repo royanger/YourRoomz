@@ -2,35 +2,31 @@ import * as React from 'react'
 import { useHistory } from 'react-router-dom'
 import Loader from 'react-ts-loaders'
 import { useDispatch } from 'react-redux'
-import { QueryClient, useQuery } from 'react-query'
+import { useQuery } from 'react-query'
 import { setRoomId } from '../../lib/redux/roomSlice'
 import RoomRow from './RoomRow'
 import { formatRoomObj } from '../../lib/helpers/formatRoomObj'
 import { findRoomsByUser } from '../../lib/graphql/roomQueries'
 
 const Rooms = ({ userId }) => {
-  const queryClient = new QueryClient()
   const dispatch = useDispatch()
 
-  const { data, isFetching, error } = useQuery(
-    ['rooms', { userId: userId }],
-    findRoomsByUser
-  )
-
-  queryClient.refetchQueries({ stale: true })
+  const rooms = useQuery(['rooms', { userId: userId }], findRoomsByUser)
 
   const history = useHistory()
 
   const handleEditRoom = async e => {
-    const formattedRoom = formatRoomObj(data.find(x => x.id === e.target.id))
+    const formattedRoom = formatRoomObj(
+      rooms.data.find(x => x.id === e.target.id)
+    )
     await dispatch(setRoomId(formattedRoom))
     history.push('/add-room')
   }
 
-  if (isFetching) {
+  if (rooms.isLoading) {
     return <Loader size={50} color="" />
   }
-  if (error) {
+  if (rooms.error) {
     return <div>There was a problem fetching the room list</div>
   }
 
@@ -45,7 +41,7 @@ const Rooms = ({ userId }) => {
           <div>Cart Items</div>
           <div></div>
         </div>
-        {data?.map(room => {
+        {rooms.data?.map(room => {
           return (
             <RoomRow
               key={room.id}
