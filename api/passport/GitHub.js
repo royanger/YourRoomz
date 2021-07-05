@@ -11,7 +11,7 @@ const passportGoogle = async passport => {
       {
         clientID: process.env.GITHUB_API_ID,
         clientSecret: process.env.GITHUB_API_SECRET,
-        callbackURL: 'http://localhost:5000/auth/github/callback',
+        callbackURL: `${process.env.REACT_APP_API_URI}/auth/github/callback}`,
       },
       async function (accessToken, refreshToken, profile, done) {
         // does the user exists?
