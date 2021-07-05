@@ -48,6 +48,16 @@ export const resolvers = {
       })
     },
   },
+  RecommendedCategories: {
+    category: (parent, _args, context) => {
+      return context.prisma.category.findMany({
+        where: {
+          id: parent.categoryId,
+        },
+      })
+    },
+  },
+  Category: {},
   Room: {
     furniture: (parent, _args, context) => {
       return context.prisma.furniture.findMany({
@@ -97,6 +107,14 @@ export const resolvers = {
       return context.prisma.furnitureMaterial.findMany({
         where: {
           id: parent.MaterialId,
+        },
+      })
+    },
+    categoryStyles: (parent, _args, context) => {
+      console.log('test', parent)
+      return context.prisma.categoryStyles.findMany({
+        where: {
+          id: parent.CategoryStyleId,
         },
       })
     },

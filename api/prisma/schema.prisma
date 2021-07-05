@@ -58,8 +58,9 @@ model Category {
    id             String   @id @default(uuid())
    name           String
    image          String?
+   rank           Int
    furniture      Furniture[]
-   cagetorystyles CategoryStyles[]
+   categorystyles CategoryStyles[]
    recommended    RecommendedCategories[]
 }
 

@@ -50,7 +50,7 @@ export const typeDefs = `
       MaterialId: String
       material: [FurnitureMaterial]
       CategoryStyleId: String
-      categorystyles: [CategoryStyles]
+      categoryStyles: [CategoryStyles]
    }
 
    type FurnitureMaterial {
@@ -63,6 +63,7 @@ export const typeDefs = `
       id: String
       name: String
       image: String
+      rank: Float
    }
 
    type RecommendedCategories {
