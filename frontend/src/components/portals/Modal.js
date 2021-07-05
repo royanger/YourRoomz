@@ -1,9 +1,14 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
-const Modal = ({ children }) => {
+const Modal = ({ className, modalStatus, children }) => {
   const modal = document.getElementById('modal')
   const el = document.createElement('div')
+  const status = modalStatus ? 'show' : 'hidden'
+  console.log(status)
+  el.classList.add(className)
+  modal.className = status
+  //   modal.classList.add(status)
 
   React.useEffect(() => {
     modal.appendChild(el)

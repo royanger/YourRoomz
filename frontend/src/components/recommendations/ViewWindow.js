@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const Comparison = () => {
+const ViewWindow = () => {
   return (
     <>
       <div className="comparison">
@@ -10,4 +10,4 @@ const Comparison = () => {
   )
 }
 
-export default Comparison
+export default ViewWindow

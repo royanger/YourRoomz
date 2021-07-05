@@ -101,6 +101,11 @@ export async function findRoomById(key) {
                category {
                   id
                   name
+                  rank
+               }
+               categoryStyles {
+                  id
+                  tag
                }
 
                material {

@@ -1,9 +1,11 @@
 import * as React from 'react'
 import SelectCategory from '../components/recommendations/SelectCategory'
 import SelectPriceRange from '../components/recommendations/SelectPriceRange'
-import Comparison from '../components/recommendations/Comparison'
+import Comparison from '../components/recommendations/ViewWindow'
 import Results from '../components/recommendations/Results'
 import Button from '../components/Button'
+import GenerateRecommendations from '../components/categories/GenerateRecommendations'
+
 import { useQueryClient, useQuery } from 'react-query'
 import useAmazonSearch, {
   getAmazonSearch,
@@ -11,18 +13,19 @@ import useAmazonSearch, {
 import { getMockAPISearch } from '../lib/graphql/mockapiQueries'
 
 const Recommendations = () => {
+  const [showModal, setShowModal] = React.useState(false)
+  const [results, setResults] = React.useState({})
   //   const [results, setResults] = React.useState()
   //   const queryClient = useQueryClient()
-  //   const amazonSearch = useAmazonSearch('blue rug')
-  //   const amazonSearch = useQuery(['amazon-search', 'blue rug'], getAmazonSearch)
-  const amazonSearch = useQuery(
-    ['amazon-search', { term: 'blue rug' }],
-    getMockAPISearch
-  )
 
-  if (amazonSearch.error) {
-    return `<p>${amazonSearch.error}</p>`
-  }
+  //   const amazonSearch = useQuery(
+  //     ['amazon-search', { term: 'blue rug' }],
+  //     getMockAPISearch
+  //   )
+
+  //   if (amazonSearch.error) {
+  //     return `<p>${amazonSearch.error}</p>`
+  //   }
 
   return (
     <div className="container recommendations">
@@ -31,12 +34,18 @@ const Recommendations = () => {
           <Button text="Add selected item(s) to cart" variant="small" />
           <SelectCategory />
           <SelectPriceRange />
-          {amazonSearch.data ? <Results results={amazonSearch.data} /> : ''}
+          {/* {amazonSearch.data ? <Results results={amazonSearch.data} /> : ''} */}
         </div>
         <Comparison />
       </div>
 
       <div>Recommendations screen</div>
+
+      <GenerateRecommendations
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setResults={setResults}
+      />
     </div>
   )
 }

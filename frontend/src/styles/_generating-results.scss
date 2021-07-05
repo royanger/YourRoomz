@@ -1,0 +1,46 @@
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -10;
+  &.show {
+    z-index: 5;
+  }
+  &.hidden {
+    z-index: -10;
+  }
+
+  .generating-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+
+    .background {
+      position: absolute;
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      background-color: var(--white);
+      opacity: 0.8;
+      z-index: 10;
+    }
+
+    .content {
+      position: absolute;
+      height: 400px;
+      width: 400px;
+      background-color: var(--white);
+      opacity: 1;
+      border: 2px solid red;
+      z-index: 100;
+    }
+  }
+}

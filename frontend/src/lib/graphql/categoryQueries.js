@@ -57,6 +57,11 @@ export async function getRecommendedCategories(key) {
          id,
          roomId,
          categoryId
+         category {
+            id,
+            name,
+            rank
+         }
       }
    }
 `,
