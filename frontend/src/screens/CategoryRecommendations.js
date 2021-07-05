@@ -12,11 +12,13 @@ import {
 } from '../lib/graphql/categoryQueries'
 import { useSelector } from 'react-redux'
 import { roomSelector } from '../lib/redux/roomSlice'
+import Loader from 'react-ts-loaders'
 
 const CategoryRecommendations = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
   const [nextDisabled, setNextDisabled] = React.useState(true)
+
   const { roomInfo } = useSelector(roomSelector)
   const selectedCategories = useQuery(
     ['selectedCategories', { roomId: roomInfo.id }],
@@ -109,12 +111,9 @@ const CategoryRecommendations = () => {
 
     if (isSelected) {
       // remove from array
-
       const selectedArray = selectedCategories.data.filter(function (item) {
         return item.categoryId === id
       })
-
-      console.log(selectedArray[0].id)
 
       deleteRecommendedCategoryMutation.mutate({
         id: selectedArray[0].id,
@@ -129,6 +128,10 @@ const CategoryRecommendations = () => {
 
   const handleSave = e => {
     history.push('/recommendations')
+  }
+
+  if (categories.isLoading || selectedCategories.isLoading) {
+    return <Loader />
   }
 
   return (

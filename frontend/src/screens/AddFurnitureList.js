@@ -64,12 +64,13 @@ const AddFurnitureList = () => {
     return <Loader type="ellipsis" size={200} color="var(--warning)" />
   if (roomQuery.error) return 'There was was error loading your furniture list'
 
+  const sortedFurniture = roomQuery.data.furniture.sort((a, b) => {
+    return a.category[0].rank - b.category[0].rank
+  })
+
   return (
     <>
-      <ItemList
-        furniture={roomQuery.data.furniture}
-        handleDelete={handleDelete}
-      />
+      <ItemList furniture={sortedFurniture} handleDelete={handleDelete} />
 
       <Footer
         nextDisabled={nextDisabled}
