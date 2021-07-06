@@ -15,6 +15,7 @@ import { getMockAPISearch } from '../lib/graphql/mockapiQueries'
 const Recommendations = () => {
   const [showModal, setShowModal] = React.useState(false)
   const [results, setResults] = React.useState({})
+  const [currentCategory, setCurrentCategory] = React.useState(0)
   //   const [results, setResults] = React.useState()
   //   const queryClient = useQueryClient()
 
@@ -27,14 +28,30 @@ const Recommendations = () => {
   //     return `<p>${amazonSearch.error}</p>`
   //   }
 
+  const handleCategorySelection = e => {
+    console.log('cat', e)
+    setCurrentCategory(e)
+  }
+
   return (
     <div className="container recommendations">
       <div className="interface">
         <div className="recommendation-menu">
           <Button text="Add selected item(s) to cart" variant="small" />
-          <SelectCategory />
+          {results.length > 0 ? (
+            <SelectCategory
+              results={results}
+              handleClick={handleCategorySelection}
+            />
+          ) : (
+            ''
+          )}
           <SelectPriceRange />
-          {/* {amazonSearch.data ? <Results results={amazonSearch.data} /> : ''} */}
+          {results.length > 0 ? (
+            <Results results={results} currentCategory={currentCategory} />
+          ) : (
+            ''
+          )}
         </div>
         <Comparison />
       </div>
