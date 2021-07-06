@@ -19,7 +19,6 @@ const passportGoogle = async passport => {
             email: profile.emails[0].value,
           },
         })
-
         // if not, then add the user
         if (!user) {
           await context.prisma.user.create({
@@ -42,7 +41,6 @@ const passportGoogle = async passport => {
             },
           })
         }
-
         cb(null, profile)
       }
     )

@@ -25,7 +25,7 @@ const providers = [
 
 const Login = () => {
   const loginCallback = provider => {
-    window.open(`http://localhost:5000/auth/${provider}`, '_self')
+    window.open(`${process.env.REACT_APP_API_URI}/auth/${provider}`, '_self')
   }
   return (
     <>

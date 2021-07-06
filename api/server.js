@@ -35,6 +35,7 @@ app.use(
   })
 )
 
+// app.use(cors())
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -82,7 +83,7 @@ app.get(
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000/profile')
+    res.redirect(`${process.env.APP_URL}/profile`)
   }
 )
 
@@ -93,7 +94,7 @@ app.get(
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000/profile')
+    res.redirect(`${process.env.APP_URL}/profile`)
   }
 )
 
@@ -107,7 +108,7 @@ app.get(
   passport.authenticate('github', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000/profile')
+    res.redirect(`${process.env.APP_URL}/profile`)
   }
 )
 
