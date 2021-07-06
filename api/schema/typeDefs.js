@@ -5,6 +5,7 @@ export const typeDefs = `
       givenName: String
       familyName: String
       displayName: String
+      createdAt: String
       email: String!
       googleId: String
       twitterId: String
@@ -16,13 +17,13 @@ export const typeDefs = `
       userId: String!
       typeId: String!
       name: String
+      createdAt: String
       wallColor: String
       floorColor: String
       floorMaterialId: String!
       furniture: [Furniture]
       user: [User]
       type: [RoomType]
-      flooring: [Flooring]
       cartitems: [CartItems]
       roomtype: [RoomType]
    }
@@ -32,13 +33,6 @@ export const typeDefs = `
       name: String
       active: Boolean
       defaultImage: String
-   }
-
-   type Flooring {
-      id: String
-      name: String
-      image: String
-      rooms: [Room]
    }
 
    type Furniture {
@@ -125,8 +119,8 @@ export const typeDefs = `
       # Update a user
       updateUser( id: String, data: UpdateUserInput): User
       # Add a new room
-      createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String, floorMaterialId: String): Room
-      updateRoom(id: String, typeId: String, wallColor: String, floorColor: String, floorMaterialId: String): Room
+      createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String): Room
+      updateRoom(id: String, typeId: String, wallColor: String, floorColor: String): Room
       createFurniture(roomId: String, color: String, categoryId: String, materialId: String, styleId: String ): Furniture
       deleteFurniture( id: String): Furniture
       createRecommendedCategory(roomId: String, categoryId: String): RecommendedCategories

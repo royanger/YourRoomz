@@ -73,13 +73,6 @@ export const resolvers = {
         },
       })
     },
-    flooring: (parent, _args, context) => {
-      return context.prisma.flooring.findMany({
-        where: {
-          id: parent.floorMaterialId,
-        },
-      })
-    },
     roomtype: (parent, _args, context) => {
       return context.prisma.roomType.findMany({
         where: {
@@ -157,12 +150,6 @@ export const resolvers = {
           },
           wallColor: args.wallColor,
           floorColor: args.floorColor,
-
-          flooring: {
-            connect: {
-              id: args.floorMaterialId,
-            },
-          },
         },
       })
     },

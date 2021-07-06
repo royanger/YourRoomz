@@ -11,14 +11,15 @@ generator client {
 }
 
 model User {
-   id          String   @id @default(uuid())
+   id          String      @id @default(uuid())
    givenName   String?
    familyName  String?
    displayName String?
-   email       String?  @unique
+   email       String?     @unique
    googleId    String?
    twitterId   String?
    githubId    String?
+   createdAt   DateTime    @default(now())
    rooms       Room[]
    cart        Cart[]
 }
@@ -29,11 +30,10 @@ model Room {
    user              User        @relation(fields: [userId], references: [id])
    typeId            String
    type              RoomType    @relation(fields: [typeId], references: [id])
+   createdAt         DateTime    @default(now())
    name              String?
    wallColor         String?
    floorColor        String?
-   floorMaterialId   String
-   flooring          Flooring    @relation(fields: [floorMaterialId], references: [id])
    furniture         Furniture[]
    cartItem          CartItems[]
    reccommended      RecommendedCategories[]
@@ -47,21 +47,15 @@ model RoomType {
    defaultImage   String?
 }
 
-model Flooring {
-   id       String   @id @default(uuid())
-   name     String
-   image    String?
-   rooms    Room[]
-}
-
 model Category {
-   id             String   @id @default(uuid())
-   name           String
-   image          String?
-   rank           Int
-   furniture      Furniture[]
-   categorystyles CategoryStyles[]
-   recommended    RecommendedCategories[]
+   id                String   @id @default(uuid())
+   name              String
+   image             String?
+   rank              Int
+   furniture         Furniture[]
+   categorystyles    CategoryStyles[]
+   recommended       RecommendedCategories[]
+   relatedMaterial   RelatedMaterial[]
 }
 
 model RecommendedCategories {
@@ -94,11 +88,20 @@ model Furniture {
    categorystyle     CategoryStyles @relation(fields: [CategoryStyleId], references:[id])
 }
 
+model RelatedMaterial {
+   id             String      @id @default(uuid())
+   categoryId     String
+   category       Category    @relation(fields: [categoryId], references: [id])
+   materialId     String
+   material       FurnitureMaterial @relation(fields: [materialId], references: [id])
+}
+
 model FurnitureMaterial {
-   id          String   @id @default(uuid())
-   name        String
-   image       String?
-   furniture   Furniture[]
+   id                String   @id @default(uuid())
+   name              String
+   image             String?
+   furniture         Furniture[]
+   relatedMaterial   RelatedMaterial[]
 }
 
 model Cart {

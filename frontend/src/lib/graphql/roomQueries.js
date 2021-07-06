@@ -1,15 +1,9 @@
 import fetchData from './fetchData'
 
-export async function createRoom({
-  userId,
-  typeId,
-  wallColor,
-  floorColor,
-  floorMaterialId,
-}) {
+export async function createRoom({ userId, typeId, wallColor, floorColor }) {
   const data = await fetchData(
-    `mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
-      createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterialId) {
+    `mutation createRoom($userId: String, $typeId: String, $wallColor: String, $floorColor: String) {
+      createRoom( userId: $userId, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor) {
          id
          name
          wallColor
@@ -22,21 +16,15 @@ export async function createRoom({
       }
    }
    `,
-    { variables: { userId, typeId, wallColor, floorColor, floorMaterialId } }
+    { variables: { userId, typeId, wallColor, floorColor } }
   )
   return data?.createRoom
 }
 
-export async function updateRoom({
-  id,
-  typeId,
-  wallColor,
-  floorColor,
-  floorMaterialId,
-}) {
+export async function updateRoom({ id, typeId, wallColor, floorColor }) {
   const data = await fetchData(
-    `mutation updateRoom( $id: String, $typeId: String, $wallColor: String, $floorColor: String, $floorMaterialId: String) {
-         updateRoom( id: $id, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor, floorMaterialId: $floorMaterialId) {
+    `mutation updateRoom( $id: String, $typeId: String, $wallColor: String, $floorColor: String) {
+         updateRoom( id: $id, typeId: $typeId, wallColor: $wallColor, floorColor: $floorColor) {
            id
            name
            wallColor
@@ -49,7 +37,7 @@ export async function updateRoom({
          }
        }
       `,
-    { variables: { id, typeId, wallColor, floorColor, floorMaterialId } }
+    { variables: { id, typeId, wallColor, floorColor } }
   )
   return data?.updateRoom
 }
@@ -120,10 +108,6 @@ export async function findRoomById(key) {
                familyName
                displayName
                email
-            }
-            flooring {
-               id
-               name
             }
             cartitems {
                id
