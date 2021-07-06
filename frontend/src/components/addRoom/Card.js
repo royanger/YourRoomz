@@ -4,14 +4,12 @@ const Card = ({ text, className, id, image, handler, type }) => {
   return (
     <>
       <div
-        onClick={handler}
+        onClick={e => handler(e, id, text)}
         className={`${className} room-card ${id === type ? 'active' : ''}`}
         id={id}
-        style={{
-          backgroundImage: `url(/images/rooms/${image})`,
-          backgroundSize: 'cover',
-        }}
       >
+        <img src={`/images/rooms/${image}`} alt={text} />
+
         <div className="name">{text}</div>
       </div>
     </>

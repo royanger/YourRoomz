@@ -57,7 +57,7 @@ const LoginButton = ({ text, callback, color, icon }) => {
   return (
     <div className="login-button" style={{ backgroundColor: color }}>
       <button onClick={() => callback()}>
-        <span class="icon-container">
+        <span className="icon-container">
           <span style={{ color: color }}>{icons[icon]}</span>
         </span>{' '}
         {text}

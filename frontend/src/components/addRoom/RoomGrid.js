@@ -6,9 +6,9 @@ import Loader from 'react-ts-loaders'
 import Title from '../Title'
 
 const RoomGrid = ({ type, setType, setTypeName }) => {
-  const handleClick = e => {
-    setType(e.target.id)
-    setTypeName(e.target.innerText)
+  const handleClick = (_e, id, text) => {
+    setType(id)
+    setTypeName(text)
   }
 
   const roomTypes = useQuery(['room-types'], getRoomTypes)
