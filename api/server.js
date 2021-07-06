@@ -8,6 +8,7 @@ import { context } from './schema/context.js'
 import { schema } from './schema/schema.js'
 import pkg from 'express-graphql'
 const { graphqlHTTP } = pkg
+import generateResults from './routes/generateResults.js'
 // import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
 
 // load vars from ENV variables
@@ -111,6 +112,8 @@ app.get(
     res.redirect(`${process.env.APP_URL}/profile`)
   }
 )
+
+app.get('/generateResults', generateResults)
 
 // start the server
 app.listen(port, url, () => {
