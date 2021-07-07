@@ -49,6 +49,33 @@
     &.hidden {
       display: none;
     }
+
+    &.addroom {
+      position: absolute;
+      top: 15px;
+      right: 0;
+      padding-right: 25px;
+      padding-left: 25px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        height: 15px;
+        width: auto;
+        margin-right: 10px;
+      }
+    }
+
+    &.icon {
+      background-color: transparent;
+      color: var(--brand-primary);
+      padding: 5px;
+
+      > svg {
+        height: 20px;
+        width: auto;
+      }
+    }
   }
 }
 

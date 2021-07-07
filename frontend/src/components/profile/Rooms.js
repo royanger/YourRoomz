@@ -33,14 +33,17 @@ const Rooms = ({ userId }) => {
   return (
     <>
       <div className="rooms">
-        <div className="grid title">
+        <div className="title">
           <div>Room</div>
           <div>Wall Color</div>
           <div>Floor Color</div>
           <div>Furniture</div>
           <div>Cart Items</div>
-          <div></div>
+          <div>Action</div>
         </div>
+      </div>
+      <div className="container">
+        {/* <div className="grid"> */}
         {rooms.data?.map(room => {
           return (
             <RoomRow
@@ -50,6 +53,7 @@ const Rooms = ({ userId }) => {
             />
           )
         })}
+        {/* </div> */}
       </div>
     </>
   )
