@@ -105,15 +105,17 @@ const AddRoomDetails = () => {
         </Title>
 
         <p>{`Choose your ${
-          roomInfo.roomtype.namee ? roomInfo.roomtype.name : 'room'
+          roomInfo.roomtype.name ? roomInfo.roomtype.name.toLowerCase() : 'room'
         } wall color and floor color`}</p>
         <SelectColor
+          title="Wall Color"
           callback={handleColorSelector}
           idPrefix="wall"
           handleColorPicker={handleWallColorPicker}
           color={wallColor}
         />
         <SelectColor
+          title="Floor     Color"
           callback={handleColorSelector}
           idPrefix="floor"
           handleColorPicker={handleFloorColorPicker}

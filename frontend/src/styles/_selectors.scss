@@ -1,0 +1,93 @@
+.color-selector {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > div {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    padding: 30px 40px;
+    margin-bottom: 40px;
+
+    > div {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: auto auto;
+      column-gap: 30px;
+
+      .colors {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 0;
+        position: relative;
+
+        .color-card {
+          width: 120px;
+          height: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: none;
+          background-color: var(--item-color);
+
+          &.active {
+            position: relative;
+
+            > svg {
+              width: 28px;
+              height: auto;
+              color: var(--white);
+            }
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: -20px;
+              background-color: var(--item-color);
+              width: 120px;
+              height: 20px;
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
+            }
+            &:after {
+              content: '';
+              position: absolute;
+              bottom: -20px;
+              background-color: var(--item-color);
+              width: 120px;
+              height: 20px;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.material-selector {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 60px;
+  max-width: 80%;
+  > div {
+    border: 1px solid var(--borders);
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+  }
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  > div {
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+  }
+}
