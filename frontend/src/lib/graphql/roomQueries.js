@@ -132,6 +132,7 @@ export async function getRoomTypes() {
          getRoomTypes {
             id
             name
+            active
             defaultImage
          }
       }

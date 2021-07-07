@@ -25,7 +25,11 @@ export const resolvers = {
       })
     },
     getRoomTypes: (_parent, _args, context) => {
-      return context.prisma.roomType.findMany()
+      return context.prisma.roomType.findMany({
+        orderBy: {
+          active: 'desc',
+        },
+      })
     },
     getFurnitureCategories: (_parent, _args, context) => {
       return context.prisma.category.findMany()

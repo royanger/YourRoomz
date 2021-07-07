@@ -32,6 +32,7 @@ const RoomGrid = ({ type, setType, setTypeName }) => {
               handler={handleClick}
               variant="room-card"
               type={type}
+              status={roomType.active}
             />
           )
         })}
