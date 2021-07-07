@@ -46,10 +46,18 @@ const RoomRow = ({ room, handleEditRoom }) => {
       <div>{room.furniture ? room.furniture.length : '0'}</div>
       <div>{room.cartitems ? room.cartitems.length : '0'}</div>
       <div className="icons">
-        <Button id={room.id} variant="small icon" callback={handleEditRoom}>
+        <Button
+          id={room.id}
+          variant="small icon"
+          callback={() => handleEditRoom(room.id)}
+        >
           <EditIcon />
         </Button>
-        <Button id={room.id} variant="small icon" callback={handleEditRoom}>
+        <Button
+          id={room.id}
+          variant="small icon"
+          callback={() => handleEditRoom(room.id)}
+        >
           <EyeIcon />
         </Button>
       </div>

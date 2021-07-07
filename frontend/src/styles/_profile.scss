@@ -64,7 +64,8 @@
         flex-direction: column;
       }
 
-      &:last-of-type {
+      &:last-of-type > div {
+        border: none;
       }
     }
   }

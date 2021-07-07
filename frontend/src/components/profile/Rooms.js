@@ -15,10 +15,8 @@ const Rooms = ({ userId }) => {
 
   const history = useHistory()
 
-  const handleEditRoom = async e => {
-    const formattedRoom = formatRoomObj(
-      rooms.data.find(x => x.id === e.target.id)
-    )
+  const handleEditRoom = async id => {
+    const formattedRoom = formatRoomObj(rooms.data.find(x => x.id === id))
     await dispatch(setRoomId(formattedRoom))
     history.push('/add-room')
   }
