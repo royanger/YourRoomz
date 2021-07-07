@@ -18,6 +18,7 @@ const AddFurnitureDetails = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [nextDisabled, setNextDisabled] = React.useState(true)
+  const [categorySelected, setCategorySelected] = React.useState(false)
   const [material, setMaterial] = React.useState()
   const [color, setColor] = React.useState()
   const [category, setCategory] = React.useState({
@@ -26,7 +27,7 @@ const AddFurnitureDetails = () => {
   })
 
   const categories = useQuery(['categories'], getFurnitureCategories)
-  const materialList = useQuery(['materials'], getFurnitureMaterial)
+  //   const materialList = useQuery(['materials'], getFurnitureMaterial)
 
   React.useEffect(() => {
     if (category.id && color && material) {
@@ -59,11 +60,11 @@ const AddFurnitureDetails = () => {
     history.push('/add-furniture-comparison')
   }
 
-  if (materialList.isLoading || categories.isLoading) {
+  if (categories.isLoading) {
     return <Loader type="ellipsis" size={200} color="var(--warning)" />
   }
 
-  if (materialList.error || categories.error) {
+  if (categories.error) {
     return 'There was an error fetching information from the database'
   }
 
@@ -80,7 +81,6 @@ const AddFurnitureDetails = () => {
         <CategoryList
           categories={categories.data}
           category={category}
-          setCategory={setCategory}
           updateCategory={updateCategory}
         />
       ) : (
@@ -89,14 +89,18 @@ const AddFurnitureDetails = () => {
 
       <SelectColor callback={updateColor} />
 
-      {materialList ? (
+      {category.id !== false ? (
         <SelectMaterial
-          materialList={materialList.data}
+          materialList={category.relatedMaterial}
           updateMaterial={updateMaterial}
         />
       ) : (
-        ''
+        <p>Hide materials</p>
       )}
+      {/* {materialList ? (
+      ) : (
+        ''
+      )} */}
 
       <Footer
         callback={handleSave}

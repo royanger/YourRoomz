@@ -9,14 +9,14 @@ const SelectMaterial = ({ materialList, updateMaterial }) => {
         {materialList.map(item => {
           return (
             <div
-              key={item.id}
-              id={item.id}
+              key={item.material[0].id}
+              id={item.material[0].id}
               onClick={updateMaterial}
               style={{
-                backgroundImage: `url('/images/furniture-material/${item.image}'`,
+                backgroundImage: `url('/images/furniture-material/${item.material[0].image}'`,
               }}
             >
-              {item.name}
+              {item.material[0].name}
             </div>
           )
         })}

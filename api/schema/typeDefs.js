@@ -51,6 +51,15 @@ export const typeDefs = `
       id: String
       name: String
       image: String
+      relatedMaterial: [RelatedMaterial]
+   }
+
+   type RelatedMaterial {
+      id: String
+      categoryId: String
+      category: [Category]
+      materialId: String
+      material: [FurnitureMaterial]
    }
 
    type Category {
@@ -58,6 +67,7 @@ export const typeDefs = `
       name: String
       image: String
       rank: Float
+      relatedMaterial: [RelatedMaterial]
    }
 
    type RecommendedCategories {
@@ -106,6 +116,8 @@ export const typeDefs = `
       getFurnitureCategories: [Category]
       # Get Furniture Material
       getFurnitureMaterial: [FurnitureMaterial]
+      # Get Furniture Material by Category
+      getFurnitureMaterialByCategory(id: String): [Category]
       # Get Category Styles
       getCategoryStyles(categoryId: String): [CategoryStyles]
       # Get a all records for recommended Categories

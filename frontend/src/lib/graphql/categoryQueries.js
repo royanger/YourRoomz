@@ -20,17 +20,45 @@ export async function getCategoryStyles(key) {
 
 export async function getFurnitureCategories(key) {
   const data = await fetchData(
-    `query {
-         getFurnitureCategories {
+    `query{
+      getFurnitureCategories {
+        id
+        name
+        image
+        relatedMaterial {
+          id
+            material {
             id
             name
             image
-         }
+          }
+        }
       }
-   `,
+    }`,
     {}
   )
   return data?.getFurnitureCategories
+}
+
+export async function getFurnitureMaterialByCategory(key) {
+  const { id } = key.queryKey[1]
+  const data = await fetchData(
+    `query{
+      getFurnitureMaterialByCategory {
+     id
+     relatedMaterial {
+       id
+       material {
+         id
+         name
+         image
+       }
+     }
+   }
+}`,
+    { variables: { id } }
+  )
+  return data?.getFurnitureMaterialByCategory
 }
 
 export async function getFurnitureMaterial(key) {
