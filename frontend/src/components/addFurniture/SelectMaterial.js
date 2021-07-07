@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-const SelectMaterial = ({ materialList, updateMaterial }) => {
+const SelectMaterial = ({ materialList, updateMaterial, material }) => {
   return (
-    <>
-      <h4>Material</h4>
+    <div className="material-container">
+      <p>Material</p>
 
       <div className="material-selector">
         {materialList.map(item => {
@@ -15,13 +15,14 @@ const SelectMaterial = ({ materialList, updateMaterial }) => {
               style={{
                 backgroundImage: `url('/images/furniture-material/${item.material[0].image}'`,
               }}
+              className={material === item.material[0].id ? 'selected' : ''}
             >
-              {item.material[0].name}
+              <div className="title">{item.material[0].name}</div>
             </div>
           )
         })}
       </div>
-    </>
+    </div>
   )
 }
 

@@ -18,16 +18,15 @@ const AddFurnitureDetails = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [nextDisabled, setNextDisabled] = React.useState(true)
-  const [categorySelected, setCategorySelected] = React.useState(false)
+  //   const [categorySelected, setCategorySelected] = React.useState(false)
   const [material, setMaterial] = React.useState()
   const [color, setColor] = React.useState()
   const [category, setCategory] = React.useState({
     id: false,
-    name: 'Please select a furniture category',
+    name: 'Please select a furniture type',
   })
 
   const categories = useQuery(['categories'], getFurnitureCategories)
-  //   const materialList = useQuery(['materials'], getFurnitureMaterial)
 
   React.useEffect(() => {
     if (category.id && color && material) {
@@ -69,7 +68,7 @@ const AddFurnitureDetails = () => {
   }
 
   return (
-    <>
+    <div className="container addfurniture">
       <Title type="h1">What pre-existing items do you have?</Title>
 
       <p>
@@ -77,37 +76,45 @@ const AddFurnitureDetails = () => {
         provide
       </p>
 
-      {categories && category ? (
-        <CategoryList
-          categories={categories.data}
-          category={category}
-          updateCategory={updateCategory}
-        />
-      ) : (
-        ''
-      )}
-
-      <SelectColor callback={updateColor} />
+      <div
+        className={`form-container ${category.id !== false ? 'active' : ''}`}
+      >
+        {categories && category ? (
+          <CategoryList
+            categories={categories.data}
+            category={category}
+            updateCategory={updateCategory}
+          />
+        ) : (
+          ''
+        )}
+      </div>
 
       {category.id !== false ? (
-        <SelectMaterial
-          materialList={category.relatedMaterial}
-          updateMaterial={updateMaterial}
-        />
-      ) : (
-        <p>Hide materials</p>
-      )}
-      {/* {materialList ? (
+        <>
+          <SelectColor
+            callback={updateColor}
+            title="Color"
+            handleColorPicker={updateColor}
+            color={color}
+          />
+
+          <SelectMaterial
+            materialList={category.relatedMaterial}
+            updateMaterial={updateMaterial}
+            material={material}
+          />
+        </>
       ) : (
         ''
-      )} */}
+      )}
 
       <Footer
         callback={handleSave}
         nextDisabled={nextDisabled}
         prev="/add-room-details"
       />
-    </>
+    </div>
   )
 }
 

@@ -4,6 +4,7 @@ import RoomGrid from '../components/addRoom/RoomGrid'
 import Footer from '../components/footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
 import { roomSelector, updateRoomInfo } from '../lib/redux/roomSlice'
+import Title from '../components/Title'
 
 const AddRooms = () => {
   const history = useHistory()
@@ -47,6 +48,8 @@ const AddRooms = () => {
   return (
     <>
       <div className="container room">
+        <Title type="h1">Which room are you designing?</Title>
+        <p>Pick one room</p>
         <RoomGrid
           type={type || activeType}
           setType={setType}
