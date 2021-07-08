@@ -56,7 +56,7 @@
     .name {
       align-self: flex-end;
       background-color: var(--white);
-      // opacity: 0.8;
+
       width: 100%;
       color: var(--text);
       text-align: center;
@@ -74,27 +74,4 @@
       }
     }
   }
-
-  //   .wall-color,
-  //   .floor-color {
-  //     width: 45%;
-  //     max-width: 1200px;
-  //     margin-right: 100px;
-  //     display: grid;
-  //     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  //     gap: 30px 30px;
-  //     .color-card {
-  //       width: 120px;
-  //       height: 120px;
-  //       display: flex;
-  //       align-items: center;
-  //       justify-content: center;
-  //       background-color: grey;
-  //     }
-  //   }
-  //   section {
-  //     margin-top: 20px;
-  //     display: flex;
-  //     justify-content: center;
-  //   }
 }

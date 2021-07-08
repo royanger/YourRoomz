@@ -1,0 +1,30 @@
+.tooltip {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+
+  .tooltip-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    left: 100%;
+    margin-left: -15px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--white);
+    color: var(--text);
+    box-shadow: var(--box-shadow);
+    display: none;
+    z-index: 150;
+
+    h5 {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  &:hover .tooltip-content {
+    display: block;
+  }
+}

@@ -1,5 +1,7 @@
 import * as React from 'react'
 import Button from '../Button'
+import { processColor } from '../../lib/helpers/hexToName'
+import Tooltip from '../Tooltip'
 
 const EditIcon = () => {
   return (
@@ -25,10 +27,21 @@ const EyeIcon = () => {
   )
 }
 
-const Swatch = ({ hex }) => {
+const Swatch = ({ hex, floorColor }) => {
   if (!hex) return <p>No color</p>
 
-  return <div style={{ backgroundColor: hex }} className="swatch"></div>
+  return (
+    <div
+      data-text={`${processColor(hex).name}    ${hex}`}
+      style={{ backgroundColor: hex }}
+      className="swatch"
+    >
+      <Tooltip>
+        <h5>{processColor(hex).name}</h5>
+        <p>{hex}</p>
+      </Tooltip>
+    </div>
+  )
 }
 
 const RoomRow = ({ room, handleEditRoom }) => {
