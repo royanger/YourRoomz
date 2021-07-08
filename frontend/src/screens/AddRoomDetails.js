@@ -8,6 +8,7 @@ import {
   roomSelector,
   updateWallColor,
   updateFloorColor,
+  updateRoomInfo,
 } from '../lib/redux/roomSlice'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
@@ -33,7 +34,8 @@ const AddRoomDetails = () => {
   }, [roomInfo])
 
   const createRoomMutation = useMutation(createRoom, {
-    onSuccess: () => {
+    onSuccess: res => {
+      dispatch(updateRoomInfo({ id: res.id }))
       queryClient.invalidateQueries('rooms')
     },
   })
@@ -84,7 +86,6 @@ const AddRoomDetails = () => {
         typeId: roomInfo.roomtype.id,
         wallColor,
         floorColor,
-        floorMaterialId: '260c8fd9-d830-4946-9f90-e13c11a9ba77',
       })
     }
 

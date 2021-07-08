@@ -1,5 +1,4 @@
 import * as React from 'react'
-import ItemComparison from '../components/addFurniture/ItemComparison'
 import Footer from '../components/footer/Footer'
 import Title from '../components/Title'
 import { useHistory } from 'react-router-dom'
@@ -9,6 +8,7 @@ import { createFurniture } from '../lib/graphql/furnitureQueries'
 import { roomSelector } from '../lib/redux/roomSlice'
 import { useSelector } from 'react-redux'
 import Loader from 'react-ts-loaders'
+import SimilarItem from '../components/addFurniture/SimilarItem'
 
 const AddFurnitureDetails = () => {
   const history = useHistory()
@@ -17,7 +17,7 @@ const AddFurnitureDetails = () => {
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [selectedStyle, setSelectedStyle] = React.useState()
 
-  const recommendedCategorioes = useQuery(
+  const recommendedCategories = useQuery(
     ['rec-cats', { categoryId: roomInfo.newFurniture.categoryId }],
     getCategoryStyles
   )
@@ -30,12 +30,13 @@ const AddFurnitureDetails = () => {
     },
   })
 
-  const handleClick = e => {
-    setSelectedStyle(e.target.id)
+  const handleClick = id => {
+    setSelectedStyle(id)
     setNextDisabled(false)
   }
 
   const handleSave = () => {
+    console.log(roomInfo)
     createFurnitureMutation.mutate({
       roomId: roomInfo.id,
       color: roomInfo.newFurniture.color,
@@ -45,21 +46,33 @@ const AddFurnitureDetails = () => {
     })
   }
 
-  if (recommendedCategorioes.isLoading)
+  if (recommendedCategories.isLoading)
     return <Loader type="ellipsis" size={200} color="var(--warning)" />
 
   return (
     <>
-      <div className="container existing-items">
+      <div className="container comparison">
         <div>
           <Title type="h1">Choose similar pre-existing items</Title>
 
-          <p>Choose the item that looks similar to what you have.</p>
+          <p>
+            Select the image that is most stylistically similar to your item
+          </p>
+          <p>(Color doesn't matter) </p>
         </div>
-        <ItemComparison
-          handleClick={handleClick}
-          styles={recommendedCategorioes.data}
-        />
+
+        <div className="comparisongrid">
+          {recommendedCategories?.data?.map(style => {
+            return (
+              <SimilarItem
+                key={style.id}
+                categoryStyle={style}
+                selectedStyle={selectedStyle}
+                handleClick={handleClick}
+              />
+            )
+          })}
+        </div>
 
         <Footer
           callback={handleSave}

@@ -19,10 +19,15 @@ const AddFurnitureList = () => {
   const roomQuery = useQuery(['room', { roomId: roomInfo.id }], findRoomById)
 
   React.useEffect(() => {
-    if (roomInfo && roomInfo.furniture.length > 0) {
+    if (
+      roomQuery &&
+      roomQuery.data &&
+      roomQuery.data.furniture &&
+      roomQuery.data.furniture.length > 0
+    ) {
       setNextDisabled(false)
     }
-  }, [roomInfo])
+  }, [roomQuery])
 
   const deleteFurnitureMutation = useMutation(deleteFurniture, {
     onMutate: async values => {
