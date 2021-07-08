@@ -94,6 +94,7 @@ export async function findRoomById(key) {
                categoryStyles {
                   id
                   tag
+                  image
                }
 
                material {

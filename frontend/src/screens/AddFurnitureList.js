@@ -5,7 +5,8 @@ import { roomSelector } from '../lib/redux/roomSlice'
 import { useQueryClient, useMutation, useQuery } from 'react-query'
 import { findRoomById } from '../lib/graphql/roomQueries'
 import { deleteFurniture } from '../lib/graphql/furnitureQueries'
-import ItemList from '../components/addFurniture/ItemList'
+import ExistingItemRow from '../components/addFurniture/ExistingItemRow'
+import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
 import Loader from 'react-ts-loaders'
 
@@ -70,14 +71,43 @@ const AddFurnitureList = () => {
 
   return (
     <>
-      <ItemList furniture={sortedFurniture} handleDelete={handleDelete} />
+      <div className="container existing-items">
+        <div>
+          <Title type="h1">Your pre-existing items(s)</Title>
 
-      <Footer
-        nextDisabled={nextDisabled}
-        callback={callback}
-        furnitureList={true}
-        prev="/add-furniture-list"
-      />
+          <p>Here is a list of your pre-existing items</p>
+        </div>
+
+        <div className="list">
+          <div className="header">
+            <div>Furniture Type</div>
+            <div>Color</div>
+            <div>Material</div>
+            <div>Style</div>
+            <div>Action</div>
+          </div>
+          <div className="items-container">
+            <div className="items">
+              {sortedFurniture?.map(item => {
+                return (
+                  <ExistingItemRow
+                    key={item.id}
+                    item={item}
+                    handleDelete={handleDelete}
+                  />
+                )
+              })}
+            </div>
+          </div>
+        </div>
+
+        <Footer
+          nextDisabled={nextDisabled}
+          callback={callback}
+          furnitureList={true}
+          prev="/add-furniture-list"
+        />
+      </div>
     </>
   )
 }

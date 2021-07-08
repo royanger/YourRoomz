@@ -1,12 +1,20 @@
 import * as React from 'react'
+import Tooltip from '../Tooltip'
+import { processColor } from '../../lib/helpers/hexToName'
+import DeleteIcon from '../icons/DeleteIcon'
+import Button from '../Button'
 
 const ExistingItemRow = ({ item, handleDelete }) => {
+  const styleName = item.categoryStyles[0].tag.toLowerCase()
   return (
-    <div key={item.id} className="">
+    <div key={item.id} className="item">
       <div>{item.category[0].name}</div>
       <div>
         <div className="color-swatch" style={{ backgroundColor: item.color }}>
-          {item.color}
+          <Tooltip>
+            <h5>{processColor(item.color).name}</h5>
+            <p>{item.color}</p>
+          </Tooltip>
         </div>
       </div>
       <div>
@@ -16,15 +24,33 @@ const ExistingItemRow = ({ item, handleDelete }) => {
             backgroundImage: `url('/images/furniture-material/${item.material[0].image}'`,
           }}
         >
-          {item.material[0].name}
+          <Tooltip>
+            <h5>{item.material[0].name}</h5>
+          </Tooltip>
         </div>
       </div>
       <div>
-        <button onClick={() => handleDelete(item.id)} id={item.id}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z" />
-          </svg>
-        </button>
+        <div
+          className="image"
+          style={{
+            backgroundImage: `url('/images/furniture-styles/${item.categoryStyles[0].image}')`,
+          }}
+        >
+          <Tooltip>
+            <h5>{`${styleName.charAt(0).toUpperCase()}${styleName.slice(
+              1
+            )}`}</h5>
+          </Tooltip>
+        </div>
+      </div>
+      <div>
+        <Button
+          callback={() => handleDelete(item.id)}
+          id={item.id}
+          variant="icon"
+        >
+          <DeleteIcon />
+        </Button>
       </div>
     </div>
   )

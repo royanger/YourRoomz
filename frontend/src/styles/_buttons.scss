@@ -69,9 +69,17 @@
 
     &.icon {
       background-color: transparent;
-      color: var(--brand-primary);
+      color: var(--text);
       padding: 5px;
       font-size: 14px;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+
+      > p {
+        line-height: 18px;
+        margin-left: 5px;
+      }
 
       > svg {
         height: 20px;
