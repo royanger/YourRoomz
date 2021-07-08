@@ -11,6 +11,7 @@ const AddRooms = () => {
   const dispatch = useDispatch()
   const { roomInfo } = useSelector(roomSelector)
   const [type, setType] = React.useState('')
+  const [active, setActive] = React.useState(false)
   const [typeName, setTypeName] = React.useState()
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const activeType = roomInfo.roomtype ? roomInfo.roomtype.id : ''
@@ -18,13 +19,18 @@ const AddRooms = () => {
   React.useEffect(() => {
     if (roomInfo.roomtype?.id) {
       setNextDisabled(false)
+      setActive(true)
       setType(roomInfo.roomtype.id)
     }
   }, [roomInfo.roomtype?.id])
 
   React.useEffect(() => {
-    if (type) setNextDisabled(false)
-  }, [type])
+    if (type && active === true) {
+      setNextDisabled(false)
+    } else {
+      setNextDisabled(true)
+    }
+  }, [type, active])
 
   const handleSave = async e => {
     e.preventDefault()
@@ -54,6 +60,7 @@ const AddRooms = () => {
           type={type || activeType}
           setType={setType}
           setTypeName={setTypeName}
+          setActive={setActive}
         />
       </div>
       <Footer

@@ -1,32 +1,41 @@
 import * as React from 'react'
-import Card from './Card'
 import { useQuery } from 'react-query'
 import { getRoomTypes } from '../../lib/graphql/roomQueries'
 import Loader from 'react-ts-loaders'
+import RoomCard from './RoomCard'
 
-const RoomGrid = ({ type, setType, setTypeName }) => {
-  const handleClick = (_e, id, text) => {
-    setType(id)
-    setTypeName(text)
-  }
-
+const RoomGrid = ({ type, setType, setTypeName, setActive }) => {
   const roomTypes = useQuery(['room-types'], getRoomTypes)
 
   if (roomTypes.isLoading)
     return <Loader type="ellipsis" size={50} color="var(--warning)" />
 
+  const handleClick = (_e, id, name) => {
+    const type = roomTypes.data.filter(type => {
+      return type.id === id
+    })
+
+    if (type && type[0].active === true) {
+      setActive(true)
+    } else {
+      setActive(false)
+    }
+
+    setType(id)
+    setTypeName(name)
+  }
+
   return (
     <>
-      <div className="room-grid">
+      <div className="addroom">
         {roomTypes.data?.map(roomType => {
           return (
-            <Card
+            <RoomCard
               key={roomType.id}
               id={roomType.id}
-              text={roomType.name}
+              name={roomType.name}
               image={roomType.defaultImage}
               handler={handleClick}
-              variant="room-card"
               type={type}
               status={roomType.active}
             />
