@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updateNewFurniture } from '../lib/redux/roomSlice'
 import { useQuery } from 'react-query'
-import {
-  getFurnitureCategories,
-  getFurnitureMaterial,
-} from '../lib/graphql/categoryQueries'
+import { getFurnitureCategories } from '../lib/graphql/categoryQueries'
 import Title from '../components/Title'
 import Footer from '../components/footer/Footer'
 import CategoryList from '../components/addFurniture/CategoryList'
