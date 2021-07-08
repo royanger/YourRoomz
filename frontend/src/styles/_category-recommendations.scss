@@ -3,26 +3,38 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-gap: 30px;
+    margin-top: 30px;
 
     .item {
       background-size: cover;
-      height: 300px;
       width: auto;
       position: relative;
       border-radius: 10px;
       box-shadow: var(--box-shadow);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .image-container {
+        flex-grow: 1;
+        //   display: flex;
+        //   align-items: center;
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+      }
 
       .title {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
         background-color: var(--white);
         opacity: 0.8;
         padding: 15px;
         text-align: center;
-
+        color: var(--black);
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
       }

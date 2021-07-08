@@ -12,8 +12,10 @@ const Landing = () => {
             <h2>Get recommendations for free</h2>
             <h1>We Help You Create Your Dream Room.</h1>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisc elit. Nam nisl
-              placerat vitae sit tellus. Amet ac sed porttitor eget interdum.
+              Finding furniture that complements what you already have is
+              difficult and time-consuming. Give us some details about your
+              current set-up, and we’ll search for items that we think will tie
+              your room together.
             </p>
             <div className="button">
               <Link to="/login">

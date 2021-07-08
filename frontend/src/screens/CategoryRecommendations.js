@@ -162,6 +162,7 @@ const CategoryRecommendations = () => {
       <Footer
         callback={handleSave}
         nextDisabled={nextDisabled}
+        recommendations={true}
         prev="/add-furniture-list"
       />
     </>

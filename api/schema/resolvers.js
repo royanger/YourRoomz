@@ -15,6 +15,9 @@ export const resolvers = {
         where: {
           userId: args.userId,
         },
+        orderBy: {
+          createdAt: 'asc',
+        },
       })
     },
     findRoomById: (_parent, args, context) => {

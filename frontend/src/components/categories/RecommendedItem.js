@@ -9,18 +9,17 @@ const RecommendedItem = ({ category, handleClick, selectedCategories }) => {
       ? true
       : false
 
-  console.log(checked)
   return (
     <div
       className="item"
       onClick={() => handleClick(category.id)}
       id={category.id}
-      style={{
-        backgroundImage: `url('/images/categories/${category.image}')`,
-      }}
     >
       <CheckBox checked={checked} />
-      <span className="title">{category.name}</span>
+      <div className="image-container">
+        <img alt="category.name" src={`/images/categories/${category.image}`} />
+      </div>
+      <div className="title">{category.name}</div>
     </div>
   )
 }

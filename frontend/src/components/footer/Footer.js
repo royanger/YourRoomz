@@ -11,6 +11,7 @@ const Footer = ({
   nextVariant,
   prev,
   furnitureList,
+  recommendations,
 }) => {
   const history = useHistory()
 
@@ -22,10 +23,19 @@ const Footer = ({
     history.push('/add-furniture-details')
   }
 
+  const handleSkipRecommendations = () => {
+    console.log('clicked')
+    history.push('/recommendations')
+  }
+
   return (
     <FooterPortal>
       <footer>
-        <div className={`container ${furnitureList ? 'threecol' : 'twocol'}`}>
+        <div
+          className={`container ${
+            furnitureList || recommendations ? 'threecol' : 'twocol'
+          }`}
+        >
           <nav>
             <ul>
               <li>
@@ -45,6 +55,18 @@ const Footer = ({
                     text="Add another furniture item"
                     variant="small light"
                     callback={handleAddFurniture}
+                  />
+                </li>
+              ) : (
+                ''
+              )}
+              {recommendations ? (
+                <li>
+                  <Button
+                    id="footerAlt"
+                    text="Use our recommendations"
+                    variant="small light"
+                    callback={handleSkipRecommendations}
                   />
                 </li>
               ) : (
