@@ -51,14 +51,14 @@ const RoomRow = ({ room, handleEditRoom }) => {
           variant="small icon"
           callback={() => handleEditRoom(room.id)}
         >
-          <EditIcon />
+          <EditIcon /> Edit Room
         </Button>
         <Button
           id={room.id}
           variant="small icon"
           callback={() => handleEditRoom(room.id)}
         >
-          <EyeIcon />
+          <EyeIcon /> View Recommendations
         </Button>
       </div>
     </div>

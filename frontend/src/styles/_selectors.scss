@@ -24,6 +24,22 @@
         grid-gap: 0;
         position: relative;
 
+        .color-card:first-of-type {
+          border-top-left-radius: 10px;
+        }
+
+        .color-card:nth-child(6) {
+          border-top-right-radius: 10px;
+        }
+
+        .color-card:nth-child(7) {
+          border-bottom-left-radius: 10px;
+        }
+
+        .color-card:last-of-type {
+          border-bottom-right-radius: 10px;
+        }
+
         .color-card {
           width: 120px;
           height: 120px;
@@ -35,6 +51,7 @@
 
           &.active {
             position: relative;
+            border-radius: 0;
 
             > svg {
               width: 28px;
@@ -82,6 +99,7 @@
     grid-template-columns: repeat(4, 1fr);
     column-gap: 60px;
     max-width: 80%;
+    margin-top: 30px;
 
     > div {
       border: 1px solid var(--borders);
@@ -89,6 +107,7 @@
       height: 120px;
       background-size: cover;
       position: relative;
+      border-radius: 10px;
 
       .title {
         position: absolute;
@@ -112,22 +131,10 @@
         position: absolute;
         top: -30px;
         background-color: var(--white);
-        opacity: 0.8;
         width: 100%;
         height: 40px;
         color: var(--brand-primary);
       }
-    }
-  }
-
-  .comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-
-    > div {
-      width: 300px;
-      height: 300px;
-      background-size: cover;
     }
   }
 }

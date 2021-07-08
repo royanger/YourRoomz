@@ -33,7 +33,7 @@
     flex-direction: column;
     align-items: center;
     > div {
-      width: 70%;
+      width: 80%;
     }
 
     .form {
@@ -45,13 +45,16 @@
         text-align: left;
         padding: 15px 35px;
         background-color: var(--white);
-        border: 1.5px solid var(--brand-primary);
+        border: 1.5px solid var(--borders);
         border-radius: 5px;
         margin-bottom: 40px;
         position: relative;
         box-shadow: var(--box-shadow);
         color: var(--inactive);
 
+        &.open {
+          border: 1.5px solid var(--brand-primary);
+        }
         svg {
           width: 20px;
           height: auto;
@@ -75,6 +78,7 @@
           border-bottom: var(--borders);
           border-bottom: 1px;
           border-bottom-style: solid;
+          border: 1px solid var(--borders);
           padding: 15px 35px;
           font-weight: bold;
 

@@ -33,7 +33,7 @@ const CategoryList = ({ categories, category, updateCategory }) => {
           {({ open }) => (
             <>
               <Listbox.Label>Furniture Type</Listbox.Label>
-              <Listbox.Button>
+              <Listbox.Button className={open ? 'open' : 'closed'}>
                 {category.name} {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
               </Listbox.Button>
               <Listbox.Options>
