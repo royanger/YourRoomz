@@ -89,15 +89,20 @@ export const typeDefs = `
    type Cart {
       id: String
       userId: String
+      user: [User]
+      cartItems: [CartItems]
    }
 
    type CartItems {
       id: String
       cartId: String
+      cart: [Cart]
       name: String
       price: Float
+      rating: Float
+      rating_total: Float
       link: String
-      roomId: String
+      image: String
    }
 
    type Query {
@@ -122,6 +127,8 @@ export const typeDefs = `
       getCategoryStyles(categoryId: String): [CategoryStyles]
       # Get a all records for recommended Categories
       getRecommendedCategories(roomId: String): [RecommendedCategories]
+      # Get any carts for a user
+      getCart(userId: String): Cart
 
    }
 
@@ -132,11 +139,22 @@ export const typeDefs = `
       updateUser( id: String, data: UpdateUserInput): User
       # Add a new room
       createRoom(userId: String, typeId: String, wallColor: String, floorColor:  String): Room
+      # Update an existing room
       updateRoom(id: String, typeId: String, wallColor: String, floorColor: String): Room
+      # Create a new user furniture item, linked to an existing room
       createFurniture(roomId: String, color: String, categoryId: String, materialId: String, styleId: String ): Furniture
+      # Delete a furniture item
       deleteFurniture( id: String): Furniture
+      # Create a link between a room and a category, for getting recommendations
       createRecommendedCategory(roomId: String, categoryId: String): RecommendedCategories
+      # Delete a recommended category
       deleteRecommendedCategory(id: String): RecommendedCategories
+      # Create a cart
+      createCart( userId: String): Cart
+      # Create Cart item
+      createCartItem(cartId: String, name: String, price: Float, rating: Float, rating_total: Float, link: String, image: String, roomId: String): CartItems
+      # Delete an item from its carts
+      deleteCartItem(id: String): CartItems
    }
 
    input UpdateUserInput {

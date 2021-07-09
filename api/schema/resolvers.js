@@ -45,7 +45,6 @@ export const resolvers = {
       return context.prisma.furnitureMaterial.findMany()
     },
     getFurnitureMaterialByCategory: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.category.findMany({
         where: {
           id: args.id,
@@ -63,6 +62,14 @@ export const resolvers = {
       return context.prisma.recommendedCategories.findMany({
         where: {
           roomId: args.roomId,
+        },
+      })
+    },
+    getCart: (_parent, args, context) => {
+      console.log(args)
+      return context.prisma.cart.findUnique({
+        where: {
+          userId: args.userId,
         },
       })
     },
@@ -107,13 +114,6 @@ export const resolvers = {
         },
       })
     },
-    cartitems: (parent, _args, context) => {
-      return context.prisma.cartItems.findMany({
-        where: {
-          roomId: parent.id,
-        },
-      })
-    },
   },
   Furniture: {
     category: (parent, _args, context) => {
@@ -144,6 +144,16 @@ export const resolvers = {
       return context.prisma.furnitureMaterial.findMany({
         where: {
           id: parent.materialId,
+        },
+      })
+    },
+  },
+  Cart: {
+    cartItems: (parent, _args, context) => {
+      console.log(parent)
+      return context.prisma.cartItems.findMany({
+        where: {
+          cartId: parent.cartId,
         },
       })
     },
@@ -252,6 +262,41 @@ export const resolvers = {
     },
     deleteRecommendedCategory: (_parent, args, context) => {
       return context.prisma.recommendedCategories.delete({
+        where: {
+          id: args.id,
+        },
+      })
+    },
+    createCart: (_parent, args, context) => {
+      return context.prisma.cart.create({
+        data: {
+          user: {
+            connect: {
+              id: args.userId,
+            },
+          },
+        },
+      })
+    },
+    createCartItem: (_args, args, context) => {
+      return context.prisma.cartItems.create({
+        data: {
+          cart: {
+            connect: {
+              id: args.cartId,
+            },
+          },
+          name: args.name,
+          rating: args.rating,
+          rating_total: args.rating_total,
+          price: args.price,
+          link: args.link,
+          image: args.image,
+        },
+      })
+    },
+    deleteCartItem: (_parent, args, context) => {
+      return context.prisma.cartItems.delete({
         where: {
           id: args.id,
         },

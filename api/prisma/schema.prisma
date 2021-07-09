@@ -35,7 +35,6 @@ model Room {
    wallColor         String?
    floorColor        String?
    furniture         Furniture[]
-   cartItem          CartItems[]
    reccommended      RecommendedCategories[]
 }
 
@@ -119,18 +118,19 @@ model Recommendations {
 
 model Cart {
    id          String   @id @default(uuid())
-   userId      String
+   userId      String   @unique
    user        User     @relation (fields: [userId], references:[id])
    cartItems   CartItems[]
 }
 
 model CartItems {
-   id          String   @id @default(uuid())
-   cartId      String
-   cart        Cart     @relation (fields: [cartId], references:[id])
-   name        String
-   price       Float
-   link        String
-   roomId      String
-   room        Room     @relation (fields: [roomId], references:[id])
+   id             String   @id @default(uuid())
+   cartId         String
+   cart           Cart     @relation (fields: [cartId], references:[id])
+   name           String
+   rating         Float
+   rating_total   Float
+   price          Float
+   link           String
+   image          String
 }
