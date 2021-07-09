@@ -30,6 +30,14 @@ const Footer = ({
     history.push('/recommendations')
   }
 
+  const handleOnClick = e => {
+    if (nextDisabled === false) {
+      callback(e)
+    }
+  }
+
+  console.log('next', nextDisabled)
+
   return (
     <FooterPortal>
       <footer>
@@ -80,7 +88,7 @@ const Footer = ({
                   id="footerNext"
                   variant={`small footer right ${nextVariant}`}
                   disabled={nextDisabled}
-                  callback={callback}
+                  callback={handleOnClick}
                 >
                   Next <ChevronRightIcon />
                 </Button>
