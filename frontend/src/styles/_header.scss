@@ -3,6 +3,7 @@ header {
   justify-content: center;
   height: 120px;
   background-color: var(--white);
+  box-shadow: var(--box-shadow);
 
   > .container {
     display: flex;
@@ -32,6 +33,17 @@ header {
   }
 }
 
+.shoppingcart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  svg {
+    width: 40px;
+    height: 40px;
+    color: var(--black);
+  }
+}
 .profile-button {
   position: relative;
 
