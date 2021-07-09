@@ -23,7 +23,13 @@ const ResultItem = ({ item, addToSelected, selected }) => {
       onClick={() => addToSelected(details)}
     >
       <CheckBox variant="small" checked={isSelected ? true : false} />
-      <Info variant="small">Test</Info>
+      <Info variant="small">
+        <img src={item.image} alt={item.title} />
+        <h5>{item.title}</h5>
+        <p>Rating: {item.rating}</p>
+        <p>Ratings: {item.ratings_total}</p>
+        <p>${item.prices[0].value}</p>
+      </Info>
       <img src={item.image} alt={item.name} />
     </div>
   )

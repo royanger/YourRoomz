@@ -1,7 +1,7 @@
 import * as React from 'react'
 import InfoIcon from './icons/InfoIcon'
 
-const Tooltip = ({ children, variant }) => {
+const Info = ({ children, variant }) => {
   return (
     <div className={`info ${variant}`}>
       <InfoIcon />
@@ -10,4 +10,4 @@ const Tooltip = ({ children, variant }) => {
   )
 }
 
-export default Tooltip
+export default Info
