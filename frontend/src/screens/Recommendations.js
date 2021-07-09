@@ -83,6 +83,7 @@ const Recommendations = () => {
       })
     }
   }
+  console.log('selected', selected?.length)
 
   return (
     <div className="container recommendations">
@@ -90,7 +91,9 @@ const Recommendations = () => {
         <div className="recommendation-menu">
           <div className="section1">
             <Title type="h1">Our Recommendations</Title>
-            <Button text="Add selected item(s) to cart" />
+            <Button variant={selected?.length > 0 ? 'active' : 'disabled'}>
+              Add selected item(s) to cart
+            </Button>
           </div>
           <hr />
           <div className="section1">
