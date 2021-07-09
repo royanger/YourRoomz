@@ -1,6 +1,7 @@
 import { colorList } from '../../lib/colors'
 import { ChromePicker } from 'react-color'
 import CheckIcon from '../icons/CheckIcon'
+import { processColor } from '../../lib/helpers/hexToName'
 
 const SelectColor = ({
   title,
@@ -22,7 +23,7 @@ const SelectColor = ({
                   <div
                     key={id}
                     id={id}
-                    onClick={callback}
+                    onClick={() => callback(id)}
                     className={`color-card ${
                       color === item.color ? 'active' : ''
                     } `}
@@ -31,6 +32,9 @@ const SelectColor = ({
                     }}
                     aria-label={item.name}
                   >
+                    <div className="hoverlabel" onClick={() => callback(id)}>
+                      {processColor(item.color).name}
+                    </div>
                     {color === item.color ? <CheckIcon /> : ''}
                   </div>
                 )

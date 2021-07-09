@@ -50,15 +50,16 @@ const AddRoomDetails = () => {
     if (wallColor && floorColor) setNextDisabled(false)
   }, [wallColor, floorColor])
 
-  const handleColorSelector = e => {
-    const target = e.target.id.split('-').slice(0, 1).join('')
+  const handleColorSelector = id => {
+    console.log(id)
+    const target = id.split('-').slice(0, 1).join('')
     if (target === 'wall') {
-      setWallColor(e.target.id.split('-').slice(1).join(''))
-      dispatch(updateWallColor(e.target.id.split('-').slice(1).join('')))
+      setWallColor(id.split('-').slice(1).join(''))
+      dispatch(updateWallColor(id.split('-').slice(1).join('')))
     }
     if (target === 'floor') {
-      setFloorColor(e.target.id.split('-').slice(1).join(''))
-      dispatch(updateFloorColor(e.target.id.split('-').slice(1).join('')))
+      setFloorColor(id.split('-').slice(1).join(''))
+      dispatch(updateFloorColor(id.split('-').slice(1).join('')))
     }
   }
 

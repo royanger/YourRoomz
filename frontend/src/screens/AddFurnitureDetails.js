@@ -35,8 +35,8 @@ const AddFurnitureDetails = () => {
     setCategory(e)
   }
 
-  const updateColor = e => {
-    setColor(e.target.id)
+  const updateColor = id => {
+    setColor(id)
   }
   const handleColorPicker = colorObj => {
     setColor(colorObj.hex)
