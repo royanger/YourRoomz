@@ -7,6 +7,7 @@
 
     .recommendation-menu {
       background-color: var(--white);
+      height: calc(100vh - 120px);
 
       hr {
         color: var(--borders);
@@ -103,6 +104,7 @@
 
     .comparison {
       width: 100%;
+      background-image: url('/images/background-recommendations.svg');
     }
   }
 }

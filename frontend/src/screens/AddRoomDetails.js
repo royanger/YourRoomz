@@ -26,11 +26,9 @@ const AddRoomDetails = () => {
 
   // if Redux has stored room info, load that into state
   React.useEffect(() => {
-    if (roomInfo) {
-      setWallColor(roomInfo?.wallColor)
-      setFloorColor(roomInfo?.floorColor)
-      setNextDisabled(false)
-    }
+    if (roomInfo.wallColor) setWallColor(roomInfo?.wallColor)
+    if (roomInfo.floorColor) setFloorColor(roomInfo?.floorColor)
+    if (roomInfo.floorColor && roomInfo.wallColor) setNextDisabled(false)
   }, [roomInfo])
 
   const createRoomMutation = useMutation(createRoom, {
