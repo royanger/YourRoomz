@@ -39,20 +39,36 @@ const generateResults = async (req, res) => {
     }
   })
   const searchTerms = selectedCategories.map(selected => {
-    return { category: selected.category.name, ...colorAndStyle[0] }
+    return {
+      category: selected.category.name,
+      id: selected.category.id,
+      price1: selected.category.pricerange1,
+      price2: selected.category.pricerange2,
+      price3: selected.category.pricerange3,
+      price4: selected.category.pricerange4,
+      ...colorAndStyle[0],
+    }
   })
 
   let results = []
 
   await Promise.all(
     searchTerms.map(async (term, i) => {
-      console.log(term.category)
       return await axios
         .get('https://60e48b415bcbca001749eab3.mockapi.io/search')
         .then(async function (res) {
           results = [
             ...results,
-            { index: i, category: [term.category], results: res.data },
+            {
+              index: i,
+              category: term.category,
+              categoryId: term.id,
+              price1: term.price1,
+              price2: term.price2,
+              price3: term.price3,
+              price4: term.price4,
+              data: res.data,
+            },
           ]
         })
     })
