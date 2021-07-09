@@ -2,6 +2,8 @@ import * as React from 'react'
 import FooterPortal from '../portals/Footer'
 import { useHistory } from 'react-router-dom'
 import Button from '../Button'
+import ChevronLeftIcon from '../icons/ChevronLeftIcon'
+import ChevronRightIcon from '../icons/ChevronRightIcon'
 
 const Footer = ({
   nextDisabled,
@@ -41,19 +43,20 @@ const Footer = ({
               <li>
                 <Button
                   id="footerBack"
-                  text="Back"
-                  variant={`small light ${backVariant}`}
+                  variant={`small footer left light ${backVariant}`}
                   disabled={backDisabled}
                   callback={handleBack}
                   onClick={handleBack}
-                />
+                >
+                  <ChevronLeftIcon /> Back
+                </Button>
               </li>
               {furnitureList ? (
                 <li>
                   <Button
                     id="footerAlt"
                     text="Add another furniture item"
-                    variant="small light"
+                    variant="small light line"
                     callback={handleAddFurniture}
                   />
                 </li>
@@ -65,7 +68,7 @@ const Footer = ({
                   <Button
                     id="footerAlt"
                     text="Use our recommendations"
-                    variant="small light"
+                    variant="small light line"
                     callback={handleSkipRecommendations}
                   />
                 </li>
@@ -75,11 +78,12 @@ const Footer = ({
               <li className="right">
                 <Button
                   id="footerNext"
-                  text="Next"
-                  variant={`small ${nextVariant}`}
+                  variant={`small footer right ${nextVariant}`}
                   disabled={nextDisabled}
                   callback={callback}
-                />
+                >
+                  Next <ChevronRightIcon />
+                </Button>
               </li>
             </ul>
           </nav>

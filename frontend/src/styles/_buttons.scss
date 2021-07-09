@@ -32,7 +32,17 @@
     &.light {
       background-color: var(--white);
       color: var(--brand-primary);
-      border: 2px solid var(--brand-primary);
+
+      &.line {
+        border: 2px;
+        border-style: solid;
+        border-color: var(--borders);
+        border-radius: 0;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+        padding-right: 30px;
+      }
     }
 
     &.disabled {
@@ -83,6 +93,30 @@
 
       > svg {
         height: 20px;
+        width: auto;
+      }
+    }
+
+    &.footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      cursor: pointer;
+
+      &.left {
+        svg {
+          margin-right: 10px;
+        }
+      }
+
+      &.right {
+        svg {
+          margin-left: 10px;
+        }
+      }
+
+      > svg {
+        height: 24px;
         width: auto;
       }
     }
