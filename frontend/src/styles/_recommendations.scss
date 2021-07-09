@@ -3,42 +3,101 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     column-gap: 20px;
+    width: 100%;
 
-    .current-furniture {
-      border: 2px solid red;
+    .recommendation-menu {
+      background-color: var(--white);
 
-      .furniture-item {
-        width: 300px;
-        height: 300px;
-        background-color: var(--brand-primary-400);
-        margin-bottom: 2rem;
+      hr {
+        color: var(--borders);
+      }
+
+      .section1,
+      .section2 {
+        padding: 20px;
+
+        h1 {
+          font-size: 18px;
+          font-family: 'Open Sans', 'sans-serif';
+          align-self: flex-start;
+        }
+
+        .button,
+        button {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .category-form,
+      .price-form {
+        margin-bottom: 15px;
+        position: relative;
+
+        label {
+          display: none;
+        }
+        button {
+          background-color: transparent;
+          text-align: left;
+          padding: 15px;
+          border: 1px solid var(--borders);
+          border-radius: 10px;
+          position: relative;
+
+          svg {
+            height: 20px;
+            width: auto;
+            position: absolute;
+            right: 15px;
+          }
+        }
+        ul {
+          position: absolute;
+          background-color: var(--white);
+          z-index: 150;
+          width: 100%;
+          list-style-type: none;
+          box-shadow: var(--box-shadow);
+          margin-top: 15px;
+          border-radius: 10px;
+          border: 1px solid var(--borders);
+          li {
+            padding: 15px;
+          }
+        }
+      }
+
+      .results {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+        position: relative;
+        margin-top: 30px;
+        .result-item {
+          background-color: var(--white);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: 50% 50%;
+          border: 1px solid var(--borders);
+          box-shadow: var(--box-shadow);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          img {
+            display: block;
+            width: 100%;
+            height: auto;
+          }
+        }
       }
     }
 
     .comparison {
       width: 100%;
-
-      border: 2px solid red;
-    }
-
-    .results {
-      border: 2px solid red;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 20px;
-
-      .result-item {
-        height: 150px;
-        width: 100%;
-        //   background-color: var(--brand-primary-400);
-        background-color: var(--white);
-        margin-bottom: 2rem;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        border: 1px solid var(--borders);
-        box-shadow: var(--box-shadow);
-      }
     }
   }
 }

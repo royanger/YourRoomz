@@ -4,6 +4,7 @@ import SelectPriceRange from '../components/recommendations/SelectPriceRange'
 import Comparison from '../components/recommendations/ViewWindow'
 import Results from '../components/recommendations/Results'
 import Button from '../components/Button'
+import Title from '../components/Title'
 import GenerateRecommendations from '../components/categories/GenerateRecommendations'
 
 import { useQueryClient, useQuery } from 'react-query'
@@ -16,6 +17,7 @@ const Recommendations = () => {
   const [showModal, setShowModal] = React.useState(false)
   const [results, setResults] = React.useState({})
   const [currentCategory, setCurrentCategory] = React.useState(0)
+  const [priceRange, setPriceRange] = React.useState(4)
   //   const [results, setResults] = React.useState()
   //   const queryClient = useQueryClient()
 
@@ -28,35 +30,48 @@ const Recommendations = () => {
   //     return `<p>${amazonSearch.error}</p>`
   //   }
 
-  const handleCategorySelection = e => {
-    console.log('cat', e)
-    setCurrentCategory(e)
+  const handleCategorySelection = id => {
+    setCurrentCategory(id)
+  }
+
+  const handlePriceSelection = price => {
+    console.log(price)
+    setPriceRange(price)
   }
 
   return (
     <div className="container recommendations">
       <div className="interface">
         <div className="recommendation-menu">
-          <Button text="Add selected item(s) to cart" variant="small" />
-          {results.length > 0 ? (
-            <SelectCategory
-              results={results}
-              handleClick={handleCategorySelection}
+          <div className="section1">
+            <Title type="h1">Our Recommendations</Title>
+            <Button text="Add selected item(s) to cart" />
+          </div>
+          <hr />
+          <div className="section1">
+            {results.length > 0 ? (
+              <SelectCategory
+                results={results}
+                handleClick={handleCategorySelection}
+                currentCategory={currentCategory}
+              />
+            ) : (
+              ''
+            )}
+            <SelectPriceRange
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              handleClick={handlePriceSelection}
             />
-          ) : (
-            ''
-          )}
-          <SelectPriceRange />
-          {results.length > 0 ? (
-            <Results results={results} currentCategory={currentCategory} />
-          ) : (
-            ''
-          )}
+            {results.length > 0 ? (
+              <Results results={results} currentCategory={currentCategory} />
+            ) : (
+              ''
+            )}
+          </div>
         </div>
         <Comparison />
       </div>
-
-      <div>Recommendations screen</div>
 
       <GenerateRecommendations
         showModal={showModal}

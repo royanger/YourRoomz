@@ -1,19 +1,31 @@
 import * as React from 'react'
+import { Listbox } from '@headlessui/react'
+import ChevronDownIcon from '../icons/ChevronDownIcon'
+import ChevronUpIcon from '../icons/ChevronUpIcon'
 
-const SelectCategory = ({ results, handleClick }) => {
+const SelectCategory = ({ results, handleClick, currentCategory }) => {
   return (
     <div>
-      <input type="type" name="All Categories" value="Select Categories" />
-
-      <ul>
-        {results.map(result => {
-          return (
-            <li key="result.index" onClick={() => handleClick(result.index)}>
-              {result.category}
-            </li>
-          )
-        })}
-      </ul>
+      <div className="category-form">
+        <Listbox value={currentCategory} onChange={handleClick}>
+          {({ open }) => (
+            <>
+              <Listbox.Label>Furniture Type</Listbox.Label>
+              <Listbox.Button className={open ? 'open' : 'closed'}>
+                {results[currentCategory].category}
+                {open ? <ChevronUpIcon /> : <ChevronDownIcon />}
+              </Listbox.Button>
+              <Listbox.Options>
+                {results?.map(item => (
+                  <Listbox.Option key={item.categoryId} value={item.index}>
+                    {item.category}
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </>
+          )}
+        </Listbox>
+      </div>
     </div>
   )
 }
