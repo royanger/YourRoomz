@@ -17,7 +17,7 @@ const RecommendedItem = ({ category, handleClick, selectedCategories }) => {
     >
       <CheckBox checked={checked} />
       <div className="image-container">
-        <img alt="category.name" src={`/images/categories/${category.image}`} />
+        <img alt={category.name} src={`/images/categories/${category.image}`} />
       </div>
       <div className="title">{category.name}</div>
     </div>
