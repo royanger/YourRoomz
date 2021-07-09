@@ -2,11 +2,9 @@ import * as React from 'react'
 import CheckSquare from './icons/CheckSquare'
 import Square from './icons/Square'
 
-const CheckBox = ({ checked }) => {
-  //   console.log('checked', checked)
-  //   console.log('test', checked ? 'active' : 'inactive')
+const CheckBox = ({ checked, variant }) => {
   return (
-    <div className={`checkbox${checked ? ' active' : ' inactive'}`}>
+    <div className={`checkbox${checked ? ' active' : ' inactive'} ${variant}`}>
       {checked ? <CheckSquare /> : <Square />}
     </div>
   )

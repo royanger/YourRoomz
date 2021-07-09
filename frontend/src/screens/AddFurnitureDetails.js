@@ -38,6 +38,9 @@ const AddFurnitureDetails = () => {
   const updateColor = e => {
     setColor(e.target.id)
   }
+  const handleColorPicker = colorObj => {
+    setColor(colorObj.hex)
+  }
 
   const updateMaterial = e => {
     setMaterial(e.target.id)
@@ -92,7 +95,7 @@ const AddFurnitureDetails = () => {
           <SelectColor
             callback={updateColor}
             title="Color"
-            handleColorPicker={updateColor}
+            handleColorPicker={handleColorPicker}
             color={color}
           />
 

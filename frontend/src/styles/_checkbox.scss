@@ -7,8 +7,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
+  background-color: var(--disabled);
   border-radius: 50%;
+  box-shadow: var(--box-shadow);
 
   > svg {
     width: 15px;
