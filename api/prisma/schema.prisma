@@ -52,10 +52,15 @@ model Category {
    name              String
    image             String?
    rank              Int
+   pricerange1       String   @default("0-49.99")
+   pricerange2       String   @default("50-99.99")
+   pricerange3       String   @default("100-149.99")
+   pricerange4       String   @default("150-100000000")
    furniture         Furniture[]
    categorystyles    CategoryStyles[]
    recommended       RecommendedCategories[]
    relatedMaterial   RelatedMaterial[]
+   recommendations   Recommendations[]
 }
 
 model RecommendedCategories {
@@ -102,6 +107,14 @@ model FurnitureMaterial {
    image             String?
    furniture         Furniture[]
    relatedMaterial   RelatedMaterial[]
+}
+
+model Recommendations {
+   id                String   @id @default(uuid())
+   categoryId        String
+   category          Category @relation (fields:[categoryId], references:[id])
+   searchKey         String
+   results           Json
 }
 
 model Cart {
