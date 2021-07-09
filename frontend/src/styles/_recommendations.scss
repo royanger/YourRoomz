@@ -87,10 +87,15 @@
           justify-content: center;
           position: relative;
 
+          &.selected {
+            border: 2px solid var(--brand-primary);
+          }
+
           img {
             display: block;
             width: 100%;
             height: auto;
+            border-radius: 10px;
           }
         }
       }

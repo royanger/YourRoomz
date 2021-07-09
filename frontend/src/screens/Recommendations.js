@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useAuth } from '../lib/context/authContext'
 import SelectCategory from '../components/recommendations/SelectCategory'
 import SelectPriceRange from '../components/recommendations/SelectPriceRange'
 import Comparison from '../components/recommendations/ViewWindow'
@@ -18,6 +19,7 @@ const Recommendations = () => {
   const [results, setResults] = React.useState({})
   const [currentCategory, setCurrentCategory] = React.useState(0)
   const [priceRange, setPriceRange] = React.useState(4)
+  const [selected, setSelected] = React.useState([])
   //   const [results, setResults] = React.useState()
   //   const queryClient = useQueryClient()
 
@@ -68,6 +70,8 @@ const Recommendations = () => {
                 results={results}
                 currentCategory={currentCategory}
                 priceRange={priceRange}
+                selected={selected}
+                setSelected={setSelected}
               />
             ) : (
               ''

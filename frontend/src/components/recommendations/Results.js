@@ -2,7 +2,13 @@ import * as React from 'react'
 import ResultItem from './ResultItem'
 import { priceRanges } from '../../lib/priceRanges.js'
 
-const Results = ({ results, currentCategory, priceRange }) => {
+const Results = ({
+  results,
+  currentCategory,
+  priceRange,
+  selected,
+  setSelected,
+}) => {
   let filteredResults
   if (priceRanges[priceRange].id === 'any') {
     // don't filter
@@ -22,10 +28,37 @@ const Results = ({ results, currentCategory, priceRange }) => {
     })
   }
 
+  const handleAddToSelected = details => {
+    // check if item is already selected
+    const selectedTest = selected.map(item => {
+      return item.asin === details.asin
+    })
+
+    if (selectedTest.includes(true)) {
+      // item in selected list, remove from it
+      const filtered = selected.filter(item => {
+        return item.asin !== details.asin
+      })
+      setSelected(filtered)
+    } else {
+      // not selected, add to state
+      setSelected(prevSelected => {
+        setSelected([...prevSelected, { ...details }])
+      })
+    }
+  }
+
   return (
     <div className="results">
       {filteredResults.map(item => {
-        return <ResultItem item={item} key={`${item.asin}=${item.position}`} />
+        return (
+          <ResultItem
+            item={item}
+            key={`${item.asin}`}
+            addToSelected={handleAddToSelected}
+            selected={selected}
+          />
+        )
       })}
     </div>
   )
