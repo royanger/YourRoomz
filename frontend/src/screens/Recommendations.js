@@ -64,7 +64,11 @@ const Recommendations = () => {
               handleClick={handlePriceSelection}
             />
             {results.length > 0 ? (
-              <Results results={results} currentCategory={currentCategory} />
+              <Results
+                results={results}
+                currentCategory={currentCategory}
+                priceRange={priceRange}
+              />
             ) : (
               ''
             )}

@@ -2,15 +2,9 @@ import * as React from 'react'
 import { Listbox } from '@headlessui/react'
 import ChevronDownIcon from '../icons/ChevronDownIcon'
 import ChevronUpIcon from '../icons/ChevronUpIcon'
+import { priceRanges } from '../../lib/priceRanges.js'
 
 const SelectPriceRange = ({ priceRange, setPriceRange, handleClick }) => {
-  const priceRanges = [
-    { name: '$', id: 'price1' },
-    { name: '$$', id: 'price2' },
-    { name: '$$$', id: 'price3' },
-    { name: '$$$$', id: 'price4' },
-    { name: 'All prices', id: 'any' },
-  ]
   return (
     <div>
       <div className="price-form">
