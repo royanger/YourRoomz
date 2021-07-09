@@ -8,7 +8,7 @@ const RoomGrid = ({ type, setType, setTypeName, setActive }) => {
   const roomTypes = useQuery(['room-types'], getRoomTypes)
 
   if (roomTypes.isLoading)
-    return <Loader type="ellipsis" size={50} color="var(--warning)" />
+    return <Loader type="ellipsis" size={50} color="var(--brand-accent)" />
 
   const handleClick = (_e, id, name) => {
     const type = roomTypes.data.filter(type => {

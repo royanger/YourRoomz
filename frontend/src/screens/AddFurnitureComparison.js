@@ -47,7 +47,7 @@ const AddFurnitureDetails = () => {
   }
 
   if (recommendedCategories.isLoading)
-    return <Loader type="ellipsis" size={200} color="var(--warning)" />
+    return <Loader type="ellipsis" size={200} color="var(--brand-accent)" />
 
   return (
     <>

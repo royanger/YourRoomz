@@ -22,7 +22,7 @@ const Rooms = ({ userId }) => {
   }
 
   if (rooms.isLoading) {
-    return <Loader type="ellipsis" size={50} color="var(--warning)" />
+    return <Loader type="ellipsis" size={50} color="var(--brand-accent)" />
   }
   if (rooms.error) {
     return <div>There was a problem fetching the room list</div>

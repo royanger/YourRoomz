@@ -131,7 +131,7 @@ const CategoryRecommendations = () => {
   }
 
   if (categories.isLoading || selectedCategories.isLoading) {
-    return <Loader />
+    return <Loader type="ellipsis" color="var(--brand-accent)" />
   }
 
   return (

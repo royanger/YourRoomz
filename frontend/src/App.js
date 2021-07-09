@@ -26,7 +26,7 @@ const App = () => {
   if (loading)
     return (
       <div className="loader-container">
-        <Loader type="ellipsis" size={200} color="var(--warning)" />
+        <Loader type="ellipsis" size={200} color="var(--brand-accent)" />
       </div>
     )
 

@@ -60,7 +60,7 @@ const AddFurnitureDetails = () => {
   }
 
   if (categories.isLoading) {
-    return <Loader type="ellipsis" size={200} color="var(--warning)" />
+    return <Loader type="ellipsis" size={200} color="var(--brand-accent)" />
   }
 
   if (categories.error) {

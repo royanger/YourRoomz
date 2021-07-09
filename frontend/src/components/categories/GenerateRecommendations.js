@@ -4,6 +4,7 @@ import Modal from '../portals/Modal'
 import { roomSelector } from '../../lib/redux/roomSlice'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import Loader from 'react-ts-loaders'
 
 const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
   const { roomInfo } = useSelector(roomSelector)
@@ -39,7 +40,12 @@ const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
       {/* //  <Modal className="generating-results" modalStatus={true}> */}
       <div className="background"></div>
       <div className="content">
-        <Title type="h1">Generating Results</Title>
+        <Loader
+          type="ellipsis"
+          color="var(--brand-accent)"
+          className="loader"
+        />
+        <p>We are working on your recommendations</p>
       </div>
     </Modal>
   )

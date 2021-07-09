@@ -67,7 +67,7 @@ const AddFurnitureList = () => {
   }
 
   if (roomQuery.isLoading)
-    return <Loader type="ellipsis" size={200} color="var(--warning)" />
+    return <Loader type="ellipsis" size={200} color="var(--brand-accent)" />
   if (roomQuery.error) return 'There was was error loading your furniture list'
 
   const sortedFurniture = roomQuery.data.furniture.sort((a, b) => {
