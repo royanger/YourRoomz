@@ -43,13 +43,13 @@ const ExistingItemRow = ({ item, handleDelete }) => {
           </Tooltip>
         </div>
       </div>
-      <div>
+      <div className="icons">
         <Button
           callback={() => handleDelete(item.id)}
           id={item.id}
-          variant="icon"
+          variant="small icon"
         >
-          <DeleteIcon />
+          <DeleteIcon /> <p>Delete</p>
         </Button>
       </div>
     </div>

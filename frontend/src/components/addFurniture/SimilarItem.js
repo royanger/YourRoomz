@@ -15,6 +15,9 @@ const SimilarItem = ({ categoryStyle, handleClick, selectedStyle }) => {
         id={categoryStyle.id}
         key={categoryStyle.id}
         onClick={() => handleClick(categoryStyle.id)}
+        className={
+          selectedStyle === categoryStyle.id ? 'selected' : 'unselected'
+        }
       >
         <CheckBox checked={checked} />
         <img
