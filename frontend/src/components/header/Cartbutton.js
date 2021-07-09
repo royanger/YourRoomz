@@ -19,6 +19,11 @@ const Cartbutton = ({ handleMenuClose }) => {
       <div className="shoppingcart">
         <Link to="/cart" onClick={() => handleMenuClose}>
           <ShoppingCartIcon />
+          {cart.data.cartItems.length > 0 ? (
+            <span className="itemcount">{cart.data.cartItems.length}</span>
+          ) : (
+            ''
+          )}
         </Link>
       </div>
     </>

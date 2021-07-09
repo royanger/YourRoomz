@@ -38,10 +38,28 @@ header {
   align-items: center;
   justify-content: center;
   margin-right: 40px;
+  height: 60px;
+  width: 60px;
+  position: relative;
   svg {
     width: 40px;
     height: 40px;
     color: var(--black);
+    display: block;
+  }
+  .itemcount {
+    background-color: var(--error);
+    color: var(--white);
+    font-size: 16px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    right: 0;
   }
 }
 .profile-button {
