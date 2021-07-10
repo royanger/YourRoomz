@@ -149,8 +149,6 @@ export const typeDefs = `
       createRecommendedCategory(roomId: String, categoryId: String): RecommendedCategories
       # Delete a recommended category
       deleteRecommendedCategory(id: String): RecommendedCategories
-      # Create a cart
-      createCart( userId: String): Cart
       # Create Cart item
       createCartItem(cartId: String, name: String, price: Float, rating: Float, rating_total: Float, link: String, image: String, roomId: String): CartItems
       # Delete an item from its carts

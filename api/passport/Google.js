@@ -21,12 +21,21 @@ const passportGoogle = async passport => {
         })
         // if not, then add the user
         if (!user) {
-          await context.prisma.user.create({
+          const newUser = await context.prisma.user.create({
             data: {
               givenName: profile.name.givenName,
               familyName: profile.name.familyName,
               email: profile.emails[0].value,
               googleId: profile.id,
+            },
+          })
+          await context.prisma.cart.create({
+            data: {
+              user: {
+                connect: {
+                  id: newUser.id,
+                },
+              },
             },
           })
         }

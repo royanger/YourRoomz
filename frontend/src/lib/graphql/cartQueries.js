@@ -25,18 +25,6 @@ export async function getCart(key) {
   return data?.getCart
 }
 
-export async function createCart({ userId }) {
-  const data = await fetchData(
-    `mutation($userId: String!) {
-         createCart( userId: $userId)
-         { id }
-       }
-      `,
-    { variables: { userId } }
-  )
-  return data?.createCart
-}
-
 export async function createCartItem({
   cartId,
   name,

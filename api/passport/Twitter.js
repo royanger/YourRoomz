@@ -24,11 +24,20 @@ const passportTwitter = async passport => {
 
         // if not, then add the user
         if (!user) {
-          await context.prisma.user.create({
+          const newUser = await context.prisma.user.create({
             data: {
               displayName: profile.displayName,
               email: profile.emails[0].value,
               twitterId: profile.id,
+            },
+          })
+          await context.prisma.cart.create({
+            data: {
+              user: {
+                connect: {
+                  id: newUser.id,
+                },
+              },
             },
           })
         }

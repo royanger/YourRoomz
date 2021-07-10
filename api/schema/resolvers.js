@@ -267,17 +267,6 @@ export const resolvers = {
         },
       })
     },
-    createCart: (_parent, args, context) => {
-      return context.prisma.cart.create({
-        data: {
-          user: {
-            connect: {
-              id: args.userId,
-            },
-          },
-        },
-      })
-    },
     createCartItem: (_args, args, context) => {
       return context.prisma.cartItems.create({
         data: {
