@@ -17,7 +17,7 @@ const SelectCategory = ({ results, handleClick, currentCategory }) => {
               </Listbox.Button>
               <Listbox.Options>
                 {results?.map(item => (
-                  <Listbox.Option key={item.categoryId} value={item.index}>
+                  <Listbox.Option key={item.categoryId} value={item.category}>
                     {item.category}
                   </Listbox.Option>
                 ))}

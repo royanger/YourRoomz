@@ -33,6 +33,11 @@
       background-color: var(--white);
       color: var(--brand-primary);
 
+      svg {
+        height: 20px;
+        width: 20px;
+      }
+
       &.line {
         border: 2px;
         border-style: solid;

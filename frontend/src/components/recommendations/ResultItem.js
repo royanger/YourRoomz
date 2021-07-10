@@ -6,7 +6,7 @@ const ResultItem = ({ item, addToSelected, selected }) => {
   const details = {
     asin: item.asin,
     name: item.title,
-    price: item.prices[0].value,
+    price: item.price.value,
     rating: item.rating,
     rating_total: item.ratings_total,
     link: item.link,

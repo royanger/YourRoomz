@@ -6,6 +6,7 @@ import Button from '../components/Button'
 import { useDispatch } from 'react-redux'
 import { clearRoom } from '../lib/redux/roomSlice'
 import PlusIcon from '../components/icons/PlusIcon'
+import Title from '../components/Title'
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const Profile = () => {
         Add Room
       </Button>
 
-      <h1>Your Rooms</h1>
+      <Title type="h1">Your Rooms</Title>
       <p>Here is a list of all your rooms</p>
 
       <Rooms userId={userId} />

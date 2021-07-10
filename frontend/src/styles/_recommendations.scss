@@ -2,7 +2,6 @@
   .interface {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    column-gap: 20px;
     width: 100%;
 
     .recommendation-menu {
@@ -94,7 +93,8 @@
 
           img {
             display: block;
-            width: 100%;
+            max-width: 100%;
+            max-height: 130px;
             height: auto;
             border-radius: 10px;
           }
@@ -105,6 +105,8 @@
     .comparison {
       width: 100%;
       background-image: url('/images/background-recommendations.svg');
+      background-size: 8px 8px;
+      color: var(--warning);
     }
   }
 }

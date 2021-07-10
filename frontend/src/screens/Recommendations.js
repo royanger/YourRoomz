@@ -9,11 +9,12 @@ import Title from '../components/Title'
 import GenerateRecommendations from '../components/categories/GenerateRecommendations'
 
 import { useMutation, useQueryClient, useQuery } from 'react-query'
-import { getCart, createCart, createCartItem } from '../lib/graphql/cartQueries'
+import { getCart, createCartItem } from '../lib/graphql/cartQueries'
 import useAmazonSearch, {
   getAmazonSearch,
 } from '../lib/graphql/rainforestQueries'
 import { getMockAPISearch } from '../lib/graphql/mockapiQueries'
+import CartItem from '../components/cart/CartItem'
 
 const Recommendations = () => {
   const {
@@ -28,12 +29,6 @@ const Recommendations = () => {
   const queryClient = useQueryClient()
 
   const cart = useQuery(['cart', { userId: userId }], getCart)
-
-  const createCartMutation = useMutation(createCart, {
-    onSuccess: res => {
-      queryClient.invalidateQueries('cart')
-    },
-  })
 
   const createCartItemMutation = useMutation(createCartItem, {
     onSuccess: res => {
@@ -50,15 +45,12 @@ const Recommendations = () => {
   //     return `<p>${amazonSearch.error}</p>`
   //   }
 
-  // TODO
-  // The handleClick returns the value from the form, which is the index
-  // This doesn't match correctly and is a bug to crush
-  // Will need to get ID, and then when selecting a category pull array item
-  // based on the ID, not the array index
-
   const handleCategorySelection = id => {
-    console.log(id)
-    setCurrentCategory(id)
+    const arrayPosition = results.map(result => {
+      return result.category === id ? 'match' : 'fail'
+    })
+
+    setCurrentCategory(arrayPosition.indexOf('match'))
   }
 
   const handlePriceSelection = price => {
@@ -89,7 +81,10 @@ const Recommendations = () => {
         <div className="recommendation-menu">
           <div className="section1">
             <Title type="h1">Our Recommendations</Title>
-            <Button variant={selected?.length > 0 ? 'active' : 'disabled'}>
+            <Button
+              variant={selected?.length > 0 ? 'active' : 'disabled'}
+              callback={handleAddToCart}
+            >
               Add selected item(s) to cart
             </Button>
           </div>
