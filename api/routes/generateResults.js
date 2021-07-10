@@ -1,6 +1,9 @@
 import { context } from '../schema/context.js'
 import { processColor } from '../lib/hexToName.js'
 import axios from 'axios'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const generateResults = async (req, res) => {
   console.log('generating results', req.query.roomId)
@@ -54,9 +57,23 @@ const generateResults = async (req, res) => {
 
   await Promise.all(
     searchTerms.map(async (term, i) => {
+      const params = {
+        api_key: process.env.RAINFOREST_API_KEY,
+        type: 'search',
+        amazon_domain: 'amazon.com',
+        search_term: `${term.style} ${term.color} ${term.category}`,
+        sort_by: 'featured',
+      }
+      // console.log('params', params)
+
       return await axios
-        .get('https://60e48b415bcbca001749eab3.mockapi.io/search')
+        .get('https://60e48b415bcbca001749eab3.mockapi.io/search2')
+        //   .get('https://api.rainforestapi.com/request', { params })
         .then(async function (res) {
+          const filtered = res.data.filter(result => {
+            return result.price
+          })
+
           results = [
             ...results,
             {
@@ -67,9 +84,12 @@ const generateResults = async (req, res) => {
               price2: term.price2,
               price3: term.price3,
               price4: term.price4,
-              data: res.data,
+              data: filtered,
             },
           ]
+        })
+        .catch(error => {
+          console.log('error', error)
         })
     })
   ).then(function () {
