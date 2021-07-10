@@ -133,4 +133,5 @@ model CartItems {
    price          Float
    link           String
    image          String
+   asin           String
 }

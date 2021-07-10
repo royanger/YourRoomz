@@ -103,6 +103,7 @@ export const typeDefs = `
       rating_total: Float
       link: String
       image: String
+      asin: String
    }
 
    type Query {
@@ -150,7 +151,7 @@ export const typeDefs = `
       # Delete a recommended category
       deleteRecommendedCategory(id: String): RecommendedCategories
       # Create Cart item
-      createCartItem(cartId: String, name: String, price: Float, rating: Float, rating_total: Float, link: String, image: String, roomId: String): CartItems
+      createCartItem(cartId: String, name: String, price: Float, rating: Float, rating_total: Float, link: String, image: String, asin: String): CartItems
       # Delete an item from its carts
       deleteCartItem(id: String): CartItems
    }

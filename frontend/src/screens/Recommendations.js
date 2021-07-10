@@ -66,22 +66,20 @@ const Recommendations = () => {
     setPriceRange(price)
   }
 
-  const handleAddToCart = async details => {
-    console.log('add to cart', details)
-    console.log('cart', cart)
-    if (!cart.data) {
-      await createCartMutation.mutate({
-        userId: userId,
-      })
-      createCartItemMutation.mutate({
-        ...details,
-      })
-    } else {
-      createCartItemMutation.mutate({
-        cartId: cart.data.id,
-        ...details,
-      })
-    }
+  const handleAddToCart = async e => {
+    selected.map(selectedItem => {
+      if (
+        cart.data.cartItems.filter(e => e.asin === selectedItem.asin).length ===
+        0
+      ) {
+        // item not in cart, so add
+        return createCartItemMutation.mutate({
+          cartId: cart.data.id,
+          ...selectedItem,
+        })
+      }
+      return null
+    })
   }
   console.log('selected', selected?.length)
 

@@ -267,6 +267,7 @@ export const resolvers = {
         },
       })
     },
+
     createCartItem: (_args, args, context) => {
       return context.prisma.cartItems.create({
         data: {
@@ -281,6 +282,7 @@ export const resolvers = {
           price: args.price,
           link: args.link,
           image: args.image,
+          asin: args.asin,
         },
       })
     },

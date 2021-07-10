@@ -16,6 +16,7 @@ export async function getCart(key) {
           rating_total
           link
           image
+          asin
         }
       }
 
@@ -33,13 +34,25 @@ export async function createCartItem({
   rating_total,
   link,
   image,
+  asin,
 }) {
   const data = await fetchData(
-    `mutation($cartId: String!, $name: String!, $price: Float!, $rating: Float!, $rating_total: Float!, $link: String!, $image: String! ) {
-         createCartItem(cartId: $cartId, name: $name, price: $price, rating: $rating, rating_total: $rating_total, link: $link, image: $image, ) {id}
+    `mutation($cartId: String!, $name: String!, $price: Float!, $rating: Float!, $rating_total: Float!, $link: String!, $image: String!, $asin: String! ) {
+         createCartItem(cartId: $cartId, name: $name, price: $price, rating: $rating, rating_total: $rating_total, link: $link, image: $image, asin: $asin ) {id}
        }
       `,
-    { variables: { cartId, name, price, rating, rating_total, link, image } }
+    {
+      variables: {
+        cartId,
+        name,
+        price,
+        rating,
+        rating_total,
+        link,
+        image,
+        asin,
+      },
+    }
   )
   return data?.createCartItem
 }
