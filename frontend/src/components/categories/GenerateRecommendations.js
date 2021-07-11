@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Title from '../Title'
 import Modal from '../portals/Modal'
 import { roomSelector } from '../../lib/redux/roomSlice'
 import { useSelector } from 'react-redux'
@@ -8,7 +7,6 @@ import Loader from 'react-ts-loaders'
 
 const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
   const { roomInfo } = useSelector(roomSelector)
-  //   const [results, setResults] = React.useState()
 
   React.useEffect(() => {
     setShowModal(true)
@@ -25,6 +23,8 @@ const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
       setResults(data)
     }
     return data
+    // TODO Try and sort this out
+    // eslint-disable-next-line
   }, [])
 
   React.useEffect(() => {
@@ -33,7 +33,7 @@ const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
 
   setTimeout(() => {
     setShowModal(false)
-  }, 5000)
+  }, 10000)
 
   return (
     <Modal className="generating-results" modalStatus={showModal}>

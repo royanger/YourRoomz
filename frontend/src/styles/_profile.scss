@@ -2,6 +2,14 @@
   padding: 0 10px;
   position: relative;
 
+  .cta {
+    margin-top: 40px;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 40px;
+    border-radius: 10px;
+  }
   .rooms {
     width: 100%;
     margin-top: 40px;

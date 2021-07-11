@@ -8,6 +8,7 @@
 /api/.env
 /frontend/.env
 /frontend/build
+/video
 
 
 # testing

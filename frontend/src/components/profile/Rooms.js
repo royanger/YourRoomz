@@ -28,6 +28,10 @@ const Rooms = ({ userId }) => {
     return <div>There was a problem fetching the room list</div>
   }
 
+  if (rooms.data.length < 1) {
+    return <div className="cta">Please create your first room.</div>
+  }
+
   return (
     <>
       <div className="rooms">

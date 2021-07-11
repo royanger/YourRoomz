@@ -66,7 +66,6 @@ export const resolvers = {
       })
     },
     getCart: (_parent, args, context) => {
-      console.log(args)
       return context.prisma.cart.findUnique({
         where: {
           userId: args.userId,
@@ -150,10 +149,9 @@ export const resolvers = {
   },
   Cart: {
     cartItems: (parent, _args, context) => {
-      console.log(parent)
       return context.prisma.cartItems.findMany({
         where: {
-          cartId: parent.cartId,
+          cartId: parent.id,
         },
       })
     },
@@ -268,7 +266,7 @@ export const resolvers = {
       })
     },
 
-    createCartItem: (_args, args, context) => {
+    createCartItem: (_parent, args, context) => {
       return context.prisma.cartItems.create({
         data: {
           cart: {
