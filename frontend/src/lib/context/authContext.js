@@ -8,18 +8,18 @@ const AuthProvider = props => {
   const [loading, setLoading] = React.useState(true)
   const [authInfo, setAuthInfo] = React.useState({
     isAuthenticated: false,
-    userId: '',
-    email: '',
-    givenName: '',
-    familyName: '',
-    gravatar: '',
+    userId: null,
+    email: null,
+    givenName: null,
+    familyName: null,
+    gravatar: null,
   })
 
   const fetch = async () => {
     try {
       const res = await axios.get('/auth/authcheck')
       let gravatar
-      if (res.data.user.email) {
+      if (res.data.user.email !== undefined) {
         const hashedEmail = md5(res.data.user.email)
         gravatar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=150&d=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png`
       }
