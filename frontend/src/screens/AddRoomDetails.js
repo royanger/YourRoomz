@@ -49,7 +49,6 @@ const AddRoomDetails = () => {
   }, [wallColor, floorColor])
 
   const handleColorSelector = id => {
-    console.log(id)
     const target = id.split('-').slice(0, 1).join('')
     if (target === 'wall') {
       setWallColor(id.split('-').slice(1).join(''))

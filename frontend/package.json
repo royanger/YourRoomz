@@ -20,8 +20,8 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-stars": "^2.2.5",
     "react-ts-loaders": "^1.2.1",
-    "redux-thunk": "^2.3.0",
     "rgb-lab": "^1.0.0",
     "sass": "^1.34.1",
     "web-vitals": "^1.0.1"

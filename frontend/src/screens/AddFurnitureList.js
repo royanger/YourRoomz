@@ -60,7 +60,6 @@ const AddFurnitureList = () => {
   }
 
   const handleDelete = id => {
-    console.log('id', id)
     deleteFurnitureMutation.mutate({
       id: id,
     })

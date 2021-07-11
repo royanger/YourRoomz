@@ -26,7 +26,6 @@ const Footer = ({
   }
 
   const handleSkipRecommendations = () => {
-    console.log('clicked')
     history.push('/recommendations')
   }
 
@@ -35,8 +34,6 @@ const Footer = ({
       callback(e)
     }
   }
-
-  console.log('next', nextDisabled)
 
   return (
     <FooterPortal>

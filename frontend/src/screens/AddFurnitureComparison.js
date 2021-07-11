@@ -36,7 +36,6 @@ const AddFurnitureDetails = () => {
   }
 
   const handleSave = () => {
-    console.log(roomInfo)
     createFurnitureMutation.mutate({
       roomId: roomInfo.id,
       color: roomInfo.newFurniture.color,

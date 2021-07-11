@@ -3,7 +3,6 @@ import CheckSquare from './icons/CheckSquare'
 import Square from './icons/Square'
 
 const CheckBox = ({ checked, variant }) => {
-  //   console.log(checked)
   return (
     <div className={`checkbox${checked ? ' active' : ' inactive'} ${variant}`}>
       {checked ? <CheckSquare /> : <Square />}

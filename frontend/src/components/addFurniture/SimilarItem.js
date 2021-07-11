@@ -2,12 +2,7 @@ import * as React from 'react'
 import CheckBox from '../CheckBox'
 
 const SimilarItem = ({ categoryStyle, handleClick, selectedStyle }) => {
-  //   console.log('sel', selectedStyle)
-  //   console.log('id', categoryStyle.id)
-
   const checked = selectedStyle === categoryStyle.id ? true : false
-
-  //   console.log(selectedStyle === categoryStyle.id)
 
   return (
     <>
