@@ -1,8 +1,10 @@
 import * as React from 'react'
 import CheckBox from '../CheckBox'
 import Info from '../Info'
+import { Draggable } from 'react-beautiful-dnd'
+import Rating from '../Rating'
 
-const ResultItem = ({ item, addToSelected, selected }) => {
+const ResultItem = ({ item, addToSelected, selected, index }) => {
   const details = {
     asin: item.asin,
     name: item.title,
@@ -18,20 +20,30 @@ const ResultItem = ({ item, addToSelected, selected }) => {
   )
 
   return (
-    <div
-      className={`result-item ${isSelected ? 'selected' : 'unselected'}`}
-      onClick={() => addToSelected(details)}
-    >
-      <CheckBox variant="small" checked={isSelected ? true : false} />
-      <Info variant="small">
-        <img src={item.image} alt={item.title} />
-        <h5>{item.title}</h5>
-        <p>Rating: {item.rating}</p>
-        <p>Ratings: {item.ratings_total}</p>
-        <p>${item.prices[0].value}</p>
-      </Info>
-      <img src={item.image} alt={item.name} />
-    </div>
+    <Draggable draggableId={item.asin} index={index}>
+      {provided => {
+        return (
+          <div
+            className={`result-item ${isSelected ? 'selected' : 'unselected'}`}
+            onClick={() => addToSelected(details)}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <CheckBox variant="small" checked={isSelected ? true : false} />
+            <Info variant="small">
+              <img src={item.image} alt={item.title} />
+              <h5>{item.title}</h5>
+              <div className="rating">
+                <Rating rating={item.rating} size={25} /> ({item.ratings_total})
+              </div>
+              <p>${item.prices[0].value}</p>
+            </Info>
+            <img src={item.image} alt={item.name} />
+          </div>
+        )
+      }}
+    </Draggable>
   )
 }
 

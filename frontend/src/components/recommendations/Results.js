@@ -1,6 +1,7 @@
 import * as React from 'react'
 import ResultItem from './ResultItem'
 import { priceRanges } from '../../lib/priceRanges.js'
+import { Droppable } from 'react-beautiful-dnd'
 
 const Results = ({
   results,
@@ -25,6 +26,7 @@ const Results = ({
       ) {
         return item
       }
+      return null
     })
   }
 
@@ -49,18 +51,30 @@ const Results = ({
   }
 
   return (
-    <div className="results">
-      {filteredResults.map(item => {
-        return (
-          <ResultItem
-            item={item}
-            key={`${item.asin}`}
-            addToSelected={handleAddToSelected}
-            selected={selected}
-          />
-        )
-      })}
-    </div>
+    <Droppable droppableId="xcxcvxcvxc">
+      {provided => (
+        <div
+          className="results"
+          ref={provided.innerRef}
+          {...provided.droppableProps}
+        >
+          {filteredResults.map((item, i) => {
+            return (
+              <>
+                <ResultItem
+                  item={item}
+                  key={`${item.asin}`}
+                  index={i}
+                  addToSelected={handleAddToSelected}
+                  selected={selected}
+                />
+                {provided.placeholder}
+              </>
+            )
+          })}
+        </div>
+      )}
+    </Droppable>
   )
 }
 
