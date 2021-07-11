@@ -63,7 +63,7 @@ export async function deleteCartItem({ id }) {
          deleteCartItem(id: $id) {id}
        }
       `,
-    { variables: id }
+    { variables: { id } }
   )
   return data?.deleteCartItem
 }
