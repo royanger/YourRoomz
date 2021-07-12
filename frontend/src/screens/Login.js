@@ -15,12 +15,12 @@ const providers = [
     color: '#6AABE8',
     icon: 'twitter',
   },
-  {
-    title: 'GitHub',
-    provider: 'github',
-    color: 'rgb(36, 41, 46)',
-    icon: 'github',
-  },
+  //   {
+  //     title: 'GitHub',
+  //     provider: 'github',
+  //     color: 'rgb(36, 41, 46)',
+  //     icon: 'github',
+  //   },
 ]
 
 const Login = () => {

@@ -5,15 +5,33 @@
   background-position: center;
 
   // serve optimized images for various screen sizes
-  background-image: url('/images/landing/bg-xsm.jpg');
+  //   background-image: url('/images/landing/bg-xsm.jpg');
+
+  width: 100%;
+  position: relative;
+  .image {
+    img {
+      width: 100%;
+    }
+  }
+
   @include screen-size('sm') {
-    background-image: url('/images/landing/bg-sm.jpg');
+    //  background-image: url('/images/landing/bg-sm.jpg');
   }
   @include screen-size('md') {
-    background-image: url('/images/landing/bg-md.jpg');
+    //  background-image: url('/images/landing/bg-md.jpg');
+    .image {
+      display: none;
+    }
   }
   @include screen-size('lg') {
     background-image: url('/images/landing/bg-lg.jpg');
+    .container {
+      height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
   }
   @include screen-size('xl') {
     background-image: url('/images/landing/bg-xl.jpg');
@@ -24,9 +42,6 @@
 
   .container {
     height: calc(100vh - 120px);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
 
     > div {
       background-color: var(--white);
@@ -40,33 +55,56 @@
       }
 
       h1 {
-        font-size: 65px;
-        line-height: 78px;
+        font-size: 36px;
+        line-height: 48px;
         margin-bottom: 20px;
       }
       h2 {
-        font-size: 18px;
-        line-height: 0.5;
+        font-size: 14px;
+        line-height: 1.5;
         letter-spacing: 5%;
         position: relative;
         display: inline-block;
         text-transform: uppercase;
-      }
-      h2::after {
-        content: '';
-        position: absolute;
-        height: 1px;
-        border-top: 1px solid var(--text);
-        margin-left: 15px;
-        width: calc(100% - 75px);
-        top: 0;
-        transform: translateY(170%);
       }
 
       p {
         margin-bottom: 35px;
         opacity: 0.7;
         line-height: 160%;
+      }
+
+      @include screen-size('sm') {
+        //   h2::after {
+        //     bottom: initial;
+        //     top: 0;
+        //   }
+      }
+      @include screen-size('md') {
+        h1 {
+          font-size: 48px;
+          line-height: 58px;
+        }
+        h2 {
+          font-size: 18px;
+          line-height: 0.5;
+        }
+        h2::after {
+          content: '';
+          position: absolute;
+          height: 1px;
+          border-top: 1px solid var(--text);
+          margin-left: 15px;
+          width: calc(100% - 75px);
+          top: 0px;
+          transform: translateY(170%);
+        }
+      }
+      @include screen-size('lg') {
+        h1 {
+          font-size: 65px;
+          line-height: 78px;
+        }
       }
     }
   }

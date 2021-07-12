@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import Header from '../components/header/Header'
 
 const Landing = () => {
+  console.log(process.env.REACT_APP_API_URI)
   return (
     <>
       <Header />
       <main className="landing">
+        <div className="image">
+          <img src="/images/bg-md.jpg" alt="A well furnished living room" />
+        </div>
         <div className="container">
           <div>
             <h2>Get recommendations for free</h2>

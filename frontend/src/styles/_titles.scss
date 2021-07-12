@@ -3,16 +3,9 @@
   flex-direction: column;
   align-items: center;
 
-  //   h1 {
-  //     font-weight: bold;
-  //     font-size: 65px;
-  //     line-height: 120%;
-  //     letter-spacing: 0.2px;
-  //   }
-
   h1 {
     font-weight: bold;
-    font-size: 36px;
+    font-size: 20px;
     letter-spacing: 0.2px;
   }
 
@@ -38,5 +31,16 @@
     font-weight: medium;
     font-size: 18px;
     letter-spacing: 0.2px;
+  }
+  @include screen-size('md') {
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  @include screen-size('md') {
+    h1 {
+      font-size: 36px;
+    }
   }
 }

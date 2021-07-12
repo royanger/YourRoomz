@@ -18,9 +18,9 @@
 
   &-btn-container {
     text-align: center;
-    width: 70%;
-    max-width: 800px;
-    padding: 40px;
+    width: 90%;
+
+    padding: 20px;
     border-radius: 5px;
     background-color: var(--white);
     box-shadow: var(--box-shadow);
@@ -45,6 +45,13 @@
         width: 30px;
         height: auto;
       }
+    }
+  }
+  @include screen-size('md') {
+    &-btn-container {
+      width: 70%;
+      max-width: 800px;
+      padding: 40px;
     }
   }
 }
