@@ -13,11 +13,14 @@ const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
   }, [setShowModal])
 
   const queriesCallback = React.useCallback(async room => {
-    const { data } = await axios.get('http://localhost:5000/generateResults', {
-      params: {
-        roomId: room,
-      },
-    })
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_API_URI}/generateResults`,
+      {
+        params: {
+          roomId: room,
+        },
+      }
+    )
 
     if (data) {
       setResults(data)
