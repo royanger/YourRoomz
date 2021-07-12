@@ -13,7 +13,7 @@ const Brand = () => {
     <>
       <div className="brand">
         <Link to={location}>
-          <img src="/images/yourroomz-logo.png" alt="YourRoomz" />
+          <img src="/images/YourRoomz-logo.png" alt="YourRoomz" />
         </Link>
       </div>
     </>
