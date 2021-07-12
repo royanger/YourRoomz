@@ -93,15 +93,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 20px;
   }
 
   .comparisongrid {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 30px;
     margin-top: 40px;
     margin-bottom: 160px;
+
+    @include screen-size('sm') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
 
     > div {
       background-size: cover;
@@ -128,8 +133,16 @@
 }
 
 .addfurniture {
+  margin-bottom: 200px;
+  .heading {
+    padding: 0 20px;
+    text-align: center;
+  }
+
   > p {
     margin-bottom: 30px;
+    padding: 0 20px;
+    text-align: center;
   }
   .form-container {
     width: 100%;

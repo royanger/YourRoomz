@@ -14,49 +14,62 @@
 
     > div {
       margin-top: 30px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      column-gap: 30px;
+
+      @include screen-size('md') {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 30px;
+      }
 
       .colors {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-gap: 0;
         position: relative;
 
-        .color-card:first-of-type {
-          border-top-left-radius: 10px;
-        }
+        @include screen-size('md') {
+          grid-template-columns: repeat(6, 1fr);
+          .color-card:first-of-type {
+            border-top-left-radius: 10px;
+          }
 
-        .color-card:nth-child(6) {
-          border-top-right-radius: 10px;
-        }
+          .color-card:nth-child(6) {
+            border-top-right-radius: 10px;
+          }
 
-        .color-card:nth-child(7) {
-          border-bottom-left-radius: 10px;
-        }
+          .color-card:nth-child(7) {
+            border-bottom-left-radius: 10px;
+          }
 
-        .color-card:last-of-type {
-          border-bottom-right-radius: 10px;
+          .color-card:last-of-type {
+            border-bottom-right-radius: 10px;
+          }
         }
 
         .color-card {
-          width: 120px;
-          height: 120px;
+          width: 100%;
+          height: 70px;
           display: flex;
           align-items: center;
           justify-content: center;
           border: none;
           background-color: var(--item-color);
 
+          @include screen-size('sm') {
+            height: 120px;
+          }
+
+          @include screen-size('md') {
+            width: 120px;
+            height: 120px;
+          }
+
           svg {
             display: none;
           }
           .hoverlabel {
             display: none;
-            color: var(--white);
           }
-
           &.active,
           &:hover {
             position: relative;
@@ -73,7 +86,7 @@
               position: absolute;
               top: -20px;
               background-color: var(--item-color);
-              width: 120px;
+              width: 100%;
               height: 20px;
               border-top-left-radius: 10px;
               border-top-right-radius: 10px;
@@ -83,17 +96,23 @@
               position: absolute;
               bottom: -20px;
               background-color: var(--item-color);
-              width: 120px;
+              width: 100%;
               height: 20px;
               border-bottom-left-radius: 10px;
               border-bottom-right-radius: 10px;
             }
           }
-          &:hover {
+          @include screen-size('md') {
             .hoverlabel {
-              display: initial;
-              margin: 0 15px;
-              display: block;
+              display: none;
+              color: var(--white);
+              &:hover {
+                .hoverlabel {
+                  display: initial;
+                  margin: 0 15px;
+                  display: block;
+                }
+              }
             }
           }
           &.active {
@@ -108,6 +127,17 @@
           }
         }
       }
+
+      .picker {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include screen-size('md') {
+          margin-top: 0;
+        }
+      }
     }
   }
 }
@@ -119,13 +149,25 @@
   padding: 30px 40px;
   margin-bottom: 40px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .material-selector {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 60px;
     max-width: 80%;
     margin-top: 30px;
+
+    @include screen-size('sm') {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 60px;
+    }
+
+    @include screen-size('lg') {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: 60px;
+    }
 
     > div {
       border: 1px solid var(--borders);
@@ -134,6 +176,7 @@
       background-size: cover;
       position: relative;
       border-radius: 10px;
+      margin-bottom: 40px;
 
       .title {
         position: absolute;

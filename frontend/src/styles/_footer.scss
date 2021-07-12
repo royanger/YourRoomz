@@ -9,6 +9,7 @@ footer {
   color: var(--brand-primary);
   padding: 20px 0;
   box-shadow: -6px 10px 25px 0px rgba(0, 0, 0, 0.66);
+  z-index: 500;
 
   > .container.twocol {
     display: flex;
