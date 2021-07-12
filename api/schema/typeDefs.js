@@ -20,7 +20,6 @@ export const typeDefs = `
       createdAt: String
       wallColor: String
       floorColor: String
-      floorMaterialId: String!
       furniture: [Furniture]
       user: [User]
       type: [RoomType]
@@ -163,5 +162,6 @@ export const typeDefs = `
       googleId: String
       twitterId: String
       githubId: String
+      createdAt: String
    }
 `
