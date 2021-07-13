@@ -61,6 +61,7 @@ const generateResults = async (req, res) => {
         amazon_domain: 'amazon.com',
         search_term: `${term.style} ${term.color} ${term.category}`,
         sort_by: 'featured',
+        associate_id: 'yourroomz-20',
       }
 
       return await axios

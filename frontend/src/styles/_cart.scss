@@ -60,9 +60,19 @@
             height: 20px;
           }
 
-          .button {
+          .buy {
+            border-radius: 5px;
             position: absolute;
             bottom: 0;
+            background-color: rgba(13, 74, 74, 0.17);
+            color: var(--brand-primary);
+            padding: 10px 30px;
+            font-size: 15px;
+
+            &:hover {
+              background-color: var(--brand-primary);
+              color: var(--white);
+            }
           }
         }
 

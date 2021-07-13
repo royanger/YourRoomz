@@ -1,8 +1,8 @@
 import * as React from 'react'
 import Button from '../Button'
 import DeleteIcon from '../icons/DeleteIcon'
-import ShoppingCartIcon from '../icons/ShoppingCartIcon'
 import Rating from '../Rating'
+import BuyButton from './BuyButton'
 
 const CartItem = ({ item, handleDelete }) => {
   const name = item.name
@@ -20,9 +20,7 @@ const CartItem = ({ item, handleDelete }) => {
           </div>
           <p>{item.price}</p>
 
-          <Button variant="small amazon">
-            <ShoppingCartIcon /> Purchase from Amazon
-          </Button>
+          <BuyButton link={item.link} />
         </div>
         <div className="delete" onClick={() => handleDelete(item.id)}>
           <Button variant="light icon">

@@ -92,15 +92,6 @@
       }
     }
 
-    &.amazon {
-      background-color: rgba(13, 74, 74, 0.17);
-      color: var(--brand-primary);
-    }
-    &.amazon:hover {
-      background-color: var(--brand-primary);
-      color: var(--white);
-    }
-
     &.icon {
       background-color: transparent;
       color: var(--text);
