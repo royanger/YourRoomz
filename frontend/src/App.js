@@ -16,6 +16,7 @@ import Recommendations from './screens/Recommendations'
 import Profile from './screens/Profile'
 import LoadingRecs from './screens/LoadingRecs'
 import Cart from './screens/Cart'
+import Privacy from './components/privacy'
 
 // import components
 import RouteController from './components/routes/RouteController'
@@ -39,6 +40,13 @@ const App = () => {
             path="/"
             exact
             component={Landing}
+          />
+          <RouteController
+            routeType={'public'}
+            path="/privacy"
+            exact
+            header
+            component={Privacy}
           />
           <RouteController
             routeType={'auth'}
