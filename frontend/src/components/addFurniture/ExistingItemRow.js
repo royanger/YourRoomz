@@ -8,7 +8,9 @@ const ExistingItemRow = ({ item, handleDelete }) => {
   const styleName = item.categoryStyles[0].tag.toLowerCase()
   return (
     <div key={item.id} className="item">
+      <div className="subtitle">Furniture Type</div>
       <div>{item.category[0].name}</div>
+      <div className="subtitle">Color</div>
       <div>
         <div className="color-swatch" style={{ backgroundColor: item.color }}>
           <Tooltip>
@@ -17,6 +19,7 @@ const ExistingItemRow = ({ item, handleDelete }) => {
           </Tooltip>
         </div>
       </div>
+      <div className="subtitle">Material</div>
       <div>
         <div
           className="material-swatch"
@@ -29,6 +32,7 @@ const ExistingItemRow = ({ item, handleDelete }) => {
           </Tooltip>
         </div>
       </div>
+      <div className="subtitle">Style</div>
       <div>
         <div
           className="image"
@@ -43,6 +47,7 @@ const ExistingItemRow = ({ item, handleDelete }) => {
           </Tooltip>
         </div>
       </div>
+      <div className="subtitle">Actions</div>
       <div className="icons">
         <Button
           callback={() => handleDelete(item.id)}

@@ -1,5 +1,5 @@
 .landing {
-  height: calc(100vh - 120px);
+  height: calc(100vh - 106px);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -27,7 +27,7 @@
   @include screen-size('lg') {
     background-image: url('/images/landing/bg-lg.jpg');
     .container {
-      height: calc(100vh - 120px);
+      height: calc(100vh - 106px);
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -41,7 +41,7 @@
   }
 
   .container {
-    height: calc(100vh - 120px);
+    height: calc(100vh - 106px);
 
     > div {
       background-color: var(--white);

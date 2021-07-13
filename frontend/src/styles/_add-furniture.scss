@@ -7,10 +7,14 @@
     margin-top: 40px;
 
     .header {
-      display: grid;
+      display: none;
       grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
       width: 100%;
       padding: 25px 30px;
+
+      @include screen-size('md') {
+        display: grid;
+      }
     }
 
     .header {
@@ -27,28 +31,60 @@
       }
     }
 
+    @include screen-size('md') {
+      .items-container {
+        box-shadow: var(--box-shadow);
+        border-radius: 10px;
+      }
+    }
+
     .items {
-      background-color: var(--white);
-      border-radius: 10px;
-      box-shadow: var(--box-shadow);
-      padding: 25px 30px;
+      margin-bottom: 200px;
+
+      @include screen-size('md') {
+        > div:first-of-type {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        > div:last-of-type {
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
 
       .item {
+        border-radius: 10px;
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 2fr 1fr;
         width: 100%;
         padding: 20px 10px;
-        border-bottom: var(--borders);
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
+        background-color: var(--white);
+        padding: 25px 30px;
+        margin-bottom: 40px;
+
+        @include screen-size('md') {
+          grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+          border-bottom: var(--borders);
+          border-bottom-style: solid;
+          border-bottom-width: 1px;
+          border-radius: 0;
+          margin-bottom: 0;
+        }
 
         > div {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          padding: 20px 10px;
 
-          &:first-of-type {
-            justify-content: flex-start;
+          @include screen-size('md') {
+            &.subtitle {
+              display: none;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:nth-of-type(2) {
+              justify-content: flex-start;
+            }
           }
         }
         &:last-of-type {
