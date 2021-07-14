@@ -36,13 +36,15 @@ app.use(
   })
 )
 
-// app.use(cors())
 app.use(
   cors({
     origin: process.env.APP_URL,
     credentials: true,
   })
 )
+
+// make sure that sercure redirects from proxy are accepted
+app.enable('trust proxy')
 
 // configure passport
 app.use(passport.initialize())
