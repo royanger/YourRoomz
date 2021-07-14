@@ -7,7 +7,7 @@
   p {
     margin-bottom: 30px;
     padding: 0 20px;
-    text-align: center;
+    //  text-align: center;
   }
 
   .addroom {
@@ -65,7 +65,11 @@
         z-index: 100;
         position: relative;
         top: -10px;
-        padding: 25px;
+        padding: 12px;
+
+        @include screen-size('md') {
+          padding: 20px;
+        }
       }
     }
   }

@@ -26,6 +26,7 @@
         button {
           display: block;
           width: 100%;
+          cursor: pointer;
         }
       }
 
@@ -44,6 +45,9 @@
           border: 1px solid var(--borders);
           border-radius: 10px;
           position: relative;
+          &.open {
+            border: 1.5px solid var(--brand-primary);
+          }
 
           svg {
             height: 20px;
@@ -64,6 +68,7 @@
           border: 1px solid var(--borders);
           li {
             padding: 15px;
+            cursor: pointer;
           }
         }
       }

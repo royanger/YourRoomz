@@ -16,6 +16,7 @@
       border-radius: 10px;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
 
       &.selected {
         border: 2px solid var(--brand-primary);

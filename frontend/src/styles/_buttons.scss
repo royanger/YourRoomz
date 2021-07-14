@@ -4,6 +4,7 @@
   border-radius: 25px;
   border: none;
   display: inline-block;
+  cursor: pointer;
 
   &.disabled {
   }
@@ -22,6 +23,7 @@
     border: none;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
 
     &.small {
       padding: 7px 13px;
@@ -141,6 +143,7 @@
 .login-button {
   margin: 10px;
   border-radius: 5px;
+  cursor: pointer;
 
   button {
     padding: 5px 10px;
@@ -154,5 +157,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 }
