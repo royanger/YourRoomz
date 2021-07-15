@@ -22,7 +22,7 @@ const Swatch = ({ hex, floorColor }) => {
   )
 }
 
-const RoomRow = ({ room, handleEditRoom }) => {
+const RoomRow = ({ room, handleRoomActions }) => {
   return (
     <div className="grid">
       <div className="roomname">
@@ -40,14 +40,14 @@ const RoomRow = ({ room, handleEditRoom }) => {
         <Button
           id={room.id}
           variant="small icon"
-          callback={() => handleEditRoom(room.id)}
+          callback={() => handleRoomActions(room.id, 'edit')}
         >
           <EditIcon /> <p>Edit Room</p>
         </Button>
         <Button
           id={room.id}
           variant="small icon"
-          callback={() => handleEditRoom(room.id)}
+          callback={() => handleRoomActions(room.id, 'recommendations')}
         >
           <EyeIcon /> <p>Recommendations</p>
         </Button>

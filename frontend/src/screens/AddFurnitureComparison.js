@@ -17,8 +17,12 @@ const AddFurnitureDetails = () => {
   const [nextDisabled, setNextDisabled] = React.useState(true)
   const [selectedStyle, setSelectedStyle] = React.useState()
 
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
+
   const recommendedCategories = useQuery(
-    ['rec-cats', { categoryId: roomInfo.newFurniture.categoryId }],
+    ['rec-cats', { categoryId: roomInfo?.newFurniture.categoryId }],
     getCategoryStyles
   )
 

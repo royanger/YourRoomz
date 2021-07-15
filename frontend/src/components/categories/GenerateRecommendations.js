@@ -4,9 +4,15 @@ import { roomSelector } from '../../lib/redux/roomSlice'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import Loader from 'react-ts-loaders'
+import { useHistory } from 'react-router-dom'
 
 const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
   const { roomInfo } = useSelector(roomSelector)
+  const history = useHistory()
+
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
 
   React.useEffect(() => {
     setShowModal(true)
@@ -31,8 +37,8 @@ const GenerateRecommendations = ({ showModal, setShowModal, setResults }) => {
   }, [])
 
   React.useEffect(() => {
-    setResults(queriesCallback(roomInfo.id))
-  }, [queriesCallback, roomInfo.id, setResults])
+    setResults(queriesCallback(roomInfo?.id))
+  }, [queriesCallback, roomInfo?.id, setResults])
 
   setTimeout(() => {
     setShowModal(false)

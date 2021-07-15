@@ -16,7 +16,11 @@ const AddFurnitureList = () => {
   const { roomInfo } = useSelector(roomSelector)
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
-  const roomQuery = useQuery(['room', { roomId: roomInfo.id }], findRoomById)
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
+
+  const roomQuery = useQuery(['room', { roomId: roomInfo?.id }], findRoomById)
 
   React.useEffect(() => {
     if (

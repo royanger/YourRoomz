@@ -15,10 +15,14 @@ const Rooms = ({ userId }) => {
 
   const history = useHistory()
 
-  const handleEditRoom = async id => {
+  const handleRoomActions = async (id, action) => {
     const formattedRoom = formatRoomObj(rooms.data.find(x => x.id === id))
     await dispatch(setRoomId(formattedRoom))
-    history.push('/add-room')
+    if (action === 'edit') {
+      history.push('/add-room')
+    } else if (action === 'recommendations') {
+      history.push('/recommendations')
+    }
   }
 
   if (rooms.isLoading) {
@@ -51,7 +55,7 @@ const Rooms = ({ userId }) => {
             <RoomRow
               key={room.id}
               room={room}
-              handleEditRoom={handleEditRoom}
+              handleRoomActions={handleRoomActions}
             />
           )
         })}

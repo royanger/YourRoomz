@@ -1,6 +1,8 @@
 import * as React from 'react'
-// import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useAuth } from '../lib/context/authContext'
+import { roomSelector } from '../lib/redux/roomSlice'
+import { useSelector } from 'react-redux'
 import { useQueryClient, useQuery, useMutation } from 'react-query'
 import { getCart, deleteCartItem } from '../lib/graphql/cartQueries'
 import Title from '../components/Title'
@@ -9,19 +11,24 @@ import CartItem from '../components/cart/CartItem'
 import ChevronLeftIcon from '../components/icons/ChevronLeftIcon'
 
 const Cart = () => {
-  //   const history = useHistory()
+  const history = useHistory()
   const queryClient = useQueryClient()
   const {
     authInfo: { userId },
   } = useAuth()
+  const { roomInfo } = useSelector(roomSelector)
   const cart = useQuery(['cart', { userId: userId }], getCart)
   const [subtotal, setSubtotal] = React.useState()
+
+  if (roomInfo) {
+    console.log(roomInfo)
+  }
 
   React.useEffect(() => {
     const subtotal = cart?.data?.cartItems?.reduce(function (acc, current) {
       return acc + current.price
     }, 0)
-    setSubtotal(subtotal.toFixed(2))
+    setSubtotal(subtotal?.toFixed(2))
   }, [cart])
 
   const deleteCartMutation = useMutation(deleteCartItem, {
@@ -56,15 +63,31 @@ const Cart = () => {
     })
   }
 
+  const handleBack = target => {
+    history.push(target)
+  }
+
   return (
     <>
       <div
         className="container cart"
-        //   onClick={() => history.push('/recommendations')}
+        //   onClick={() => handleBack('/recommendations')}
       >
-        <Button variant="light cart-btn small">
-          <ChevronLeftIcon /> Back to Recommendations
-        </Button>
+        {roomInfo?.id ? (
+          <Button
+            variant="light cart-btn small"
+            callback={() => handleBack('/recommendations')}
+          >
+            <ChevronLeftIcon /> Back to Recommendations
+          </Button>
+        ) : (
+          <Button
+            variant="light cart-btn small"
+            callback={() => handleBack('/profile')}
+          >
+            <ChevronLeftIcon /> Back to Rooms
+          </Button>
+        )}
         <Title type="h1">Your Cart</Title>
         {cart?.data?.cartItems
           ? `You have ${cart.data.cartItems.length} items in your cart`

@@ -127,6 +127,8 @@ const Recommendations = () => {
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
                 handleClick={handlePriceSelection}
+                results={results}
+                currentCategory={currentCategory}
               />
 
               {results.length > 0 ? (

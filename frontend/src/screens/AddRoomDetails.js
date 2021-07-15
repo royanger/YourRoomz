@@ -24,11 +24,15 @@ const AddRoomDetails = () => {
   const [floorColor, setFloorColor] = React.useState('')
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
+
   // if Redux has stored room info, load that into state
   React.useEffect(() => {
-    if (roomInfo.wallColor) setWallColor(roomInfo?.wallColor)
-    if (roomInfo.floorColor) setFloorColor(roomInfo?.floorColor)
-    if (roomInfo.floorColor && roomInfo.wallColor) setNextDisabled(false)
+    if (roomInfo?.wallColor) setWallColor(roomInfo?.wallColor)
+    if (roomInfo?.floorColor) setFloorColor(roomInfo?.floorColor)
+    if (roomInfo?.floorColor && roomInfo?.wallColor) setNextDisabled(false)
   }, [roomInfo])
 
   const createRoomMutation = useMutation(createRoom, {

@@ -20,8 +20,13 @@ const CategoryRecommendations = () => {
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
   const { roomInfo } = useSelector(roomSelector)
+
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
+
   const selectedCategories = useQuery(
-    ['selectedCategories', { roomId: roomInfo.id }],
+    ['selectedCategories', { roomId: roomInfo?.id }],
     getRecommendedCategories
   )
 

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { roomSelector } from '../lib/redux/roomSlice'
 import { updateNewFurniture } from '../lib/redux/roomSlice'
 import { useQuery } from 'react-query'
 import { getFurnitureCategories } from '../lib/graphql/categoryQueries'
@@ -22,6 +23,11 @@ const AddFurnitureDetails = () => {
     id: false,
     name: 'Please select a furniture type',
   })
+  const { roomInfo } = useSelector(roomSelector)
+
+  if (!roomInfo || !roomInfo.id) {
+    history.push('/profile')
+  }
 
   const categories = useQuery(['categories'], getFurnitureCategories)
 

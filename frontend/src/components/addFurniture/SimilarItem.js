@@ -21,10 +21,9 @@ const SimilarItem = ({ categoryStyle, handleClick, selectedStyle }) => {
         <div className="info">
           <InfoIcon />
           <Tooltip>
-            <h5>Style</h5>
-            <p>{`${categoryStyle.tag
+            <h5>{`${categoryStyle.tag
               .charAt(0)
-              .toUpperCase()}${categoryStyle.tag.slice(1)}`}</p>
+              .toUpperCase()}${categoryStyle.tag.slice(1)}`}</h5>
           </Tooltip>
         </div>
 
