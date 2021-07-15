@@ -25,17 +25,23 @@ const Swatch = ({ hex, floorColor }) => {
 const RoomRow = ({ room, handleRoomActions }) => {
   return (
     <div className="grid">
+      <div className="subtitle">Room</div>
       <div className="roomname">
         {room.name !== null ? room.name : room.roomtype[0].name}
       </div>
+      <div className="subtitle">Wall Color</div>
       <div className="colors">
         <Swatch hex={room.wallColor} />
       </div>
+      <div className="subtitle">Floor Color</div>
       <div className="colors">
         <Swatch hex={room.floorColor} />
       </div>
+      <div className="subtitle">Furniture</div>
       <div>{room.furniture ? room.furniture.length : '0'}</div>
+      <div className="subtitle">Cart Items</div>
       <div>{room.cartitems ? room.cartitems.length : '0'}</div>
+      <div className="subtitle">Actions</div>
       <div className="icons">
         <Button
           id={room.id}

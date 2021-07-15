@@ -45,7 +45,7 @@ const Rooms = ({ userId }) => {
           <div>Floor Color</div>
           <div>Furniture</div>
           <div>Cart Items</div>
-          <div>Action</div>
+          <div>Actions</div>
         </div>
       </div>
       <div className="container">

@@ -6,7 +6,7 @@ const Title = ({ children, type, className }) => {
   const Heading = headingLevels.includes(safeHeading) ? safeHeading : 'p'
 
   return (
-    <div className="heading">
+    <div className={`heading ${className}`}>
       <Heading>{children}</Heading>
     </div>
   )

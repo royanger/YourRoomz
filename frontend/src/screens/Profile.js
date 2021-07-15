@@ -30,7 +30,9 @@ const Profile = () => {
         Add Room
       </Button>
 
-      <Title type="h1">Your Rooms</Title>
+      <Title type="h1" className="profile-title">
+        Your Rooms
+      </Title>
       <p>Here is a list of all your rooms</p>
 
       <Rooms userId={userId} />
