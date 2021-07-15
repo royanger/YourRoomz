@@ -69,10 +69,7 @@ const Cart = () => {
 
   return (
     <>
-      <div
-        className="container cart"
-        //   onClick={() => handleBack('/recommendations')}
-      >
+      <div className="container cart">
         {roomInfo?.id ? (
           <Button
             variant="light cart-btn small"
@@ -88,7 +85,9 @@ const Cart = () => {
             <ChevronLeftIcon /> Back to Rooms
           </Button>
         )}
-        <Title type="h1">Your Cart</Title>
+        <Title type="h1" className="title">
+          Your Cart
+        </Title>
         {cart?.data?.cartItems
           ? `You have ${cart.data.cartItems.length} items in your cart`
           : `You have no items in your cart`}

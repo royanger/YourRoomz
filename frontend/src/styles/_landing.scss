@@ -4,9 +4,6 @@
   background-size: cover;
   background-position: center;
 
-  // serve optimized images for various screen sizes
-  //   background-image: url('/images/landing/bg-xsm.jpg');
-
   width: 100%;
   position: relative;
   .image {
@@ -16,14 +13,14 @@
   }
 
   @include screen-size('sm') {
-    //  background-image: url('/images/landing/bg-sm.jpg');
   }
   @include screen-size('md') {
-    //  background-image: url('/images/landing/bg-md.jpg');
     .image {
       display: none;
     }
   }
+  // serve optimized images for various screen sizes
+  //   background-image: url('/images/landing/bg-xsm.jpg');
   @include screen-size('lg') {
     background-image: url('/images/landing/bg-lg.jpg');
     .container {
@@ -42,6 +39,7 @@
 
   .container {
     height: calc(100vh - 106px);
+    max-width: 1080px;
 
     > div {
       background-color: var(--white);
@@ -95,7 +93,7 @@
           height: 1px;
           border-top: 1px solid var(--text);
           margin-left: 15px;
-          width: calc(100% - 75px);
+          width: calc(100% - 215px);
           top: 0px;
           transform: translateY(170%);
         }

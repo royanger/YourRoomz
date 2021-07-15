@@ -1,6 +1,7 @@
 .profile {
   padding: 0 10px;
   position: relative;
+  max-width: 1080px;
 
   .profile-title {
     margin-top: 50px;
@@ -42,6 +43,7 @@
   }
   .container {
     width: 95%;
+
     padding: 10px 15px;
     margin-bottom: 200px;
     @include screen-size('md') {

@@ -1,9 +1,16 @@
 .cart {
   width: 100%;
+  max-width: 1080px;
   position: relative;
   padding-top: 30px;
   margin-bottom: 200px;
 
+  .title {
+    padding-top: 20px;
+    @include screen-size('sm') {
+      padding-top: 0;
+    }
+  }
   .cartitems {
     background-color: var(--white);
     box-shadow: var(--box-shadow);
