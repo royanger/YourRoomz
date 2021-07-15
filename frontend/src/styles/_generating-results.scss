@@ -36,7 +36,7 @@
     .content {
       position: absolute;
       height: 300px;
-      width: 90%;
+      width: 85%;
       background-color: var(--white);
       opacity: 1;
       z-index: 100;
@@ -46,6 +46,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 0 30px;
+
+      p {
+        text-align: center;
+      }
 
       @include screen-size('md') {
         width: 500px;

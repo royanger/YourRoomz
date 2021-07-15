@@ -14,7 +14,7 @@ const ExistingItemRow = ({ item, handleDelete }) => {
       <div className="subtitle">Color</div>
       <div>
         <div className="color-swatch" style={{ backgroundColor: item.color }}>
-          <div>
+          <div className="info">
             <InfoIcon />
           </div>
           <Tooltip>

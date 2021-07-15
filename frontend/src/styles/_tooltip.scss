@@ -5,9 +5,11 @@
 
   .tooltip-content {
     position: absolute;
-    top: 50%;
-    transform: translateY(-100%);
-    left: 100%;
+    //  top: 50%;
+    //  transform: translateY(-100%);
+    //  left: 100%;
+    top: 5px;
+    right: 5px;
     margin-left: -15px;
     width: 200px;
     padding: 20px;
