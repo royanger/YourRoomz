@@ -3,6 +3,14 @@
   width: 95%;
   margin-bottom: 2rem;
 
+  .titles {
+    width: 100%;
+    > p {
+      display: block;
+      text-align: center;
+    }
+  }
+
   .list {
     width: 100%;
     margin-top: 40px;
@@ -62,6 +70,7 @@
         background-color: var(--white);
         padding: 25px 30px;
         margin-bottom: 40px;
+        box-shadow: var(--box-shadow);
 
         @include screen-size('md') {
           grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
@@ -113,6 +122,26 @@
         background-repeat: no-repeat;
         background-position: center;
         box-shadow: var(--box-shadow);
+        > div {
+          height: 18px;
+          width: 18px;
+          background-color: var(--disabled);
+          border-radius: 50%;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            position: absolute;
+            height: 10px;
+            width: auto;
+            color: var(--black);
+            z-index: 50;
+          }
+        }
       }
       .image {
         background-size: contain;

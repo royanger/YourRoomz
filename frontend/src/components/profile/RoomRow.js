@@ -4,6 +4,7 @@ import { processColor } from '../../lib/helpers/hexToName'
 import Tooltip from '../Tooltip'
 import EditIcon from '../icons/EditIcon'
 import EyeIcon from '../icons/EyeIcon'
+import InfoIcon from '../icons/InfoIcon'
 
 const Swatch = ({ hex, floorColor }) => {
   if (!hex) return <p>No color</p>
@@ -14,6 +15,9 @@ const Swatch = ({ hex, floorColor }) => {
       style={{ backgroundColor: hex }}
       className="swatch"
     >
+      <div>
+        <InfoIcon />
+      </div>
       <Tooltip>
         <h5>{processColor(hex).name}</h5>
         <p>{hex}</p>

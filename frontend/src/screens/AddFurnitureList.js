@@ -80,7 +80,7 @@ const AddFurnitureList = () => {
   return (
     <>
       <div className="container existing-items">
-        <div>
+        <div className="titles">
           <Title type="h1">Your pre-existing items(s)</Title>
 
           <p>Here is a list of your pre-existing items</p>

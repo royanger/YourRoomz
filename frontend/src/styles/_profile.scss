@@ -109,6 +109,27 @@
           width: 75px;
           border-radius: 10px;
           position: relative;
+
+          > div {
+            height: 18px;
+            width: 18px;
+            background-color: var(--disabled);
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+              position: absolute;
+              height: 10px;
+              width: auto;
+              color: var(--black);
+              z-index: 50;
+            }
+          }
         }
       }
       .icons {
