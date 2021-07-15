@@ -24,7 +24,7 @@ const AddRoomDetails = () => {
   const [floorColor, setFloorColor] = React.useState('')
   const [nextDisabled, setNextDisabled] = React.useState(true)
 
-  if (!roomInfo || !roomInfo.id) {
+  if (!roomInfo?.roomtype?.id) {
     history.push('/profile')
   }
 

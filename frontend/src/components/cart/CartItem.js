@@ -18,11 +18,23 @@ const CartItem = ({ item, handleDelete }) => {
           <div className="rating">
             <Rating rating={item.rating} size={35} /> {item.rating_total}
           </div>
-          <p>{item.price}</p>
+          <div className="price">
+            ${(Math.round(item.price * 100) / 100).toFixed(2)}
+          </div>
 
-          <BuyButton link={item.link} />
+          <div className="buyanddelete">
+            <BuyButton link={item.link} />
+            <div
+              className="delete-mobile"
+              onClick={() => handleDelete(item.id)}
+            >
+              <Button variant="light icon">
+                <DeleteIcon />
+              </Button>
+            </div>
+          </div>
         </div>
-        <div className="delete" onClick={() => handleDelete(item.id)}>
+        <div className="delete-desktop" onClick={() => handleDelete(item.id)}>
           <Button variant="light icon">
             <DeleteIcon />
           </Button>
