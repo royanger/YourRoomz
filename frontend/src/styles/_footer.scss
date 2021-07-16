@@ -1,0 +1,56 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background-color: var(--white);
+  color: var(--brand-primary);
+  padding: 10px 0;
+  @include screen-size('md') {
+    padding: 20px 0;
+  }
+  box-shadow: -6px 10px 25px 0px rgba(0, 0, 0, 0.66);
+  z-index: 500;
+
+  > .container.twocol {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  nav {
+    width: 100%;
+    padding: 0 10px;
+
+    ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      list-style: none;
+
+      .right {
+        justify-self: end;
+      }
+
+      a {
+        color: var(---text);
+      }
+
+      a,
+      button {
+        padding: 10px 20px;
+        display: inline;
+      }
+    }
+  }
+  > .container.threecol nav ul {
+    grid-template-columns: auto 1fr auto;
+
+    li:nth-child(2) {
+      padding: 0 15px;
+      justify-self: end;
+    }
+  }
+}

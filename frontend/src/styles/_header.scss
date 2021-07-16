@@ -1,0 +1,183 @@
+header {
+  display: flex;
+  justify-content: center;
+  height: 106px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+
+  > .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .brand {
+    padding: 0;
+
+    img {
+      max-height: 32px;
+      width: auto;
+    }
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-grow: 1;
+
+    > a,
+    > button {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.shoppingcart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 40px;
+  height: 70px;
+  position: relative;
+  svg {
+    width: 30px;
+    height: 30px;
+    color: var(--black);
+    display: block;
+  }
+  .itemcount {
+    background-color: var(--error);
+    color: var(--white);
+    font-size: 12px;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    right: 0;
+  }
+}
+.profile-button {
+  position: relative;
+
+  .profile-img {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: 70px;
+
+    img {
+      height: 45px;
+      width: auto;
+      border-radius: 50%;
+    }
+  }
+
+  .profile-menu-container {
+    position: absolute;
+    display: block;
+    opacity: 0;
+    transition: all 0.35s ease;
+    width: 200px;
+    right: 0;
+    top: 100px;
+    z-index: -5;
+    background: transparent;
+
+    &.open {
+      opacity: 1;
+      z-index: 1;
+
+      .arrow {
+        z-index: 2;
+      }
+
+      .inner-container {
+        z-index: 5;
+      }
+    }
+    .arrow {
+      height: 40px;
+      width: 40px;
+      box-shadow: 0 0 10px var(--borders);
+      top: -15px;
+      position: absolute;
+      right: 15px;
+      z-index: -5;
+      transform: rotate(45deg);
+
+      color: var(--white);
+    }
+  }
+  .profile-menu {
+    box-shadow: 0 0 10px var(--borders);
+    border-radius: 5px;
+    background: var(--white);
+    z-index: 1;
+    position: absolute;
+    right: 0;
+
+    .inner-container {
+      background: var(--white);
+      position: relative;
+      right: 0;
+      z-index: -5;
+      border-radius: 5px;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+
+      > div {
+        padding: 10px 20px;
+
+        svg {
+          width: 20px;
+          height: auto;
+          margin-right: 7px;
+        }
+
+        a,
+        a:visited,
+        button {
+          color: var(--text);
+          text-decoration: none;
+        }
+      }
+      .name {
+        padding-bottom: 0px;
+        font-weight: bold;
+
+        a {
+          text-decoration: none;
+          color: --var(--black);
+        }
+      }
+
+      .email {
+        padding-top: 0px;
+        font-size: 14px;
+      }
+
+      .rooms {
+        padding-top: 25px;
+        padding-bottom: 15px;
+        border-top: 1px solid var(--borders);
+      }
+
+      .logout {
+        button {
+          //  display: flex;
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+  }
+}

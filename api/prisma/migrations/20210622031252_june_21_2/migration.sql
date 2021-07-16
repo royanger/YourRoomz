@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Room" ALTER COLUMN "floorMaterialId" SET DEFAULT E'94a04072-a571-450c-bbea-68109151426f';

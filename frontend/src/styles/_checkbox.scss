@@ -1,0 +1,34 @@
+.checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--disabled);
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+
+  > svg {
+    width: 15px;
+    height: auto;
+    background-color: transparent;
+  }
+  &.active > svg {
+    color: var(--brand-primary);
+  }
+  &.inactive > svg {
+    color: var(--inactive);
+  }
+
+  &.small {
+    width: 20px;
+    height: 20px;
+
+    > svg {
+      width: 10px;
+    }
+  }
+}

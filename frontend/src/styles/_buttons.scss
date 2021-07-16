@@ -1,0 +1,163 @@
+.button {
+  background-color: transparent;
+  color: var(--white);
+  border-radius: 25px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+
+  &.disabled {
+  }
+
+  a {
+    padding: 0;
+    margin: 0;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    line-height: 160%;
+    letter-spacing: 0.2px;
+    background-color: var(--brand-primary);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &.small {
+      padding: 7px 13px;
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    &.light {
+      background-color: var(--white);
+      color: var(--brand-primary);
+
+      svg {
+        height: 20px;
+        width: 20px;
+      }
+
+      &.line {
+        border: 2px;
+        border-style: solid;
+        border-color: var(--borders);
+        border-radius: 0;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 0;
+        padding-right: 30px;
+      }
+    }
+
+    &.disabled {
+      background-color: var(--disabled);
+      border-color: var(--disabled);
+    }
+
+    &.disabled.light {
+      border-color: var(--disabled);
+      background: transparent;
+      color: var(--disabled);
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    &.addroom {
+      position: absolute;
+      top: 15px;
+      right: 0;
+      margin-right: 10px;
+      padding-right: 25px;
+      padding-left: 25px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        height: 15px;
+        width: auto;
+        margin-right: 10px;
+      }
+    }
+    &.cart-btn {
+      color: var(--inactive);
+      position: absolute;
+      left: 0;
+      top: 10px;
+      background-color: transparent;
+
+      svg {
+        height: 10px;
+      }
+    }
+
+    &.icon {
+      background-color: transparent;
+      color: var(--text);
+      padding: 5px;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+
+      > p {
+        line-height: 18px;
+        margin-left: 5px;
+      }
+
+      > svg {
+        height: 20px;
+        width: auto;
+      }
+    }
+
+    &.footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      cursor: pointer;
+
+      &.left {
+        svg {
+          margin-right: 10px;
+        }
+      }
+
+      &.right {
+        svg {
+          margin-left: 10px;
+        }
+      }
+
+      > svg {
+        height: 24px;
+        width: auto;
+      }
+    }
+  }
+}
+
+.login-button {
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  button {
+    padding: 5px 10px;
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,46 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 32px;
+    letter-spacing: 0.1px;
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 26px;
+    letter-spacing: 0.2px;
+  }
+
+  h4 {
+    font-weight: medium;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+  }
+
+  h5 {
+    font-weight: medium;
+    font-size: 18px;
+    letter-spacing: 0.2px;
+  }
+  @include screen-size('md') {
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  @include screen-size('md') {
+    h1 {
+      font-size: 36px;
+    }
+  }
+}

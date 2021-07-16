@@ -1,0 +1,302 @@
+.existing-items {
+  max-width: 1080px;
+  width: 95%;
+  margin-bottom: 2rem;
+
+  .titles {
+    width: 100%;
+    > p {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .list {
+    width: 100%;
+    margin-top: 40px;
+
+    .header {
+      display: none;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      width: 100%;
+      padding: 25px 30px;
+
+      @include screen-size('md') {
+        display: grid;
+      }
+    }
+
+    .header {
+      margin-bottom: 20px;
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:first-of-type {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    @include screen-size('md') {
+      .items-container {
+        box-shadow: var(--box-shadow);
+        border-radius: 10px;
+      }
+    }
+
+    .items {
+      margin-bottom: 200px;
+
+      @include screen-size('md') {
+        > div:first-of-type {
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        }
+        > div:last-of-type {
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+
+      .item {
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        width: 100%;
+        padding: 20px 10px;
+        background-color: var(--white);
+        padding: 25px 30px;
+        margin-bottom: 40px;
+        box-shadow: var(--box-shadow);
+
+        @include screen-size('md') {
+          grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+          border-bottom: var(--borders);
+          border-bottom-style: solid;
+          border-bottom-width: 1px;
+          border-radius: 0;
+          margin-bottom: 0;
+        }
+
+        > div {
+          padding: 20px 10px;
+
+          @include screen-size('md') {
+            &.subtitle {
+              display: none;
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:nth-of-type(2) {
+              justify-content: flex-start;
+            }
+          }
+        }
+        &:last-of-type {
+          border-bottom-width: 0;
+        }
+        .icons {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+
+          @include screen-size('md') {
+            align-items: center;
+          }
+        }
+      }
+
+      .color-swatch,
+      .material-swatch,
+      .image {
+        height: 65px;
+        width: 95px;
+        border-radius: 10px;
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: var(--box-shadow);
+        > div {
+          height: 18px;
+          width: 18px;
+          background-color: var(--disabled);
+          border-radius: 50%;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            position: absolute;
+            height: 10px;
+            width: auto;
+            color: var(--black);
+            z-index: 50;
+          }
+        }
+      }
+      .image {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        box-shadow: var(--box-shadow);
+      }
+    }
+    svg {
+      width: 20px;
+      height: auto;
+    }
+  }
+}
+
+.comparison {
+  width: 100%;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+
+    p {
+      text-align: center;
+    }
+  }
+
+  .comparisongrid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 160px;
+
+    @include screen-size('sm') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .tooltip-content {
+      right: 10px;
+      top: 10px;
+      left: initial;
+      transform: initial;
+
+      p {
+        text-align: left;
+      }
+    }
+
+    > div {
+      background-size: cover;
+      border-radius: 10px;
+      box-shadow: var(--box-shadow);
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &.selected {
+        border: 2px solid var(--brand-primary);
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        display: block;
+      }
+    }
+  }
+}
+
+.addfurniture {
+  margin-bottom: 200px;
+  .heading {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  > p {
+    margin-bottom: 30px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  .form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > div {
+      width: 80%;
+    }
+
+    .form {
+      width: 100%;
+      position: relative;
+
+      button {
+        width: 100%;
+        text-align: left;
+        padding: 15px 35px;
+        background-color: var(--white);
+        border: 1.5px solid var(--borders);
+        border-radius: 5px;
+        margin-bottom: 40px;
+        margin-top: 15px;
+        position: relative;
+        box-shadow: var(--box-shadow);
+        color: var(--inactive);
+        cursor: pointer;
+
+        &.open {
+          border: 1.5px solid var(--brand-primary);
+        }
+        svg {
+          width: 20px;
+          height: auto;
+          position: absolute;
+          right: 20px;
+          color: var(--black);
+        }
+      }
+      ul {
+        width: 100%;
+        list-style: none;
+        border: 1px solid var(--borders);
+        background-color: var(--white);
+        position: absolute;
+        z-index: 600;
+        box-shadow: var(--box-shadow);
+        border-radius: 10px;
+
+        li {
+          padding: 5px 10px;
+          border-bottom: var(--borders);
+          border-bottom: 1px;
+          border-bottom-style: solid;
+          border: 1px solid var(--borders);
+          padding: 15px 35px;
+          font-weight: bold;
+          cursor: pointer;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+  .form-container.active .form button {
+    color: var(--black);
+  }
+}
