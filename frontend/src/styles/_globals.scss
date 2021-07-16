@@ -1,6 +1,6 @@
 // Variables for use throughout app
 :root {
-  --brand-primary: #0d4a4a;
+  --brand-primary: rgba(13, 74, 74, 1);
   --brand-primary-900: #126363;
   --brand-primary-800: #167d7d;
   --brand-primary-700: #1b9797;
@@ -30,6 +30,7 @@
   --error: #c32f27;
   --link: #0d4a4a;
   --link-active: #b36318;
+  --button-hover: rgba(13, 74, 74, 0.17);
   --box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 

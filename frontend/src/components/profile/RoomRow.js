@@ -49,14 +49,14 @@ const RoomRow = ({ room, handleRoomActions }) => {
       <div className="icons">
         <Button
           id={room.id}
-          variant="small icon"
+          variant="small icon block"
           callback={() => handleRoomActions(room.id, 'edit')}
         >
           <EditIcon /> <p>Edit Room</p>
         </Button>
         <Button
           id={room.id}
-          variant="small icon"
+          variant="small icon block"
           callback={() => handleRoomActions(room.id, 'recommendations')}
         >
           <EyeIcon /> <p>Recommendations</p>

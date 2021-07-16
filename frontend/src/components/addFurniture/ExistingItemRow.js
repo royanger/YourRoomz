@@ -62,7 +62,7 @@ const ExistingItemRow = ({ item, handleDelete }) => {
         <Button
           callback={() => handleDelete(item.id)}
           id={item.id}
-          variant="small icon"
+          variant="small icon block center"
         >
           <DeleteIcon /> <p>Delete</p>
         </Button>
