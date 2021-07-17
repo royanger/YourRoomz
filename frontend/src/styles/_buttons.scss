@@ -134,19 +134,21 @@
 
     &.footer {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       cursor: pointer;
 
       &.left {
         svg {
           margin-right: 10px;
+          height: 12px;
         }
       }
 
       &.right {
         svg {
           margin-left: 10px;
+          height: 12px;
         }
       }
 
