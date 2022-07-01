@@ -1,7 +1,7 @@
 {
   "name": "co.lab-api",
   "version": "0.1.0",
-  "description": "API for Co.Lab project. TODO: Update",
+  "description": "API for Co.Lab project.",
   "main": "server.js",
   "type": "module",
   "scripts": {
