@@ -14,7 +14,7 @@ import generateResults from './routes/generateResults.js'
 // load vars from ENV variables
 dotenv.config()
 const SECRET = process.env.SECRET
-const port = process.env.PORT ? process.env.PORT : 5000
+const port = process.env.PORT ? process.env.PORT : 3000
 const url = process.env.URL ? process.env.URL : 'localhost'
 
 // initialize express server
@@ -116,6 +116,8 @@ app.get(
 )
 
 app.get('/generateResults', generateResults)
+
+console.log('Test APP_URL', process.env.APP_URL)
 
 // start the server
 app.listen(port, url, () => {

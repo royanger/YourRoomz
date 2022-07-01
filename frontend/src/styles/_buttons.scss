@@ -1,12 +1,26 @@
 .button {
   background-color: transparent;
   color: var(--white);
-  border-radius: 25px;
   border: none;
   display: inline-block;
   cursor: pointer;
 
+  &.line {
+    border: 2px;
+    border-style: solid;
+    border-color: var(--borders);
+    border-radius: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-right: 15px;
+  }
+
   &.disabled {
+  }
+
+  &.block {
+    width: 100%;
   }
 
   a {
@@ -24,6 +38,14 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    border: 1px solid transparent;
+
+    &:hover,
+    &:active {
+      background-color: var(--button-hover);
+      color: var(--brand-primary);
+      border: 1px solid var(--brand-primary);
+    }
 
     &.small {
       padding: 7px 13px;
@@ -35,20 +57,15 @@
       background-color: var(--white);
       color: var(--brand-primary);
 
+      &:hover,
+      &:active {
+        color: var(--brand-primary);
+        border: 1px solid var(--brand-primary);
+      }
+
       svg {
         height: 20px;
         width: 20px;
-      }
-
-      &.line {
-        border: 2px;
-        border-style: solid;
-        border-color: var(--borders);
-        border-radius: 0;
-        border-top-width: 0;
-        border-bottom-width: 0;
-        border-left-width: 0;
-        padding-right: 30px;
       }
     }
 
@@ -117,19 +134,21 @@
 
     &.footer {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       cursor: pointer;
 
       &.left {
         svg {
           margin-right: 10px;
+          height: 12px;
         }
       }
 
       &.right {
         svg {
           margin-left: 10px;
+          height: 12px;
         }
       }
 
@@ -137,6 +156,14 @@
         height: 24px;
         width: auto;
       }
+    }
+    &.block {
+      width: 100%;
+    }
+
+    &.center {
+      display: flex;
+      justify-content: center;
     }
   }
 }

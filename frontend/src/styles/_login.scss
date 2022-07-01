@@ -8,6 +8,10 @@
   justify-content: center;
   background-color: var(--gray-bg);
 
+  > h1 {
+    margin-top: 0;
+  }
+
   > h1 > img {
     width: 275px;
     height: auto;

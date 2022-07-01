@@ -1,7 +1,7 @@
 {
   "name": "co.lab-project",
   "version": "0.1.0",
-  "description": "Project for Pat, Olayinka, Abdul and Roy. TODO: update this.",
+  "description": "Project for Pat, Olayinka, and Roy.",
   "main": "index.js",
   "scripts": {
     "api": "npm run dev --prefix api",
