@@ -1,5 +1,5 @@
 import express from 'express'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 import session from 'express-session'
 import cors from 'cors'
 import { v4 as uuidv4 } from 'uuid'
@@ -10,15 +10,20 @@ import pkg from 'express-graphql'
 const { graphqlHTTP } = pkg
 import generateResults from './routes/generateResults.js'
 // import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
+import bodyParser from 'body-parser'
+import { ValidationContext } from 'graphql'
 
 // load vars from ENV variables
-dotenv.config()
-const SECRET = process.env.SECRET
+// dotenv.config()
+// const SECRET = process.env.SECRET
 const port = process.env.PORT ? process.env.PORT : 3000
 const url = process.env.URL ? process.env.URL : 'localhost'
 
 // initialize express server
 const app = express()
+app.use(bodyParser.json())
+// app.use(bodyParser(raw({type: "application/vnd.custom-type"})))
+app.use(bodyParser.text({ type: 'text/html' }))
 
 // app.use(
 //   session({
@@ -34,19 +39,19 @@ const app = express()
 //       maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
 //     },
 //   })
+// // )
+
+// app.use(
+//   cors({
+//     origin: process.env.APP_URL,
+//     credentials: true,
+//   })
 // )
 
-app.use(
-  cors({
-    origin: process.env.APP_URL,
-    credentials: true,
-  })
-)
+// // make sure that sercure redirects from proxy are accepted
+// app.enable('trust proxy')
 
-// make sure that sercure redirects from proxy are accepted
-app.enable('trust proxy')
-
-// configure passport
+// // configure passport
 // app.use(passport.initialize())
 // app.use(passport.session())
 
@@ -117,15 +122,19 @@ app.enable('trust proxy')
 
 // app.get('/generateResults', generateResults)
 
-console.log('Test APP_URL', process.env.APP_URL)
+// console.log('Test APP_URL', process.env.APP_URL)
 
-app.get('/hello-there', (req, res) => {
+app.get('/', async (req, res) => {
+  res.send('working?')
+})
+
+app.get('/hello-there', async (req, res) => {
   console.log('testing 1 2 3 ...')
   res.json({ whom: 'Obi-Wan Kenobi' })
 })
 
 // start the server
-app.listen(port, url, () => {
-  console.log(`EXPRESS: started on http://${url}:${port}`)
+app.listen(port, () => {
+  console.log(`EXPRESS: started on http://locahost:${port}`)
   //   console.log(`GRAPHQL: started on http://${url}:${port}/graphql`)
 })
