@@ -119,6 +119,10 @@ app.get('/generateResults', generateResults)
 
 console.log('Test APP_URL', process.env.APP_URL)
 
+app.get('/hello-there', (req, res) => {
+  res.json({ whom: 'Obi-Wan Kenobi' })
+})
+
 // start the server
 app.listen(port, url, () => {
   console.log(`EXPRESS: started on http://${url}:${port}`)
