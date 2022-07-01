@@ -20,21 +20,21 @@ const url = process.env.URL ? process.env.URL : 'localhost'
 // initialize express server
 const app = express()
 
-app.use(
-  session({
-    genid: req => uuidv4(),
-    name: 'rooms',
-    secret: SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      //  secure: true,
-      //  sameSite: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
-    },
-  })
-)
+// app.use(
+//   session({
+//     genid: req => uuidv4(),
+//     name: 'rooms',
+//     secret: SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       httpOnly: true,
+//       //  secure: true,
+//       //  sameSite: true,
+//       maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
+//     },
+//   })
+// )
 
 app.use(
   cors({
@@ -47,84 +47,85 @@ app.use(
 app.enable('trust proxy')
 
 // configure passport
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 // setup serialize/deserialize for users
-import { passportSerialize, passportDeserialize } from './passport/serialize.js'
-passportSerialize(passport)
-passportDeserialize(passport)
+// import { passportSerialize, passportDeserialize } from './passport/serialize.js'
+// passportSerialize(passport)
+// passportDeserialize(passport)
 
-// configure Google Auth
-import passportGoogle from './passport/Google.js'
-passportGoogle(passport)
+// // configure Google Auth
+// import passportGoogle from './passport/Google.js'
+// passportGoogle(passport)
 
-// configure Twitter Auth
-import passportTwitter from './passport/Twitter.js'
-passportTwitter(passport)
+// // configure Twitter Auth
+// import passportTwitter from './passport/Twitter.js'
+// passportTwitter(passport)
 
-// configure GitHub Auth
-import passportGitHub from './passport/GitHub.js'
-passportGitHub(passport)
+// // configure GitHub Auth
+// import passportGitHub from './passport/GitHub.js'
+// passportGitHub(passport)
 
 // import and mount routes
-import { authCheck, authLogout } from './routes/auth.js'
-app.get('/auth/authcheck', authCheck)
-app.post('/auth/logout', authLogout)
-app.use(
-  '/graphql',
-  graphqlHTTP({ schema: schema, context: context, graphiql: true })
-)
+// import { authCheck, authLogout } from './routes/auth.js'
+// app.get('/auth/authcheck', authCheck)
+// app.post('/auth/logout', authLogout)
+// app.use(
+//   '/graphql',
+//   graphqlHTTP({ schema: schema, context: context, graphiql: true })
+// )
 
-// Google Auth
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-)
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect(`${process.env.APP_URL}/profile`)
-  }
-)
+// // Google Auth
+// app.get(
+//   '/auth/google',
+//   passport.authenticate('google', { scope: ['profile', 'email'] })
+// )
+// app.get(
+//   '/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect(`${process.env.APP_URL}/profile`)
+//   }
+// )
 
-// Twitter Auth
-app.get('/auth/twitter', passport.authenticate('twitter'))
-app.get(
-  '/auth/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/login' }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect(`${process.env.APP_URL}/profile`)
-  }
-)
+// // Twitter Auth
+// app.get('/auth/twitter', passport.authenticate('twitter'))
+// app.get(
+//   '/auth/twitter/callback',
+//   passport.authenticate('twitter', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect(`${process.env.APP_URL}/profile`)
+//   }
+// )
 
-// GitHub Auth
-app.get(
-  '/auth/github',
-  passport.authenticate('github', { scope: ['user:email'] })
-)
-app.get(
-  '/auth/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect(`${process.env.APP_URL}/profile`)
-  }
-)
+// // GitHub Auth
+// app.get(
+//   '/auth/github',
+//   passport.authenticate('github', { scope: ['user:email'] })
+// )
+// app.get(
+//   '/auth/github/callback',
+//   passport.authenticate('github', { failureRedirect: '/login' }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect(`${process.env.APP_URL}/profile`)
+//   }
+// )
 
-app.get('/generateResults', generateResults)
+// app.get('/generateResults', generateResults)
 
 console.log('Test APP_URL', process.env.APP_URL)
 
 app.get('/hello-there', (req, res) => {
+  console.log('testing 1 2 3 ...')
   res.json({ whom: 'Obi-Wan Kenobi' })
 })
 
 // start the server
 app.listen(port, url, () => {
   console.log(`EXPRESS: started on http://${url}:${port}`)
-  console.log(`GRAPHQL: started on http://${url}:${port}/graphql`)
+  //   console.log(`GRAPHQL: started on http://${url}:${port}/graphql`)
 })
