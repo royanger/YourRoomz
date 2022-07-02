@@ -65,11 +65,11 @@ const generateResults = async (req, res) => {
       }
 
       return await axios
-        .get('https://60e48b415bcbca001749eab3.mockapi.io/search2')
-        //   .get('https://api.rainforestapi.com/request', { params })
+        //   .get('https://60e48b415bcbca001749eab3.mockapi.io/search2')
+        .get('https://api.rainforestapi.com/request', { params })
         .then(async function (res) {
-          const filtered = res.data.filter(result => {
-            //  const filtered = res.data.search_results.filter(result => {
+          //  const filtered = res.data.filter(result => {
+          const filtered = res.data.search_results.filter(result => {
             return result.price
           })
 
